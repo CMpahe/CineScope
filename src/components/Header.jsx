@@ -13,7 +13,7 @@ export const Header = ({ search, setSearch }) => {
     setIsActiveInput(false)
   }
 
-  const handleSearchBtnClick = () => {
+  const focusInput = () => {
     setTimeout(() => {
       inputRef.current.focus()
     }, 300)
@@ -49,21 +49,26 @@ export const Header = ({ search, setSearch }) => {
           onClick={() => {
             setIsActiveInput(!isActiveInput)
             if (!inputRef.current.parentNode.parentNode.parentNode.className.includes('is-active')) {
-              handleSearchBtnClick()
-            }
+              focusInput()
+            } else { inputRef.current.blur() }
           }}
         >
           <i className='bi-search search-icon' />
         </button>
 
         <div className='input-container'>
-          <form>
+          <form
+            onSubmit={(ev) => {
+              ev.preventDefault()
+            }}
+          >
             <input
               className='search-input'
               id='search-input'
               ref={inputRef}
               type='text'
               name='search'
+              placeholder='Search movies'
               onChange={ev => {
                 ev.preventDefault()
                 setSearch(ev.target.value)

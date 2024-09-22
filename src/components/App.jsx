@@ -24,14 +24,14 @@ export const App = () => {
   useEffect(() => { // agregar el location para saber en que pagin ase encuentra el usuario y asi determinar si hay que redirigirlo al pagina principal o ya se encuentra en la misma
     let timeoutId
     if (timeoutId) { clearTimeout(timeoutId) }
-
-    console.log(location.pathname)
-
+    if (location.pathname !== '/') {
+      navegate('/')
+    }
     timeoutId = setTimeout(() => {
       setMoviesToDisplay(
         filterMovies({ search, movies })
       )
-    }, 300)
+    }, 400)
     return () => {
       clearTimeout(timeoutId)
     }
