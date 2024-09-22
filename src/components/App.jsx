@@ -27,7 +27,7 @@ export const App = () => {
     <div className='container'>
       <Header search={search} setSearch={setSearch} />
       <Routes>
-        <Route path='/' element={<MovieSection movies={moviesToDisplay} />} />
+        <Route path='/' element={<MovieSection movies={moviesToDisplay} search={search} />} />
         <Route path='/genres' element={<GenreSection movies={movies} />} />
       </Routes>
     </div>

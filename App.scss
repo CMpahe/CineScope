@@ -191,6 +191,10 @@ $white-color-transparent: #f2f2f253;
       width: 100%;
       flex-grow: 1;
 
+      .no-result {
+        text-align: center;
+      }
+
       .movies-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
