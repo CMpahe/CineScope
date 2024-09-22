@@ -1,0 +1,42 @@
+
+
+/* Color Theme Swatches in Hex */
+.Icons-1-hex { color: #A60F1B; }
+.Icons-2-hex { color: #73141B; }
+.Icons-3-hex { color: #401519; }
+.Icons-4-hex { color: #F20C36; }
+
+$primary: #1E2126;
+$white-color: #F2F2F2;
+$white-color-transparent: #f2f2f288;
+
+body {
+    background-color: $primary;
+    color: $white-color;
+    margin: 0;
+    padding: 0;
+}
+
+// FONTS STYLES 
+.movie-title {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size:large;
+  }
+  
+  .P-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: small;
+  }
+
+  .T-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: medium;
+  }
+  
