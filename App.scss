@@ -122,6 +122,15 @@ $white-color-transparent: #f2f2f253;
       }
     }
 
+    .billboard {
+      display: flex;
+      justify-content: center;
+      img{
+        width: 50%;
+        aspect-ratio: 9/8;
+      }
+    }
+
     // For all the movies container
     .movie {
       display: flex;

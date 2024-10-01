@@ -11,7 +11,7 @@ export const useAutoNavegate = ({ setMoviesToDisplay, filterMovies, search, movi
       if (timeoutRef.current) { clearTimeout(timeoutRef.current) }
 
       // Change the path if the user is in another
-      if (location.pathname !== '/') { navegate('/') }
+      if (location.pathname !== '/') { navegate('/') } // añadir para que evalue tambien si se ha escrito algo en el input: && search !== ''
 
       // Asign a new timeout
       timeoutRef.current = setTimeout(() => {
