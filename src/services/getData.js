@@ -1,5 +1,5 @@
 export const getData = ({ movieEndpoint }) => {
-  const TOKEN = process.env.REACT_APP_TOKEN
+  const TOKEN = import.meta.env.VITE_REACT_APP_TOKEN
 
   const options = {
     method: 'GET',
