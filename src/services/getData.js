@@ -1,4 +1,4 @@
-export const getData = ({ movieEndpoint }) => {
+export const getData = async (endpoint) => {
   const TOKEN = import.meta.env.VITE_REACT_APP_TOKEN
 
   const options = {
@@ -8,8 +8,19 @@ export const getData = ({ movieEndpoint }) => {
       Authorization: `Bearer ${TOKEN}`
     }
   }
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3${endpoint}`, options)
 
-  return fetch(`https://api.themoviedb.org/3${movieEndpoint}`, options)
-    .then(response => response.json())
-    .catch(err => console.error(err))
+    // Validate the status of the response
+    if (response < 200 || response >= 300) {
+      throw new Error(`Unexpected status code: ${response.status}`)
+    }
+
+    const data = await response.json()
+
+    return data
+  } catch (error) {
+    console.error('Failed to fetch data:', error)
+    return null
+  }
 }
