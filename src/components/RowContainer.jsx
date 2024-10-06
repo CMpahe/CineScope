@@ -1,6 +1,8 @@
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
+import { useSlider } from '../customHooks/useSlider'
+// ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { Slider } from './Slider'
 import { Control } from './Control'
-import { useSlider } from '../customHooks/useSlider'
 
 export function RowContainer ({ index }) {
   const { listByGenre } = useSlider()

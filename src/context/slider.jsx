@@ -1,5 +1,7 @@
-import { createContext } from 'react'
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import useSections from '../customHooks/useSections'
+// ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
+import { createContext } from 'react'
 
 export const SliderContext = createContext()
 

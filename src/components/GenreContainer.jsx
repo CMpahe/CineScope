@@ -1,9 +1,12 @@
-import { useSlider } from '../customHooks/useSlider'
+// ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { PaginationIndicator } from './PaginationIndicator'
 import { RowContainer } from './RowContainer'
+// ---- ---- ---- ---- HOOKS  ---- ---- ---- ----
+import { useSlider } from '../customHooks/useSlider'
 import useEmptySection from '../customHooks/useEmptySection'
 
 export function GenreContainer ({ genre, index }) {
+  // ---- ---- CONTEXT DATA ---- ----
   const { listByGenre } = useSlider()
   const { sections } = useSlider()
   const { moviesPerSection } = useSlider()

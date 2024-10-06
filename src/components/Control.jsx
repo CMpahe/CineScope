@@ -1,4 +1,6 @@
+// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { scroll } from '../logic/logic'
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useSlider } from '../customHooks/useSlider'
 
 export const Control = ({ index, direction }) => {

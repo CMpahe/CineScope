@@ -1,6 +1,6 @@
-// ---- ---- ---- HOOKS ---- ---- ----
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useEffect, useState } from 'react'
-// ---- ---- ---- SERVICES ---- ---- ----
+// ---- ---- ---- ----  SERVICES  ---- ---- ---- ----
 import { getData } from '../services/getData'
 
 export const useFetchMoviesAndGenres = ({ moviesEndpoint, genresEndpoint }) => {

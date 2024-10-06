@@ -1,3 +1,4 @@
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useState, useEffect } from 'react'
 
 function useSections (listByGenre, moviesPerSection) {

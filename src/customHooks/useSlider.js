@@ -1,4 +1,6 @@
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useContext } from 'react'
+// ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 import { SliderContext } from '../context/slider'
 
 export const useSlider = () => {

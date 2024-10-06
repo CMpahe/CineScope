@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-// This customHook is responsable for reading the viewport width to determine the amount of movies per section should contain the slider at a time. This is what it returns: the MoviesPerSection.
+// This customHook is responsable for reading the viewport width to determine the amount of movies per section should contain the slider at a time. It returns --> the MoviesPerSection.
 
 function useWindowResize () { // revisar si es necesario aplicar un useCallback
   const [moviesPerSection, setMoviesPerSection] = useState(

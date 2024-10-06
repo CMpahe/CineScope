@@ -1,14 +1,14 @@
-// ---- ---- ---- HOOKS ---- ---- ----
+// ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import React, { useEffect, useMemo, useState } from 'react'
 
-// ---- ---- ---- SERVICES ---- ---- ----
+// ---- ---- ---- ---- SERVICES ---- ---- ---- ----
 // import { getMovie } from './services/getMovie'
 import { useFetchMoviesAndGenres } from '../customHooks/useFetchMoviesAndGenres'
 
-// ---- ---- ---- LOGIC ---- ---- ----
+// ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
 
-// ---- ---- ---- COMPONENTS ---- ---- ----
+// ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from './Header'
 import { MovieSection } from './MovieSection'
 import { GenreSection } from './GenreSection'

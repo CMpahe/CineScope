@@ -1,3 +1,4 @@
+// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { translateSliderWithIndicator, activateIndicatorWithTarget } from '../logic/logic'
 
 export const PaginationIndicator = ({ index, sections }) => {

@@ -1,4 +1,6 @@
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useEffect } from 'react'
+// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { scroll, getSliderPosition } from '../logic/logic'
 
 function useEmptySection (sections, index) {

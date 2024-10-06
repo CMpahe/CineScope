@@ -1,4 +1,6 @@
+// ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import { useRef, useState } from 'react'
+// ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { NavLink } from 'react-router-dom'
 
 // echarle un vistazo luego para descartar errores y mejorar el código
@@ -7,13 +9,13 @@ export const Header = ({ search, setSearch }) => {
 
   const inputRef = useRef(null)
 
-  const clearInputValue = () => {
+  const clearInputValue = () => { // Clear input-field when closed
     inputRef.current.value = ''
     setSearch(false)
     setIsActiveInput(false)
   }
 
-  const focusInput = () => {
+  const focusInput = () => { // Auto focus input field when displayed
     setTimeout(() => {
       inputRef.current.focus()
     }, 300)

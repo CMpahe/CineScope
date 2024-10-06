@@ -1,6 +1,8 @@
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useSlider } from '../customHooks/useSlider'
 
 export const Slider = () => {
+  // ---- ---- CONTEXT DATA ---- ----
   const { listByGenre } = useSlider()
   return (
     <div className='slider'>
