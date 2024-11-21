@@ -1,13 +1,12 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { useSlider } from '../customHooks/useSlider'
+import { forwardRef } from 'react'
 
-export const Slider = () => {
-  // ---- ---- CONTEXT DATA ---- ----
-  const { listByGenre } = useSlider()
+export const Slider = forwardRef(({ data }, ref) => {
+  console.log('Y yo recibo esta data de carrousel:', data)
   return (
-    <div className='slider'>
+    <div className='slider' ref={ref}>
       {
-        listByGenre.map((movie) => {
+        data.map((movie) => {
           return (
             <div key={movie.id} className='movie'>
               <img
@@ -30,3 +29,4 @@ export const Slider = () => {
     </div>
   )
 }
+)

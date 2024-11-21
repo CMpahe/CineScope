@@ -238,19 +238,19 @@ $white-color-transparent: #f2f2f253;
 
     .genre-section{
 
-      .genre-container {
+      .carousel-container {
         width: 100%;
         margin-top: 3.5%;
         overflow: hidden;
         
         &:hover {
-          .genre-header {
+          .carousel-header {
             .pagination-indicator {
               visibility: visible;
             }
           }
         }
-        .genre-header {
+        .carousel-header {
           display: flex;
           justify-content: space-between;
           padding: 1% 5.1%;

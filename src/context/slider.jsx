@@ -1,18 +1,18 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import useSections from '../customHooks/useSections'
+// import useSections from '../customHooks/useSections'
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { createContext } from 'react'
 
 export const SliderContext = createContext()
 
-export function SliderProvider ({ children, listByGenre, moviesPerSection }) {
-  const sections = useSections(listByGenre, moviesPerSection)
+export function SliderProvider ({ children, listByGenre }) {
+  // const sections = useSections(listByGenre, moviesPerSection)
+  // verificar que componente consume la constante sections
 
   return (
     <SliderContext.Provider value={{
-      sections,
-      listByGenre,
-      moviesPerSection
+      listByGenre
+      // moviesPerSection
     }}
     >
       {children}

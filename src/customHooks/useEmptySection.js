@@ -1,15 +1,15 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useEffect } from 'react'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { scroll, getSliderPosition } from '../logic/logic'
+import { scroll, getSliderPosition } from '../utils/logic'
 
-function useEmptySection (sections, index) {
+function useEmptySection (sections, slider) {
   useEffect(() => {
-    const sliderPosition = Math.ceil(getSliderPosition(index) / 90)
+    const sliderPosition = Math.ceil(getSliderPosition(slider.current) / 90)
 
     if (sliderPosition > (sections - 1)) {
       const direction = 'left'
-      scroll({ direction, index, sections })
+      scroll({ direction, slider, sections })
     }
   }, [sections])
 }

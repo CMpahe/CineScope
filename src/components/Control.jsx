@@ -1,14 +1,12 @@
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { scroll } from '../logic/logic'
+import { scroll } from '../utils/logic'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { useSlider } from '../customHooks/useSlider'
 
-export const Control = ({ index, direction }) => {
-  const { sections } = useSlider()
+export const Control = ({ sliderRef, direction, sections }) => {
   return (
     <div
       className={`control-container ${direction}`} onClick={() => {
-        scroll({ direction, index, sections })
+        scroll({ direction, sliderRef, sections })
       }}
     >
       <i className={`control bi-chevron-compact-${direction}`} />

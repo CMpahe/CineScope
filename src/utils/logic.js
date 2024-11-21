@@ -27,32 +27,31 @@ export const getMoviesSortedByGenre = ({ genres, movies }) => {
 }
 
 // scroll: is a function that allows to make a left and right scroll in the slider when it is applied to a slider-controler
-export const scroll = ({ direction, index, sections }) => {
-  const slider = getSlider(index)
-  const sliderPosition = getSliderPosition(index)
+export const scroll = ({ direction, sliderRef, sections }) => {
+  const sliderPosition = getSliderPosition(sliderRef.current)
 
   const result = sections - sliderPosition / 90
 
   if (
     direction === 'right' &&
          result > 1) {
-    slider.style.setProperty('transform',
+    sliderRef.current.style.setProperty('transform',
         `translate(-${sliderPosition + 90}%)`)
-    activateIndicatorWithSlider(slider, index)
+    activateIndicatorWithSlider(sliderRef.current)
   } else if (
 
     sliderPosition !== 0 &&
                     direction === 'left'
   ) {
-    slider.style.setProperty('transform', `translate(-${sliderPosition - 90}%)`)
-    activateIndicatorWithSlider(slider, index)
+    sliderRef.current.style.setProperty('transform', `translate(-${sliderPosition - 90}%)`)
+    activateIndicatorWithSlider(sliderRef.current)
   }
 }
 
-export const activateIndicatorWithSlider = (slider, index) => {
+export const activateIndicatorWithSlider = (slider) => {
   const indicators = slider.parentNode.previousSibling.childNodes[1].childNodes
 
-  const indicatorPosition = getSliderPosition(index) / 90
+  const indicatorPosition = getSliderPosition(slider) / 90
 
   for (const indicator of indicators) {
     indicator.classList.remove('active')
@@ -89,12 +88,12 @@ export const getSlider = (index) => {
   return slider
 }
 
-export const getSliderPosition = (index) => {
-  const sliderPosition = Number(getSlider(index).style.transform.slice(11, -2))
+export const getSliderPosition = (slider) => {
+  const sliderPosition = Number(slider.style.transform.slice(11, -2))
   return sliderPosition
 }
 
-const getElementByClassAndIndex = (className, index) => {
-  const element = document.querySelectorAll(className)[index]
-  return element
-}
+// const getElementByClassAndIndex = (className, index) => {
+//   const element = document.querySelectorAll(className)[index]
+//   return element
+// }

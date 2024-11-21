@@ -1,7 +1,7 @@
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { translateSliderWithIndicator, activateIndicatorWithTarget } from '../logic/logic'
+import { translateSliderWithIndicator, activateIndicatorWithTarget } from '../utils/logic'
 
-export const PaginationIndicator = ({ index, sections }) => {
+export const PaginationIndicator = ({ sections }) => {
   const listItems = []
 
   for (let i = 0; i < sections; i++) {
