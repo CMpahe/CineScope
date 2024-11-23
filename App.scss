@@ -7,7 +7,9 @@ $black03: rgba(12,12,12, 1);
 
 $primary: #111215;
 
-$white-color: #F2F2F2;
+$primary-white: #F2F2F2;
+$primary-black: #111215;
+$primary-red: #F20C36;
 $white-color-transparent: #f2f2f253;
 
 #app{
@@ -17,6 +19,87 @@ $white-color-transparent: #f2f2f253;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+
+  // Classes for texts in the app
+  .roboto-regular {
+    font-family: 'Roboto', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+  }
+
+  .regular-text {
+    font-family: 'Roboto', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+  }
+
+  .big-text {
+    font-family: 'Roboto', serif;
+    font-weight: 400;
+    font-style: normal;
+    // font-size: 18px;
+    font-size: clamp(.7rem, 2.5vw, 1.4rem);
+    line-height: 1.4;
+  }
+
+  .big-title {
+    font-family: 'Montserrat';
+    font-weight: 800;
+    font-style: normal;
+    // font-size: 48px;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1.2;
+  }
+
+  .c-black {
+    color: $primary-black;
+  }
+
+  .c-white {
+    color: $primary-white;
+  }
+
+  .light {
+    opacity: 50%;
+  }
+
+  .roboto-bold {
+    font-family: 'Roboto', sarif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .white-btn, .black-btn, .red-btn {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    min-width: max-content;
+    
+    border-radius: 100px;
+    border: none;
+    padding: clamp(0.3rem, .9vw, .5rem) clamp(0.8rem, 2.2vw, 1.2rem);
+    gap: clamp(0.3rem, 1vw, 0.6rem);
+
+    font-family: 'Roboto Condensed';
+    font-size: clamp(.5rem, 2.1vw, 1rem);
+    font-weight: 700;
+
+    cursor: pointer;
+  }
+
+  .white-btn {
+    background-color: $primary-white;
+  }
+
+  .black-btn {
+    background-color: $primary-black;
+  }
+  .red-btn {
+    background-color: $primary-red;
+  }
 
   .container{
     display: flex;
@@ -111,26 +194,67 @@ $white-color-transparent: #f2f2f253;
               font-size: 1.4rem;
               font-weight: bold;
               cursor: pointer;
-              color: $white-color;
+              color: $primary-white;
             }
           }
         }
         &.is-active {
           max-width: 700px;
-          border-color: $white-color;  
+          border-color: $primary-white;  
         }
       }
     }
 
     .billboard {
+      position: relative;
+
       display: flex;
-      justify-content: center;
+      justify-content:left;
       img{
-        width: 50%;
-        aspect-ratio: 9/8;
+        width: 100%;
+        filter:brightness(0.5);
+        // aspect-ratio: 9/8;
+      }
+      .media-info {
+        position: absolute;
+        // top: 15%;
+
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+        padding: 7% 5%;
+        // gap: 2rem;
+        gap: clamp(0.5rem, 1.8vw, 1rem);
+        p, h1 {
+          margin: 0;
+        }
+      }
+      .btn-container {
+        display: flex;
+        gap: clamp(0.5rem, 1.8vw, 1rem);
+        padding-top: clamp(0.5rem, 2.5vw, 1.4rem);
+
+        .icon-container {
+          display: flex;
+          flex-shrink: 0;
+          width: clamp(.5rem, 2.1vw, 1rem);
+          svg {
+            width: 100%;
+            fill: $primary-white;
+           }
+        }
       }
     }
 
+    @media (max-width:920px) {
+      .big-title {
+        // font-size: 36px;
+      }
+
+      .big-text {
+        // font-size: 16px;
+      }
+    }
     // For all the movies container
     .movie {
       display: flex;
@@ -288,7 +412,7 @@ $white-color-transparent: #f2f2f253;
                 transform: scaleY(2.2);
               }
               &.active{
-                background-color: $white-color;
+                background-color: $primary-white;
                 transform: scaleY(2.2);
               }
             }
@@ -309,7 +433,7 @@ $white-color-transparent: #f2f2f253;
             display: flex;
             place-content: center;
             transition: transform .1s ease-in-out;
-            color: $white-color;
+            color: $primary-white;
           }
 
           .control-container {

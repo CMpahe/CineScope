@@ -28,51 +28,64 @@ export const App = () => {
   const [moviesToDisplay, setMoviesToDisplay] = useState(localMovies) // Movies delivered to 'MovieSection' - It is initialized with a local package of movies and then update with the movie data got from the API
   const [search, setSearch] = useState(false) // Nothing in the meantime!
 
-  const [moviesResponse, setMoviesResponse] = useState([]) // mediaDataResponse = { moviesData, tvData }
-  const [tvResponse, setTvResponse] = useState([])
+  const [moviesResponse, setMoviesResponse] = useState(null) // mediaDataResponse = { moviesData, tvData }
+  const [tvResponse, setTvResponse] = useState(null)
   useEffect(() => {
-    useFetchMediaData({ mediaEndpoints }).then(res => {
-      if (res) {
-        setMoviesResponse(res.moviesPackage) // This was fixed, here probably was the error of the rendering loop
-        setTvResponse(res.tvPackage)
-      }
-    })
+    const cachedData = window.localStorage.getItem('mediaData')
+    if (cachedData) {
+      setMoviesResponse(JSON.parse(cachedData).moviesPackage)
+      setTvResponse(JSON.parse(cachedData).tvPackage)
+    } else {
+      useFetchMediaData({ mediaEndpoints }).then(res => {
+        if (res) {
+          setMoviesResponse(res.moviesPackage)
+          setTvResponse(res.tvPackage)
+          window.localStorage.setItem('mediaData', JSON.stringify(res))
+        }
+      })
+    }
   }, [])
 
-  const [mediaGenresResponse, SetMediaGenresResponse] = useState([]) // mediaGenresResponse = { movieGenresResponse, tvGenresResponse }
+  const [genresResponse, SetGenresResponse] = useState(null) // mediaGenresResponse = { movieGenresResponse, tvGenresResponse }
   useEffect(() => {
-    useFetchGenresData({ genresEndpoints }).then(res => {
-      if (res) { SetMediaGenresResponse(res) }
-      // console.error('Something failed with Genres Response!')
-    })
+    const cachedData = window.localStorage.getItem('genresResponse')
+    if (cachedData) {
+      SetGenresResponse(JSON.parse(cachedData))
+    } else {
+      useFetchGenresData({ genresEndpoints }).then(res => {
+        if (res) {
+          SetGenresResponse(res)
+          window.localStorage.setItem('genresResponse', JSON.stringify(res))
+        }
+        // console.error('Something failed with Genres Response!')
+      })
+    }
   }, [])
 
   const moviesGenresMap = useMemo(() => {
-    const data = moviesResponse.moviesGenres
-    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+    if (typeof genresResponse === 'object' && genresResponse !== null && !Array.isArray(genresResponse)) {
       // console.error('moviesGenresMap recibe null o un objeto vacio de mediaGenresResponse')
-      return restructureGenresData(data)
+      return restructureGenresData(genresResponse.moviesGenres.genres)
     }
-    return []
-  }, [mediaGenresResponse])
+    return null
+  }, [genresResponse])
 
   const tvGenresMap = useMemo(() => {
-    const data = mediaGenresResponse.tvGenres
-    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+    if (typeof genresResponse === 'object' && genresResponse !== null && !Array.isArray(genresResponse)) {
       // console.error('tvGenresMap recibe null o un objeto vacio')
-      return restructureGenresData(data.genres)
+      return restructureGenresData(genresResponse.tvGenres.genres)
     }
-    return []
-  }, [mediaGenresResponse])
+    return null
+  }, [genresResponse])
+
   // Navegate automatically everytime the user search a movie
   // useAutoNavegate({ setMoviesToDisplay, filterMovies, search, movies }) // Arreglar para que no cambie el path cuando esta en otra sección y se elimina el contenido del input (solución en el archivo del customHook)
 
   // Create a copy of the object but with a new property with the genres of the movies -> (results: [Action, Horror, Comedy])
   const moviesWithGenres = useMemo(() => {
     console.log(Array.isArray(moviesResponse) && moviesResponse.length > 0)
-    if (Array.isArray(moviesResponse) && moviesResponse.length > 0) {
-      console.log(moviesResponse)
-      // console.error('movieWithGenres recibe un array')
+    if (Array.isArray(moviesResponse) && moviesResponse.length > 0 && moviesGenresMap !== null) {
+      // console.log(moviesResponse)
       return moviesResponse.map((pack) => ({
         ...pack,
         results: addGenres(pack.results, moviesGenresMap)
@@ -83,21 +96,23 @@ export const App = () => {
 
   // Create a copy of the object but with a new property with the genres of the TV programs -> (results: [Action, Horror, Comedy])
   const tvWithGenres = useMemo(() => {
-    if (Array.isArray(moviesResponse) && moviesResponse.length > 0) {
+    if (Array.isArray(moviesResponse) && moviesResponse.length > 0 && tvGenresMap !== null) {
       // console.error('tvWithGenres recibe un array')
       return tvResponse.map((pack) => ({
         ...pack,
         results: addGenres(pack.results, tvGenresMap)
       }))
     }
-    return []
+    return null
   }, [tvGenresMap, tvResponse]) // verificar si realmente modifica la propiedad 'results'  !!!
 
   // Updated movies to be displayed
   useEffect(() => {
-    console.log(moviesWithGenres)
-    console.log(moviesWithGenres[0])
-    setMoviesToDisplay({ moviesWithGenres, tvWithGenres })
+    // console.log(moviesWithGenres)
+    // console.log(moviesWithGenres[0])
+    if (moviesWithGenres !== null && tvWithGenres !== null) {
+      setMoviesToDisplay({ moviesWithGenres, tvWithGenres })
+    }
   }, [moviesWithGenres, tvWithGenres])
 
   return (
