@@ -26,6 +26,13 @@
     line-height: 1.2;
   }
 
+  .header_link {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: clamp(.5rem, 2.1vw, 1rem);
+    // font-size: clamp(.7rem, 2.5vw, 1.4rem);
+  }
+
     // FONT COLORS
 .c-black {
     color: vars.$primary-black;

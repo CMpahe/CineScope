@@ -1,11 +1,10 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './Header.module.scss'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { NavLink } from 'react-router-dom'
 
-// echarle un vistazo luego para descartar errores y mejorar el código
 export const Header = ({ search, setSearch }) => {
   const [isActiveInput, setIsActiveInput] = useState(false)
 
@@ -23,16 +22,39 @@ export const Header = ({ search, setSearch }) => {
     }, 300)
   }
 
+  const headerRef = useRef(null)
+  let lastScrollY = 0
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      if (currentScrollY > lastScrollY) {
+        headerRef.current.classList.add(`${styles.hidden}`)
+      } else {
+        headerRef.current.classList.remove(`${styles.hidden}`)
+      }
+
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  })
+
   return (
-    <header className={styles.header}>
+    <header ref={headerRef} className={styles.header}>
       <div className={styles.header_bar}>
 
         <div>
           <NavLink
             to='/' className={({ isActive }) => {
               return isActive
-                ? `title1 ${styles.links} ${styles.is_active}`
-                : `title1 ${styles.links}`
+                ? `c-white header_link ${styles.links} ${styles.is_active}`
+                : `c-white header_link ${styles.links}`
             }}
           >Home
           </NavLink>
@@ -42,10 +64,20 @@ export const Header = ({ search, setSearch }) => {
           <NavLink
             to='/genres' className={({ isActive }) => {
               return isActive
-                ? `${styles.is_active} ${styles.links} title1`
-                : `${styles.links} title1`
+                ? `c-white header_link ${styles.is_active} ${styles.links}`
+                : `c-white header_link ${styles.links}`
             }}
           >Genres
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            to='/myList' className={({ isActive }) => {
+              return isActive
+                ? `c-white header_link ${styles.is_active} ${styles.links}`
+                : `c-white header_link ${styles.links}`
+            }}
+          >My list
           </NavLink>
         </div>
       </div>
@@ -59,7 +91,7 @@ export const Header = ({ search, setSearch }) => {
           className={styles.search_btn}
           onClick={() => {
             setIsActiveInput(!isActiveInput)
-            if (!inputRef.current.parentNode.parentNode.parentNode.className.includes('is_active')) {
+            if (!inputRef.current.parentNode.parentNode.parentNode.className.includes(`${styles.is_active}`)) {
               focusInput()
             } else { inputRef.current.blur() }
           }}

@@ -125,6 +125,8 @@ export const App = () => {
 
         <Route path='/genres' element={<GenreSection movies={localMovies} />} />
 
+        <Route path='/myList' element={<div />} />
+
       </Routes>
     </div>
   )
