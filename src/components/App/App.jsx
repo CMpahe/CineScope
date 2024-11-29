@@ -11,12 +11,12 @@ import { useFetchGenresData } from '../../customHooks/useFecthGenresData'
 import { addGenres, restructureGenresData } from './App.logic'
 
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { Header } from '../Header'
+import { Header } from '../Header/Header'
 import { MovieSection } from '../MovieSection'
 import { GenreSection } from '../GenreSection'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'
-import { Billboard } from '../Billboard'
+import { Billboard } from '../Billboard/Billboard'
 
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
 import { mediaEndpoints, genresEndpoints } from '../../data/endpoints'

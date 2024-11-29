@@ -1,0 +1,171 @@
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
+@use './src/styles/globals/variables.scss' as vars;
+
+.carousel {
+    width: 100%;
+    margin-top: 3.5%;
+    overflow: hidden;
+    
+    &:hover {
+      .carousel_header {
+        .pagination_indicator {
+          visibility: visible;
+        }
+      }
+    }
+    .carousel_header {
+      display: flex;
+      justify-content: space-between;
+      padding: 1% 5.1%;
+
+      h2{
+        align-self: start;
+        margin: 0;
+        //font-size: min(4vw, .8rem);
+        letter-spacing: .15rem;
+      }
+
+      .pagination_indicator {
+        display: flex;
+        // display: none; // to see if this works
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        gap: .15rem;
+        list-style: none;
+        transition: transform ease-in-out .3s;
+        transform-origin: right;
+        visibility: hidden;
+        &:hover {
+          transform: scale(1.2, 2);
+        }
+    
+        li{
+          display: flex;
+          min-width: 1rem;
+          height: .1rem;
+          background-color: vars.$white-color-transparent;
+          cursor: pointer; 
+          transition: transform ease-in-out .3s;
+          &:hover {
+            transform: scaleY(2.2);
+          }
+          // &.active{
+          //   background-color: vars.$primary-white;
+          //   transform: scaleY(2.2);
+          // }
+        }
+        [data-active="true"] {
+          background-color: vars.$primary-white;
+          transform: scaleY(2.2);
+        }
+      }
+    }
+
+    .row_container {
+      position: relative;
+
+      &:hover {
+        .control_container {
+          visibility: visible;
+        }
+      }
+
+      .control {
+        font-size: 6vw;
+        display: flex;
+        place-content: center;
+        transition: transform .1s ease-in-out;
+        color: vars.$primary-white;
+      }
+
+      .control_container {
+        position: absolute;
+        z-index: 2;
+        cursor: pointer;
+        visibility: hidden;
+
+        display: flex;
+        place-items: center;
+        place-content: center;
+        background-color: rgba(0, 0, 0, 0.313);
+
+        width: 5%;
+        height: 100%;
+        overflow: hidden;
+
+        &:hover{
+          background-color: rgba(0, 0, 0, 0.616);
+          .control{
+            transform: scale(1.35);
+          }
+        }
+
+        &:active{
+          .control{
+            transform: scale(1);
+          }
+        }
+      }
+
+      .left {
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-radius: 0 .2rem .2rem 0;
+      }
+
+      .right {
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-radius: .2rem 0 0 .2rem;
+      }
+
+      .slider {
+        $scroll-value: 2;
+        display: flex;
+        padding: 0 5%;
+        width: 90%;
+        transition: transform ease-in-out .3s;
+
+        .movie{
+          flex: 0 0 25%;
+          aspect-ratio: 9 / 14;
+          padding: 0 .1rem;
+          box-sizing: border-box;
+
+          img {
+            border-radius: 0.2rem;
+          }
+        }
+      }
+
+      @media (min-width: 800px) {
+        .slider .movie {
+          flex-basis: 20%;
+        }
+      }
+      @media (max-width: 450px) {
+        .slider .movie {
+          flex-basis: calc(100% / 3);
+        }
+      }
+
+    } 
+
+    @media (max-width: 768px) {
+      .genre_header .pagination_indicator{
+        display: none;
+      }
+      .row_container .control_container{
+        display: none;
+      }
+      .row_container .slider {
+        transform: translate(0%) !important;
+        overflow: scroll;
+        scrollbar-width:none;
+      }
+    }
+
+  }

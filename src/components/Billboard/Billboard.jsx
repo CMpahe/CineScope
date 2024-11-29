@@ -1,14 +1,15 @@
-import { WhatchBtn } from './buttons/WhatchBtn'
-import { AddlistBtn } from './buttons/AddlistBtn'
+import styles from './Billboard.module.scss'
+import { WhatchBtn } from '../buttons/WhatchBtn'
+import { AddlistBtn } from '../buttons/AddlistBtn'
 export const Billboard = () => {
   return (
-    <div className='billboard'>
+    <div className={`${styles.billboard}`}>
       <img src='https://image.tmdb.org/t/p/original/naNXYdBzTEb1KwOdi1RbBkM9Zv1.jpg' />
-      <div className='media-info'>
+      <div className={`${styles.media_info}`}>
         <p className='big-text light'>Duration: 115 min</p>
         <h1 className='big-title'>Movie Title Here</h1>
         <p className='big-text light'>Description of the movie here, is a main summary of the movie, is a main summary of the movie. Description of the movie here</p>
-        <div className='btn-container'>
+        <div className={`${styles.btn_container}`}>
           <WhatchBtn />
           <AddlistBtn />
         </div>
