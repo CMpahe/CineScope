@@ -1,7 +1,7 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useEffect } from 'react'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { scroll, getSliderPosition } from '../utils/logic'
+import { scroll, getSliderPosition } from '../components/Carousel/Carousel.logic'
 
 function useEmptySection (sections, slider) {
   useEffect(() => {

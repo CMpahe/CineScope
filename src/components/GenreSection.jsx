@@ -1,5 +1,5 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { CarouselContainer } from './CarouselContainer'
+import { Carousel } from './Carousel/Carousel'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { getMoviesSortedByGenre } from '../utils/logic'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
@@ -24,7 +24,7 @@ export const GenreSection = ({ movies }) => {
         listOfGenres.map((data, index) => {
           return (
 
-            <CarouselContainer data={data} title={genres[index]} itemsPerSection={itemsPerSection} key={genres[index]} />
+            <Carousel data={data} title={genres[index]} itemsPerSection={itemsPerSection} key={genres[index]} />
             // cambiar el valor de index en el key por otro valor que proporcione el objeto que va a renderizar CarouselContainer
           )
         })
