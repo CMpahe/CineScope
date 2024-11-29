@@ -1,6 +1,8 @@
+import { MediaCard } from './MediaCard/MediaCard'
+
 export const MovieSection = ({ moviesObject, search }) => {
 //  console.log(movies)  Esto se ejecuta cada vez que hay algun cambio, revisar cuando haya más componentes para verificar si es que la app recorre todas las funciones y componentes sin retornar nada cada vez que hay un cambio en alguen elemento
-  console.log('Estas son las películas para mostrar', moviesObject)
+  // console.log('Estas son las películas para mostrar', moviesObject)
   if (moviesObject === null || moviesObject === undefined) {
     console.error('movies is null or undifined')
     return <h2>Something went wrong!</h2>
@@ -23,22 +25,7 @@ export const MovieSection = ({ moviesObject, search }) => {
       <div className='movies-container'>
 
         {data.results.map((movie) => (
-          <div key={movie.id} className='movie'>
-
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-
-            <div className='movie-info'>
-
-              <h3>{movie.title}</h3>
-              <p>{movie.release_date}</p>
-
-              <p>
-                <span>Genre: </span>
-                {movie.genres?.length ? movie.genres.join(', ') : 'No genres available'}
-              </p>
-
-            </div>
-          </div>
+          <MediaCard key={movie.id} media={movie} />
         ))}
       </div>
     </section>
