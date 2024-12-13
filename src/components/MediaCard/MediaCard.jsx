@@ -8,13 +8,18 @@ export const MediaCard = ({ media }) => {
 
       <div className={styles.movie_info}>
 
-        <h3>{media.title}</h3>
-        <p>{media.release_date}</p>
+        <h3 className='card-title'>{media.title}</h3>
 
-        <p>
-          <span>Genre: </span>
-          {media.genres?.length ? media.genres.join(', ') : 'No genres available'}
-        </p>
+        <div>
+          <p className='card-text light'>{media.release_date}</p>
+
+          <p className='card-text light'>
+            <span>Genre: </span>
+            {media.genres?.length
+              ? media.genres.join(', ')
+              : 'No genres available'}
+          </p>
+        </div>
 
       </div>
     </div>

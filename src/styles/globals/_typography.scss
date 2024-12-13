@@ -1,43 +1,55 @@
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
 @use './variables' as vars;
 
-.regular-text {
-    font-family: 'Roboto', serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 14px;
-  }
+.card-text {
+  font-family: 'Roboto', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(0.5rem, 10cqi, 1rem);
+}
 
-  .big-text {
-    font-family: 'Roboto', serif;
-    font-weight: 400;
-    font-style: normal;
-    // font-size: 18px;
-    font-size: clamp(.7rem, 2.5vw, 1.4rem);
-    line-height: 1.4;
-  }
+.card-title {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-style: normal;
+  // font-size: 48px;
+  // font-size: clamp(80%, 2vw, 100%);
+  font-size: clamp(0.6rem, 13cqi, 1.5rem);
+  line-height: 1.2;
+}
 
-  .big-title {
-    font-family: 'Montserrat';
-    font-weight: 800;
-    font-style: normal;
-    // font-size: 48px;
-    font-size: clamp(1.5rem, 5vw, 3rem);
-    line-height: 1.2;
-  }
+.big-text {
+  font-family: 'Roboto', serif;
+  font-weight: 400;
+  font-style: normal;
+  // font-size: 18px;
+  font-size: clamp(.7rem, 2.5vw, 1.4rem);
+  line-height: 1.4;
+}
 
-  .header_link {
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: clamp(.5rem, 2.1vw, 1rem);
-    // font-size: clamp(.7rem, 2.5vw, 1.4rem);
-  }
+.big-title {
+  font-family: 'Montserrat';
+  font-weight: 800;
+  font-style: normal;
+  // font-size: 48px;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  line-height: 1.2;
+}
 
-    // FONT COLORS
+.header_link {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: vars.$medium-font;
+  // font-size: clamp(.7rem, 2.5vw, 1.4rem);
+}
+
+
+
+// FONT COLORS
 .c-black {
-    color: vars.$primary-black;
-  }
+  color: vars.$primary-black;
+}
   
-  .c-white {
-    color: vars.$primary-white;
-  }
+.c-white {
+  color: vars.$primary-white;
+}

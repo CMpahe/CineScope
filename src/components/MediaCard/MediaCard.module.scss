@@ -22,7 +22,8 @@
       display: none;
       flex-direction: column;
       align-content: start;
-      justify-content: space-evenly;
+      justify-content: space-around;
+      
       z-index: 1;
       width: 100%;
       height: 100%;
@@ -30,31 +31,34 @@
 
       padding: 10% 3% 3% 5%;
       transition: .3s all ease-in-out;
+      container-type: inline-size;
+
       h3{
+        align-self: flex-start;
         margin: 0;
         margin-bottom: .6rem;
-        // font-size: 2.6vw;
-        font-size: clamp(0.6rem, 2.6vw, 1.3rem);
+        text-wrap: balance;
+        align-self: center;
+        text-align: center;
+        // font-size: clamp(0.6rem, 2.6vw, 1.3rem);
       }
 
-      section{
-        display: flex;
-        flex-direction: column;
+      div {
+        container-type: inline-size;
+
+        p:first-child {
+          font-size: clamp(0.4rem, 7cqi, .8rem);
+        }
+
         span{
           font-weight: bold;
-        }
-        p{
-          margin: .2rem;
-          justify-self: end;
-          // font-size: 1.9vw;
-          font-size: clamp(0.37rem, 1.6vw, .8rem);
         }
       }
     }
     &:hover {
         
       img {
-        filter:brightness(0.25);
+        filter:brightness(0.20);
       }
       .movie_info{
         display: flex;

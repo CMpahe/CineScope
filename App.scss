@@ -39,6 +39,16 @@ $primary: #111215;
     font-style: normal;
   }
 
+  .icon-container { // clase global para los iconos 
+    display: flex;
+    flex-shrink: 0;
+    width: vars.$medium-font;
+    svg {
+      width: 100%;
+      fill: vars.$primary-white;
+     }
+  }
+
   .container{
     display: flex;
     position: relative;
@@ -133,9 +143,9 @@ $primary: #111215;
       }
     }
 
-    @media (max-width: 450px) {
+    @media (max-width: 495px) {
       .movies-section .movies-container{
-        grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
 
         .movie {
           .movie-info {

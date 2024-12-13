@@ -56,7 +56,7 @@
       }
     }
 
-    .search_container {
+    .search_container {  // I can use scaleX to hide and display the box of the search input
       display: flex;
       overflow: hidden;
       max-width: 23px;
