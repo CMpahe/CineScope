@@ -111,18 +111,22 @@ export const Header = ({ search, setSearch }) => {
               ref={inputRef}
               type='text'
               name='search'
-              placeholder='Search movies'
+              placeholder='Search...'
               onChange={ev => {
                 ev.preventDefault()
                 setSearch(ev.target.value)
               }}
             />
+
+            <button
+              className={search ? `${styles.close_icon} ${styles.show}` : styles.close_icon}
+              type='button'
+              onClick={() => { clearInputValue() }}
+            >
+              <i className='bi-x' />
+            </button>
+
           </form>
-
-          <div>
-            {search && <i className={`${styles.close_icon} bi-x`} onClick={() => { clearInputValue() }} />}
-          </div>
-
         </div>
       </div>
     </header>
