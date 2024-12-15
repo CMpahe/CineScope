@@ -8,7 +8,7 @@
     img{
       width: 100%;
       filter:brightness(0.5);
-      // aspect-ratio: 9/8;
+      // aspect-ratio: 9/5;
     }
     .media_info {
       position: absolute;
@@ -18,8 +18,8 @@
       width: 70%;
       flex-direction: column;
       padding: 7% 5%;
-      // gap: 2rem;
-      gap: clamp(0.5rem, 1.8vw, 1rem);
+      gap: clamp(0.6rem, 3.5vw, 2rem);
+      
       p, h1 {
         margin: 0;
       }
@@ -28,15 +28,5 @@
       display: flex;
       gap: clamp(0.5rem, 1.8vw, 1rem);
       padding-top: clamp(0.5rem, 2.5vw, 1.4rem);
-
-      // .icon-container {
-      //   display: flex;
-      //   flex-shrink: 0;
-      //   width: vars.$medium-font;
-      //   svg {
-      //     width: 100%;
-      //     fill: vars.$primary-white;
-      //    }
-      // }
     }
   }
