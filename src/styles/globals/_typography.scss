@@ -39,8 +39,11 @@
 .header_link {
   font-family: 'Montserrat';
   font-weight: 600;
-  font-size: vars.$medium-font;
+  font-size: clamp(.8rem, 2.8vw, 1.1rem);
   // font-size: clamp(.7rem, 2.5vw, 1.4rem);
+  text-decoration: none;
+  font-style: none;
+  transform: none;
 }
 
 

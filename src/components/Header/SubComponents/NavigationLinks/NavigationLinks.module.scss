@@ -1,0 +1,51 @@
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
+@use './src/styles/globals/variables' as vars;
+
+ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+
+        .links {
+            position: relative;
+        }
+
+        .is_active::before {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 15%;
+            width: 70%;
+        
+            background-color: vars.$primary-red;
+            bottom: -15%;
+            border-radius: 2px;
+        
+            left: 50%;
+            transform: translateX(-50%);
+        }
+      }
+  }
+
+@media (max-width: 650px) {
+    ul {
+        display: flex;
+        margin-top: 5vw;
+        height: 100%;
+        width: 100%;
+        gap: 3%;
+        li {
+            .is_active::before {
+                width: .2rem;
+                height: 100%;
+                left: 0;
+                bottom: 0;
+                //transform: translateY(-100%);
+                
+                transform: translateX(-200%);
+            }
+        }
+    }
+}
