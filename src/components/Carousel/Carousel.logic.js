@@ -6,14 +6,14 @@ export const scroll = ({ direction, sliderRef, sections }) => {
 
   if (
     direction === 'right' &&
-           result > 1) {
+    result > 1
+  ) {
     sliderRef.current.style.setProperty('transform',
           `translate(-${sliderPosition + 90}%)`)
     activateIndicatorWithSlider(sliderRef.current)
   } else if (
-
     sliderPosition !== 0 &&
-                      direction === 'left'
+    direction === 'left'
   ) {
     sliderRef.current.style.setProperty('transform', `translate(-${sliderPosition - 90}%)`)
     activateIndicatorWithSlider(sliderRef.current)
