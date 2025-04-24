@@ -4,6 +4,8 @@ import { Carousel } from '../Carousel/Carousel'
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import useWindowResize from '../../customHooks/useWindowResize'
+// ---- ---- ---- ----  STYLES  ---- ---- ---- ----
+import styles from './GenreSection.module.scss'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 // import { SliderProvider } from '../context/slider'
 
@@ -18,12 +20,15 @@ export const GenreSection = ({ mediaObject, genres }) => {
   // CARROUSEL RECIBE SOLO LA LISTA DE PELICULAS A MOSTRAR,NO EL OBJETO
 
   return (
-    <section className='genre-section section'>
+    <section className={`${styles.genreSection} ${styles.section}`}>
       {
         Object.keys(mediaObject).map((category) => {
           return (
-            <section key={category}>
-              <h2>{category}</h2> {/* nombre de la categoria, ejemplo: pelicula */}
+            <section
+              className={`${styles.category}`}
+              key={category}
+            >
+              <h2 className={`${styles.title} title1`}>{category}</h2> {/* nombre de la categoria, ejemplo: pelicula */}
               {
               Object.entries(mediaObject[category]).map((pageData) => {
                 return (

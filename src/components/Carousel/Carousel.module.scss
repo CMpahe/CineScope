@@ -3,7 +3,7 @@
 
 .carousel {
     width: 100%;
-    margin-top: 3.5%;
+    margin-top: 1rem;
     overflow: hidden;
     
     &:hover {
@@ -23,6 +23,7 @@
         margin: 0;
         //font-size: min(4vw, .8rem);
         letter-spacing: .15rem;
+        font-weight: bold;
       }
 
       .pagination_indicator {
@@ -152,7 +153,7 @@
           flex-basis: calc(100% / 7);
         }
       }
-      
+
       @media (max-width: 450px) {
         .slider .movie {
           flex-basis: 25%;
