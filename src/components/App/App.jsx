@@ -8,28 +8,31 @@ import { useFetchGenresData } from '../../customHooks/useFecthGenresData'
 
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { addGenres, restructureGenresData } from './App.logic'
+import { addGenres, restructureGenresData, sortData } from './App.logic'
 
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from '../Header/Header'
 import { MovieSection } from '../MovieSection'
-import { GenreSection } from '../GenreSection'
+import { GenreSection } from '../GenreSection/GenreSection'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'
 import { Billboard } from '../Billboard/Billboard'
 
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
 import { mediaEndpoints, genresEndpoints } from '../../data/endpoints'
-import localMovies from '../../movies.json'
 
 export const App = () => {
   // ---- ---- STATES ---- ----
   // const [movies, setMovies] = useState()
-  const [moviesToDisplay, setMoviesToDisplay] = useState(localMovies) // Movies delivered to 'MovieSection' - It is initialized with a local package of movies and then update with the movie data got from the API
+  const [media, setMedia] = useState(null) // Movies delivered to 'MovieSection' - It is initialized with a local package of movies and then update with the movie data got from the API
+
   const [search, setSearch] = useState(false) // Nothing in the meantime!
 
   const [moviesResponse, setMoviesResponse] = useState(null) // mediaDataResponse = { moviesData, tvData }
   const [tvResponse, setTvResponse] = useState(null)
+
+  const [sortedMedia, setSortedMedia] = useState({})
+
   useEffect(() => {
     const cachedData = window.localStorage.getItem('mediaData')
     if (cachedData) {
@@ -83,7 +86,6 @@ export const App = () => {
 
   // Create a copy of the object but with a new property with the genres of the movies -> (results: [Action, Horror, Comedy])
   const moviesWithGenres = useMemo(() => {
-    console.log(Array.isArray(moviesResponse) && moviesResponse.length > 0)
     if (Array.isArray(moviesResponse) && moviesResponse.length > 0 && moviesGenresMap !== null) {
       // console.log(moviesResponse)
       return moviesResponse.map((pack) => ({
@@ -108,12 +110,18 @@ export const App = () => {
 
   // Updated movies to be displayed
   useEffect(() => {
-    // console.log(moviesWithGenres)
-    // console.log(moviesWithGenres[0])
     if (moviesWithGenres !== null && tvWithGenres !== null) {
-      setMoviesToDisplay({ moviesWithGenres, tvWithGenres })
+      setMedia({ movies: moviesWithGenres, tv: tvWithGenres })
     }
   }, [moviesWithGenres, tvWithGenres])
+
+  useEffect(() => {
+    const genres = { movies: moviesGenresMap, tv: tvGenresMap }
+    if (media !== null && genres !== null) {
+      const result = sortData(media, genres)
+      setSortedMedia(result)
+    }
+  }, [media, moviesGenresMap, tvGenresMap])
 
   return (
     <div className='container'>
@@ -121,9 +129,9 @@ export const App = () => {
       <Billboard />
       <Routes>
 
-        <Route path='/' element={<MovieSection moviesObject={moviesToDisplay} search={search} />} />
+        <Route path='/' element={<MovieSection moviesObject={media} search={search} />} />
 
-        <Route path='/genres' element={<GenreSection movies={localMovies} />} />
+        <Route path='/genres' element={<GenreSection mediaObject={sortedMedia} genres={{ movies: moviesGenresMap, tv: tvGenresMap }} />} />
 
         <Route path='/myList' element={<div />} />
 

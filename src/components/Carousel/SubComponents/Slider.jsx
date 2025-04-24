@@ -8,20 +8,20 @@ export const Slider = forwardRef(({ data }, ref) => {
   return (
     <div className={styles.slider} ref={ref}>
       {
-        data.map((movie) => {
+        data.map((media) => {
           return (
-            <div key={movie.id} className={`${styles.movie} movie`}>
+            <div key={media.id} className={`${styles.movie} movie`}>
               <img
-                src={movie.image}
-                alt={movie.title}
+                src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+                alt={media.name}
               />
               <div className='movie-info P-regular'>
                 <h3 className='movie-title title2'>
-                  {movie.title}
+                  {media.name}
                 </h3>
                 <section>
-                  <p>{movie.year}</p>
-                  <p><span>Genre: </span>{movie.genre.join(', ')}</p>
+                  <p>{media.first_air_date}</p>
+                  <p><span>Genre: </span>{media.genres.join(', ')}</p>
                 </section>
               </div>
             </div>
