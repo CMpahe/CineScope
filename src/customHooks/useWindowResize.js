@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 function useWindowResize () { // revisar si es necesario aplicar un useCallback
   const [moviesPerSection, setMoviesPerSection] = useState(
-    window.innerWidth < 450 ? 3 : window.innerWidth >= 800 ? 5 : 4
+    window.innerWidth < 450 ? 4 : window.innerWidth >= 1050 ? 7 : window.innerWidth >= 800 ? 6 : 5
   )
 
   useEffect(() => {
@@ -38,7 +38,8 @@ function useWindowResize () { // revisar si es necesario aplicar un useCallback
 export default useWindowResize
 
 const getMoivesPerSection = (windowWidth) => {
-  if (windowWidth < 450) return 3
-  if (windowWidth >= 800) return 5
-  return 4
+  if (windowWidth < 450) return 4
+  if (windowWidth >= 1050) return 7
+  if (windowWidth >= 800) return 6
+  return 5
 }
