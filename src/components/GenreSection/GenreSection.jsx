@@ -28,7 +28,7 @@ export const GenreSection = ({ mediaObject, genres }) => {
               className={`${styles.category}`}
               key={category}
             >
-              <h2 className={`${styles.title} title1`}>{category}</h2> {/* nombre de la categoria, ejemplo: pelicula */}
+              <h2 className={`${styles.title} subtitle2`}>{category}</h2> {/* nombre de la categoria, ejemplo: pelicula */}
               {
               Object.entries(mediaObject[category]).map((pageData) => {
                 return (

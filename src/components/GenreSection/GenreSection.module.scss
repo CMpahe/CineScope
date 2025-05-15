@@ -2,7 +2,7 @@
 @use './src/styles/globals/mixins';
 
 .genreSection {
-    transform: translateY(-8vw);
+    transform: translateY(-6.5vw);
 
     .category {
         margin-bottom: 8rem;
@@ -11,8 +11,6 @@
             padding: 0 5.1%;
             margin-bottom: 2rem;
             text-transform: uppercase;
-            font-weight: bold;
-            font-size: larger;
             position: relative;
 
             &:after {

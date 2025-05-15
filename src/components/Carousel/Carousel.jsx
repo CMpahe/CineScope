@@ -29,7 +29,7 @@ export function Carousel ({ data, title, itemsPerSection }) {
     <div className={`${styles.carousel}`}>
       <div className={`${styles.carousel_header}`}>
 
-        <h2 className='T-semibold title2'>{title}</h2>
+        <h2 className='body'>{title}</h2>
 
         {
         data.length > itemsPerSection &&
