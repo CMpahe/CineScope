@@ -1,6 +1,6 @@
 import styles from './Billboard.module.scss'
-import { WhatchBtn } from '../buttons/WhatchBtn'
-import { AddlistBtn } from '../buttons/AddlistBtn'
+import { RegularBtn } from '../buttons/RegularBtn'
+import { addIcon, playIcon } from '../icons'
 export const Billboard = () => {
   return (
     <div className={`${styles.billboard}`}>
@@ -10,8 +10,23 @@ export const Billboard = () => {
         <h1 className='big-title1 bolder'>Movie Title Here</h1>
         {/* <p className='big-text light'>Description of the movie here, is a main summary of the movie, is a main summary of the movie. Description of the movie here</p> */}
         <div className={`${styles.btn_container}`}>
-          <WhatchBtn />
-          <AddlistBtn />
+          <RegularBtn
+            icon={playIcon}
+            background={2}
+            color={2}
+            bolder
+          >
+            Whatch
+          </RegularBtn>
+          <RegularBtn
+            icon={addIcon}
+            background={1}
+            color={1}
+            bolder
+            opaque
+          >
+            Add list
+          </RegularBtn>
         </div>
       </div>
     </div>
