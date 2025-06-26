@@ -14,3 +14,15 @@ export const SectionWrapper = ({ children, coreSection = false, marginDown = fal
     </section>
   )
 }
+
+// INFO
+
+// SectionWrapper
+
+// This component returns a html section tag
+// It allow to add some settings to the section tag through the component prop
+
+// This settings are:
+// - marginDown = true => Add a margin bottom to the section
+// - translateUp = true => Translate the section upwards on axis Y
+// - coreSection = true => Apply a 100% and ensure the section cover all the space available within its parent
