@@ -7,3 +7,7 @@
 @mixin line-gradient($direction: to right) {
     background: linear-gradient($direction, vars.$primary-red, transparent);
 }
+
+@mixin regular-shadow() {
+    box-shadow: black 0px 0px 3px 0px;
+}

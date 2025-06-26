@@ -1,42 +1,64 @@
+@use './src/styles/globals/variables.scss' as vars;
+@use './src/styles/globals/mixins';
+
 .movie {
-    display: flex;
+    display: flex;  
     flex-direction: column;
     place-items: center;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
     position: relative;
+
+    // just to try 
+    flex: 0 0 20%;
+    aspect-ratio: 9 / 14;
+    padding: 0 .1rem;
+    box-sizing: border-box;
+
+    overflow: visible;
+    width: 100%;
+    cursor: pointer;
 
     border-radius: .3rem;
     box-sizing: border-box;
-    
+    transition: .15s transform ease-in;
+    z-index: 2;
+
+    transform-origin: center;
+
+    // just to try
+  
+
     img{
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
-      transition: .3s all ease-in-out;
+      transition: .4s border-radius ease-in-out;
+      contain: layout paint;
+
     }
+
     .movie_info {
+      visibility: hidden;
       position: absolute;
-      display: none;
       flex-direction: column;
       align-content: start;
       justify-content: space-around;
-      
-      z-index: 1;
+
+      background-color: vars.$primary-black;
+      top: 100%;
       width: 100%;
-      height: 100%;
       box-sizing: border-box;
 
-      padding: 10% 3% 3% 5%;
-      transition: .3s all ease-in-out;
+      padding: 5% 3% 3% 5%;
       container-type: inline-size;
+      border-radius: 0 0 2% 2%;
+
+      box-shadow: vars.$secundary-black 0px 8px 13px;
 
       h3{
         align-self: flex-start;
         margin: 0;
-        margin-bottom: .6rem;
+        // margin-bottom: .6rem;
         text-wrap: balance;
         align-self: center;
         text-align: center;
@@ -47,21 +69,30 @@
         container-type: inline-size;
 
         p:first-child {
-          font-size: clamp(0.4rem, 7cqi, .8rem);
-        }
-
-        span{
-          font-weight: bold;
+          font-size: clamp(0.4rem, 5cqi, .8rem);
         }
       }
     }
+
     &:hover {
-        
+     // z-index: 12;
+      transform: scale(2, 1.5) translateY(-8%);
+      transition: .2s transform ease-in .8s;
+      
+
       img {
-        filter:brightness(0.20);
+        border-radius: 1% 1% 0% 0%;
       }
+
       .movie_info{
-        display: flex;
+        visibility: visible;
+        transition: 0.2s visibility ease-in-out 0.8s;
+        
       }
+    }
+
+    &.hovering {
+      z-index: 12;
+      box-shadow: vars.$secundary-black 0px 0px 13px;
     }
   }

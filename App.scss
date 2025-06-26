@@ -134,14 +134,18 @@ $primary: #111215;
       .movies-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+
+        
         align-content: center;
         justify-content: space-around;
         place-items: center;
         gap: 1.6rem 1vw;
         width: 100%;
-  
+        
         padding: 0 5% 5% 5%;
-        box-sizing: border-box;  
+        box-sizing: border-box; 
+
+        overflow: visible;
       }
     }
 
