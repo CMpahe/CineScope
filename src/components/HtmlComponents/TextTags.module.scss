@@ -1,10 +1,14 @@
 @use './src/styles/globals/mixins';
 
-.category {
+.marginDown {
     margin-bottom: 8rem;
-    //overflow: hidden;
-    
+    //overflow: hidden;  
 }
+
+.translateUp {
+    transform: translateY(-6.5vw);
+}
+
 .genre_title {
     padding: 0 5.1%;
     margin-bottom: 2rem;

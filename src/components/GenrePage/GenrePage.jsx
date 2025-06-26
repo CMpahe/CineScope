@@ -6,8 +6,6 @@ import { SectionWrapper } from '../HtmlComponents/SectionWrapper'
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import useWindowResize from '../../customHooks/useWindowResize'
-// ---- ---- ---- ----  STYLES  ---- ---- ---- ----
-import styles from './GenreSection.module.scss'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 // import { SliderProvider } from '../context/slider'
 
@@ -22,10 +20,11 @@ export const GenrePage = ({ mediaObject, genres }) => {
   // CARROUSEL RECIBE SOLO LA LISTA DE PELICULAS A MOSTRAR,NO EL OBJETO
 
   return (
-    <section className={`${styles.genreSection} ${styles.section}`}> {
+    <SectionWrapper translateUp>
+      {
         Object.keys(mediaObject).map((category) => {
           return (
-            <SectionWrapper key={category}>
+            <SectionWrapper key={category} marginDown>
               <GenreTitle>{category}</GenreTitle> {/* nombre de la categoria, ejemplo: pelicula */}
               {Object.entries(mediaObject[category]).map((pageData) => {
                 return (
@@ -45,6 +44,6 @@ export const GenrePage = ({ mediaObject, genres }) => {
           )
         })
       }
-    </section>
+    </SectionWrapper>
   )
 }
