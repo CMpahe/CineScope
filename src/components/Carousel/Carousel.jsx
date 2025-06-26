@@ -9,11 +9,11 @@ import useEmptySection from '../../customHooks/useEmptySection.js'
 import { useSections } from '../../customHooks/useSections.jsx'
 import { useRef } from 'react'
 
-export function Carousel ({ data, title, itemsPerSection }) {
+export function Carousel ({ children, title, itemsPerSection }) {
   // ---- ---- CONTEXT DATA ---- ----
   // console.log('Estoy recibiendo esta data bro:', data)
 
-  const sections = useSections(data, itemsPerSection)
+  const sections = useSections(children, itemsPerSection)
 
   // También: revisar que ajusta la cantidad de películas que se muestran en una section del slider
 
@@ -32,7 +32,7 @@ export function Carousel ({ data, title, itemsPerSection }) {
         <h2 className='body'>{title}</h2>
 
         {
-        data.length > itemsPerSection &&
+        children.length > itemsPerSection &&
           <PaginationIndicator sections={sections} />
         }
 
@@ -40,14 +40,14 @@ export function Carousel ({ data, title, itemsPerSection }) {
 
       <div className={`${styles.row_container}`}>
         {
-        data.length > itemsPerSection &&
+        children.length > itemsPerSection &&
           <Control sliderRef={sliderRef} sections={sections} direction='left' />
         }
 
-        <Slider ref={sliderRef} data={data} />
+        <Slider ref={sliderRef}>{children}</Slider>
 
         {
-        data.length > itemsPerSection &&
+        children.length > itemsPerSection &&
           <Control sliderRef={sliderRef} sections={sections} direction='right' />
         }
       </div>

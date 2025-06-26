@@ -12,8 +12,8 @@ import { addGenres, restructureGenresData, sortData } from './App.logic'
 
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from '../Header/Header'
-import { MovieSection } from '../MovieSection'
-import { GenreSection } from '../GenreSection/GenreSection'
+import { MoviePage } from '../MoviePage'
+import { GenrePage } from '../GenrePage/GenrePage'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'
 import { Billboard } from '../Billboard/Billboard'
@@ -129,9 +129,9 @@ export const App = () => {
       <Billboard />
       <Routes>
 
-        <Route path='/' element={<MovieSection moviesObject={media} search={search} />} />
+        <Route path='/' element={<MoviePage search={search}>{media}</MoviePage>} />
 
-        <Route path='/genres' element={<GenreSection mediaObject={sortedMedia} genres={{ movies: moviesGenresMap, tv: tvGenresMap }} />} />
+        <Route path='/genres' element={<GenrePage mediaObject={sortedMedia} genres={{ movies: moviesGenresMap, tv: tvGenresMap }} />} />
 
         <Route path='/myList' element={<div>
           <h1 className='big-title1'>Hola mundo</h1>
