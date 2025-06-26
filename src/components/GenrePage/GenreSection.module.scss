@@ -1,0 +1,6 @@
+@use './src/styles/globals/variables' as vars;
+@use './src/styles/globals/mixins';
+
+.genreSection {
+    transform: translateY(-6.5vw);
+}
