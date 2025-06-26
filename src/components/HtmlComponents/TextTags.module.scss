@@ -1,5 +1,12 @@
 @use './src/styles/globals/mixins';
 
+
+.coreSection {
+    width: 100%;
+    flex-grow: 1;
+    background-color: transparent;
+}
+
 .marginDown {
     margin-bottom: 8rem;
     //overflow: hidden;  
@@ -9,7 +16,14 @@
     transform: translateY(-6.5vw);
 }
 
-.genre_title {
+.movies-section{
+    width: 100%;
+    flex-grow: 1;
+    background-color: transparent;
+    transform: translateY(-4vw);
+}
+
+.genreTitle {
     padding: 0 5.1%;
     margin-bottom: 2rem;
     text-transform: uppercase;

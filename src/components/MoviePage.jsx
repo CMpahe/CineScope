@@ -1,5 +1,9 @@
+// ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { MediaCard } from './MediaCard/MediaCard'
+import { SectionWrapper } from './HtmlComponents/SectionWrapper'
+// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../utils/logic'
+// ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import { useState, useRef } from 'react'
 
 export const MoviePage = ({ children, search }) => {
@@ -33,9 +37,8 @@ export const MoviePage = ({ children, search }) => {
   }
 
   return (
-    <section className='movies-section section'>
-      <div className='movies-container'>
-
+    <SectionWrapper coreSection translateUp>
+      <div className='moviesGrid'>
         {data.results.map((media) => (
           <MediaCard
             key={media.id}
@@ -46,6 +49,6 @@ export const MoviePage = ({ children, search }) => {
           </MediaCard>
         ))}
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
