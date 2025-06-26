@@ -1,29 +1,42 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from '../Carousel.module.scss'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { forwardRef } from 'react'
+import { forwardRef, useState, useRef } from 'react'
+import { MediaCard } from '../../MediaCard/MediaCard'
 
-export const Slider = forwardRef(({ data }, ref) => {
-  // console.log('Y yo recibo esta data de carrousel:', data)
+export const Slider = forwardRef(({ children }, ref) => {
+  const [hoveredMediaId, setHoveredMediaId] = useState(null)
+
+  const enterTimeout = useRef(null)
+  const leaveTimeout = useRef(null)
+
+  const handlePointerEnter = (id) => {
+    clearTimeout(enterTimeout.current) // clear the last timer before setting other
+    enterTimeout.current = setTimeout(() => {
+      setHoveredMediaId(id)
+    }, 300)
+  }
+
+  const handlePointerLeave = () => {
+    clearTimeout(leaveTimeout.current) // clear the last timer before setting other
+    leaveTimeout.current = setTimeout(() => {
+      setHoveredMediaId(null)
+    }, 300)
+  }
+
   return (
     <div className={styles.slider} ref={ref}>
       {
-        data.map((media) => {
+        children.map((media) => {
           return (
-            <div key={media.id} className={`${styles.movie} movie`}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
-                alt={media.name}
-              />
-              <div className='movie-info P-regular'>
-                <h3 className='movie-title title2'>
-                  {media.name}
-                </h3>
-                <section>
-                  <p>{media.first_air_date}</p>
-                  <p><span>Genre: </span>{media.genres.join(', ')}</p>
-                </section>
-              </div>
+            <div className={styles.media_frame} key={media.id}>
+              <MediaCard
+                key={media.id}
+                isHovered={hoveredMediaId === media.id}
+                onPointerEnter={handlePointerEnter}
+                onPointerLeave={handlePointerLeave}
+              >{media}
+              </MediaCard>
             </div>
           )
         })
