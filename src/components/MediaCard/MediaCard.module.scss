@@ -10,7 +10,7 @@
     // just to try 
     flex: 0 0 20%;
     aspect-ratio: 9 / 14;
-    padding: 0 .1rem;
+    padding: 0 0.1rem;
     box-sizing: border-box;
 
     overflow: visible;
@@ -76,8 +76,8 @@
 
     &:hover {
      // z-index: 12;
-      transform: scale(2, 1.5) translateY(-8%);
-      transition: .2s transform ease-in .8s;
+      // transform: scale(2, 1.5) translateY(-8%);
+      // transition: .2s transform ease-in .8s;
       
 
       img {
@@ -86,7 +86,7 @@
 
       .movie_info{
         visibility: visible;
-        transition: 0.2s visibility ease-in-out 0.8s;
+        // transition: 0.2s visibility ease-in-out 0.8s;
         
       }
     }

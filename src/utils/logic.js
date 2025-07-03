@@ -104,3 +104,18 @@ export const checkList = (list) => { // Check whether the list is null, empty, u
   if (emptyList) return false
   return true
 }
+
+export const getScrollValues = () => {
+  // Get the scroll values
+  const top = window.pageYOffset || document.documentElement.scrollTop
+  const left = window.pageXOffset || document.documentElement.scrollLeft
+  return { top, left }
+}
+
+export const eleMeasurements = ({ cardRef }) => {
+  // Get the element positon and size within the viewport
+  const rect = cardRef.current.getBoundingClientRect()
+  const width = (rect.width - (0.1 * 18)) / 2 // This calculation is to take into count the element padding
+  const height = rect.height / 2
+  return [rect, width, height]
+}

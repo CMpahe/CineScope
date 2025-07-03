@@ -36,6 +36,14 @@ export const MoviePage = ({ children, search }) => {
     }, 300)
   }
 
+  const [hoveredId, setHoveredId] = useState(null) // Handle media hovered: to avoid multiple media scales at a time
+
+  const manageHover = {
+    id: hoveredId,
+    setId: (id) => setHoveredId(id),
+    cleanId: () => setHoveredId(null)
+  }
+
   return (
     <SectionWrapper coreSection translateUp>
       <div className='moviesGrid'>
@@ -45,6 +53,7 @@ export const MoviePage = ({ children, search }) => {
             isHovered={hoveredMediaId === media.id}
             onPointerEnter={handlePointerEnter}
             onPointerLeave={handlePointerLeave}
+            manageHover={manageHover}
           >{media}
           </MediaCard>
         ))}
