@@ -4,7 +4,7 @@ import styles from '../Carousel.module.scss'
 import { forwardRef } from 'react'
 import { MediaCard } from '../../MediaCard/MediaCard'
 
-export const Slider = forwardRef(({ children, manageTimeout, manageHover }, ref) => {
+export const Slider = forwardRef(({ children, pointerTimeout, manageHover }, ref) => {
   return (
     <div className={styles.slider} ref={ref}>
       {
@@ -13,7 +13,7 @@ export const Slider = forwardRef(({ children, manageTimeout, manageHover }, ref)
             <div className={styles.media_frame} key={media.id}>
               <MediaCard
                 key={media.id}
-                manageTimeout={manageTimeout}
+                pointerTimeout={pointerTimeout}
                 manageHover={manageHover}
               >{media}
               </MediaCard>

@@ -9,7 +9,13 @@ import useEmptySection from '../../customHooks/useEmptySection.js'
 import { useSections } from '../../customHooks/useSections.jsx'
 import { useRef } from 'react'
 
-export function Carousel ({ children, title, itemsPerSection, manageTimeout, manageHover }) {
+export function Carousel ({
+  children,
+  title,
+  itemsPerSection,
+  pointerTimeout,
+  manageHover
+}) {
   // ---- ---- CONTEXT DATA ---- ----
   const sections = useSections(children, itemsPerSection)
 
@@ -41,7 +47,7 @@ export function Carousel ({ children, title, itemsPerSection, manageTimeout, man
 
         <Slider
           ref={sliderRef}
-          manageTimeout={manageTimeout}
+          pointerTimeout={pointerTimeout}
           manageHover={manageHover}
         >
           {children}

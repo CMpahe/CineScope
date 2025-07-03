@@ -7,11 +7,11 @@ export const pointerEnter = ({
   setEleSize,
   setHoveredPos,
   setIsHovered,
-  manageTimeout,
+  pointerTimeout,
   cardRef
 }) => {
-  clearTimeout(manageTimeout.enter.current) // clear the last timer before setting other
-  manageTimeout.enter.current = setTimeout(() => {
+  clearTimeout(pointerTimeout.enter.current) // clear the last timer before setting other
+  pointerTimeout.enter.current = setTimeout(() => {
     // Get the scroll values
     const scrollValue = getScrollValues()
     const [rect, width, height] = eleMeasurements({ cardRef })
@@ -34,12 +34,12 @@ export const pointerEnter = ({
 
 // Handle Pointer leave event
 export const pointerLeave = ({
-  manageTimeout,
+  pointerTimeout,
   manageHover,
   setIsHovered
 }) => {
-  clearTimeout(manageTimeout.leave.current) // clear the last timer before setting other
-  clearTimeout(manageTimeout.enter.current)
+  clearTimeout(pointerTimeout.leave.current) // clear the last timer before setting other
+  clearTimeout(pointerTimeout.enter.current)
   manageHover.cleanId()
   setIsHovered(false)
 }

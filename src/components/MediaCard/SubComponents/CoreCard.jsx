@@ -1,4 +1,4 @@
-import styles from './MediaCard.module.scss'
+import styles from '../MediaCard.module.scss'
 
 export const CoreCard = ({
   children,
