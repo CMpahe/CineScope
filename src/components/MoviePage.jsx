@@ -4,7 +4,8 @@ import { SectionWrapper } from './HtmlComponents/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../utils/logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { useState, useRef } from 'react'
+import { usePointerTimeout } from '../customHooks/usePointerTimeout'
+import { useManageHover } from '../customHooks/useManageHover'
 
 export const MoviePage = ({ children, search }) => {
   if (!checkObject(children)) {
@@ -13,36 +14,8 @@ export const MoviePage = ({ children, search }) => {
 
   const data = children.movies[0]
 
-  const [hoveredMediaId, setHoveredMediaId] = useState(null)
-
-  // Mirar como funciona esta fraccion de codigo
-  // Ver si puede ser extraida
-  // Mirar el alcance de la funcion de timeout y los estados para entender el flujo de ejecución
-
-  const enterTimeout = useRef(null)
-  const leaveTimeout = useRef(null)
-
-  const handlePointerEnter = (id) => {
-    clearTimeout(enterTimeout.current) // clear the last timer before setting other
-    enterTimeout.current = setTimeout(() => {
-      setHoveredMediaId(id)
-    }, 300)
-  }
-
-  const handlePointerLeave = () => {
-    clearTimeout(leaveTimeout.current) // clear the last timer before setting other
-    leaveTimeout.current = setTimeout(() => {
-      setHoveredMediaId(null)
-    }, 300)
-  }
-
-  const [hoveredId, setHoveredId] = useState(null) // Handle media hovered: to avoid multiple media scales at a time
-
-  const manageHover = {
-    id: hoveredId,
-    setId: (id) => setHoveredId(id),
-    cleanId: () => setHoveredId(null)
-  }
+  const pointerTimeout = usePointerTimeout()
+  const manageHover = useManageHover()
 
   return (
     <SectionWrapper coreSection translateUp>
@@ -50,9 +23,7 @@ export const MoviePage = ({ children, search }) => {
         {data.results.map((media) => (
           <MediaCard
             key={media.id}
-            isHovered={hoveredMediaId === media.id}
-            onPointerEnter={handlePointerEnter}
-            onPointerLeave={handlePointerLeave}
+            pointerTimeout={pointerTimeout}
             manageHover={manageHover}
           >{media}
           </MediaCard>

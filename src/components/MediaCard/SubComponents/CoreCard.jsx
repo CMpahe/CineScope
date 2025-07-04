@@ -17,7 +17,7 @@ export const CoreCard = ({
 
       <img src={`https://image.tmdb.org/t/p/w500${children.poster_path}`} alt={children.title} />
 
-      <div className={styles.movie_info}>
+      {/* <div className={styles.movie_info}>
 
         <h3 className='card-title'>{children.title}</h3>
 
@@ -31,7 +31,7 @@ export const CoreCard = ({
           </p>
         </div>
 
-      </div>
+      </div> */}
     </div>
     : <div
         className={`${styles.movie}`}

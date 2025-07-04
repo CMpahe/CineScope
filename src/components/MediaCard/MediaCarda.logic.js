@@ -29,7 +29,7 @@ export const pointerEnter = ({
 
     manageHover.setId(children.id)
     setIsHovered(true)
-  }, 300)
+  }, 450)
 }
 
 // Handle Pointer leave event
