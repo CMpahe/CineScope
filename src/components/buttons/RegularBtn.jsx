@@ -64,25 +64,31 @@ export const RegularBtn = ({
 }
 
 //
-// ---- ---- DOCUMENTATION ---- ----
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
 //
 
-// Props values
+// ---- ---- PROPS VALUES ---- ----
 
-// - background = 1 -> White background
-// - background = 2 -> Red background
-// - background = 3 -> Transparent background
+// - children -> Receives the text that will show the button.
 
-// - border = 1 -> white border
-// - border = 2 -> black border
+// - background = 1 -> White background.
+// - background = 2 -> Red background.
+// - background = 3 -> Transparent background.
 
-// - color = 1 -> Text color black
-// - color = 2 -> Text color white
+// - border = 1 -> white border.
+// - border = 2 -> black border.
 
-// - aspectRatio = false -> none
-// - aspectRatio = 1 -> 1/1
-// - aspectRatio = 2 -> 6/1
+// - color = 1 -> Text color black.
+// - color = 2 -> Text color white.
 
-// bolder = true -> Bold text
+// - aspectRatio = false -> none.
+// - aspectRatio = 1 -> 1/1.
+// - aspectRatio = 2 -> 6/1.
 
-// opaque = true -> Opaque text
+// - gap = true -> Add some gap between the icon and the button text.
+
+// - padding = true -> add some padding to he button.
+
+// - bolder = true -> Bold text.
+
+// - opaque = true -> Opaque text.
