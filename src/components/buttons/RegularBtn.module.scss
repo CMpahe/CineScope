@@ -1,6 +1,9 @@
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ---- 
 @use '../../styles/variables' as vars;
 
+
+  // ---- ---- ---- GLOBAL BTN STYLE ---- ---- ---- 
+
 .whiteBtn, .blackBtn, .redBtn, .noColor {
     display: inline-flex;
     align-items: center;
@@ -14,6 +17,8 @@
 
     cursor: pointer;
   }
+
+  // ---- ---- ---- BACKGROUND COLOR ---- ---- ----  
 
   .whiteBtn {
     background-color: vars.$primary-white;
@@ -30,13 +35,19 @@
     background-color: transparent;
   }
 
+  // ---- ---- ---- GAP ---- ---- ---- 
+
   .gap {
     gap: clamp(0.3rem, 1vw, 0.6rem);
   }
+  
+  // ---- ---- ---- PADDING ---- ---- ---- 
 
   .regularPadding {
     padding: 0.9% 1.6%;
   }
+  
+  // ---- ---- ---- BORDER ---- ---- ---- 
 
   .whiteBorder{
     border: 2px solid rgba(255, 255, 255, 0.501);
@@ -50,6 +61,8 @@
     border: 2px solid vars.$primary-red;
   }
 
+  // ---- ---- ---- ASPECT RATIO ---- ---- ---- 
+
   .aspectRatio_1 {
     aspect-ratio: 1/1;
   }
@@ -61,7 +74,7 @@
 
   
 //
-// ---- ---- DOCUMENTATION ---- ----
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
 //
 
 // - Cicular Button: In order to make a cicular button the '.regularPadding' class needs to be turned off and so the '.gap' class to prevente the icon from move to the left and leaving a blank space in the right.
