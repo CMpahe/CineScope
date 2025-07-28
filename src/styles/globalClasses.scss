@@ -1,0 +1,11 @@
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
+@use './variables' as vars;
+
+.icon_container { // clase global para los iconos 
+    display: flex;
+    flex-shrink: 0;
+    width: vars.$medium-font;
+    svg {
+      width: 100%;
+     }
+  }

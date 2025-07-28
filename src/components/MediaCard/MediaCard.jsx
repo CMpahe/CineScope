@@ -1,15 +1,16 @@
-// ---- ---- ---- ---- STYLES ---- ---- ---- ----
-
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { HoverCardPortal } from './SubComponents/HoverCardPortal'
+import { HoverCardPortal } from './SubComponents/HoverCardPortal/HoverCardPortal'
 import { useRef, useState } from 'react'
 import { CoreCard } from './SubComponents/CoreCard'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { pointerEnter, pointerLeave } from './MediaCarda.logic'
+//
+//
+//
 
 export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
   const cardRef = useRef(null)
-  const [hoverPos, setHoveredPos] = useState({ top: 0, left: 0 })
+  const [hoverPos, setHoveredPos] = useState({ top: 500, left: 500 })
   const [eleSize, setEleSize] = useState({ Width: 0, height: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
@@ -38,7 +39,6 @@ export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
   return (
     <>
       <CoreCard
-        showPortal={showPortal}
         cardRef={cardRef}
         handlePointer={{ enter: handlePointerEnter, leave: handlePointerLeave }}
       >
@@ -48,12 +48,7 @@ export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
       {showPortal &&
 
         <HoverCardPortal position={hoverPos} eleSize={eleSize}>
-          <CoreCard
-            showPortal={showPortal}
-            cardRef={cardRef}
-          >
-            {children}
-          </CoreCard>
+          {children}
         </HoverCardPortal>}
     </>
   )

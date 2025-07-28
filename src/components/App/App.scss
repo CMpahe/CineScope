@@ -1,15 +1,14 @@
 // ---- ---- ---- ---- RESETS ---- ---- ---- ----
-@use './src/scss/resets';
+@use '../../styles/resets';
 // ---- ---- ---- ---- GLOBAL CLASSES ---- ---- ---- ----
-@use './src/scss/globalClasses.scss';
-// ---- ---- ---- ---- STYLES COMPONENTS ---- ---- ---- ----
-@use './src/styles/components/buttons';
+@use '../../styles/globalClasses.scss';
+@use '../../styles/fontGlobalClasses.scss';
+// ---- ---- ---- ---- FONT STYLES ---- ---- ---- ----
+@use '../../styles/typography';
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
-@use './src/styles/globals/variables.scss' as vars;
-// ---- ---- ---- ---- FONTS STYLES ---- ---- ---- ---- 
-@use './src/styles/globals/typography';
+@use '../../styles/variables' as vars;
 // ---- ---- ---- ---- EFFECTS ---- ---- ---- ----
-@use './src/styles/globals/effects';
+@use '../../styles/effects';
 
 $black01: rgba(89,89,89, 1);
 $black02: rgba(38,38,38, 1);
@@ -37,16 +36,6 @@ $primary: #111215;
     font-family: 'Roboto', sarif;
     font-weight: 700;
     font-style: normal;
-  }
-
-  .icon-container { // clase global para los iconos 
-    display: flex;
-    flex-shrink: 0;
-    width: vars.$medium-font;
-    svg {
-      width: 100%;
-      fill: vars.$primary-white;
-     }
   }
 
   .container{

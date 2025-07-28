@@ -2,7 +2,11 @@
 import styles from '../Carousel.module.scss'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { forwardRef } from 'react'
+// ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { MediaCard } from '../../MediaCard/MediaCard'
+//
+//
+//
 
 export const Slider = forwardRef(({ children, pointerTimeout, manageHover }, ref) => {
   return (
@@ -25,3 +29,10 @@ export const Slider = forwardRef(({ children, pointerTimeout, manageHover }, ref
   )
 }
 )
+
+//
+// ---- ---- DOCUMENTATION ---- ----
+//
+
+// - Items per section in each slider is set within the scss file
+// - The items per section calculated in GenrePage only works for measuring the amount of sections used in a slider so the Pagination Indicator could work properly. The lines that really set the amount of items per section are defined in 'Carousel.module.scss'

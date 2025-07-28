@@ -1,4 +1,4 @@
-@use './src/styles/globals/variables' as vars;
+@use './variables' as vars;
 
 @mixin header-gradient($direction: to bottom) {
     background: linear-gradient($direction, #111215, #111215bb, #00000015);

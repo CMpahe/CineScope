@@ -1,5 +1,5 @@
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
-@use './src/styles/globals/variables.scss' as vars;
+@use '../../styles/variables' as vars;
 
 .carousel {
     width: 100%;
@@ -153,19 +153,19 @@
 
       @media (min-width: 800px) {
         .slider .media_frame {
-          flex-basis: calc(100% / 6);
+          flex-basis: calc(100% / 7);
         }
       }
 
       @media (min-width: 1050px) {
         .slider .media_frame {
-          flex-basis: calc(100% / 7);
+          flex-basis: calc(100% / 9);
         }
       }
 
       @media (max-width: 450px) {
         .slider .media_frame {
-          flex-basis: 25%;
+         flex-basis: calc(100% / 5);
         }
       }
 

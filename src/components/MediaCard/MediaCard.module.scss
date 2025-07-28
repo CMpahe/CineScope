@@ -1,5 +1,7 @@
-@use './src/styles/globals/variables.scss' as vars;
-@use './src/styles/globals/mixins';
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
+@use '../../styles/variables' as vars;
+// ---- ---- ---- ---- MIXINS ---- ---- ---- ----
+@use '../../styles/mixins';
 
 .movie {
     display: flex;  
@@ -7,92 +9,89 @@
     place-items: center;
     position: relative;
 
-    // just to try 
     flex: 0 0 20%;
     aspect-ratio: 9 / 14;
     padding: 0 0.1rem;
-    box-sizing: border-box;
+    // box-sizing: border-box;
 
-    overflow: visible;
+    overflow: hidden;
     width: 100%;
     cursor: pointer;
 
     border-radius: .3rem;
-    box-sizing: border-box;
     transition: .15s transform ease-in;
     z-index: 2;
 
-    transform-origin: center;
-
-    // just to try
-  
-
     img{
       margin: 0;
-      padding: 0;
+      padding: 0.1rem;
       width: 100%;
-      height: 100%;
+      // height: 100%;
+      box-sizing: border-box;
       transition: .4s border-radius ease-in-out;
       contain: layout paint;
+      grid-area: image;
 
     }
 
-    .movie_info {
-      visibility: hidden;
-      position: absolute;
-      flex-direction: column;
-      align-content: start;
-      justify-content: space-around;
+    // .movie_info {
+    //   flex-direction: column;
+    //   // justify-items: center;
+    //   align-items: center;
+    //   // justify-content: space-around;
+    //   grid-area: info;
 
-      background-color: vars.$primary-black;
-      top: 100%;
-      width: 100%;
-      box-sizing: border-box;
+    //   width: 100%;
+    //   box-sizing: border-box;
 
-      padding: 5% 3% 3% 5%;
-      container-type: inline-size;
-      border-radius: 0 0 2% 2%;
+    //   // padding: 5% 3% 3% 5%;
+    //   container-type: inline-size;
+    //   border-radius: 0 0 2% 2%;
 
-      box-shadow: vars.$secundary-black 0px 8px 13px;
+    //   // box-shadow: vars.$secundary-black 0px 8px 13px;
+    //   container-type: inline-size;
 
-      h3{
-        align-self: flex-start;
-        margin: 0;
-        // margin-bottom: .6rem;
-        text-wrap: balance;
-        align-self: center;
-        text-align: center;
-        // font-size: clamp(0.6rem, 2.6vw, 1.3rem);
-      }
+    //   p:first-child {
+    //     font-size: clamp(0.4rem, 5cqi, .8rem);
+    //     margin: 0;
+    //   }
+    // }
 
-      div {
-        container-type: inline-size;
+    // .buttons {
+    //   // display: flex;
+    //   grid-area: buttons;
+    //   align-self: start;
+    // }
 
-        p:first-child {
-          font-size: clamp(0.4rem, 5cqi, .8rem);
-        }
-      }
-    }
-
-    &:hover {
-     // z-index: 12;
-      // transform: scale(2, 1.5) translateY(-8%);
-      // transition: .2s transform ease-in .8s;
+    // &.hovering {
+    //   display: grid;;
       
+    //   grid-template-columns: 2fr 2fr 1fr;
+    //   grid-template-rows: 4fr auto;
+    //   grid-template-areas: 
+    //     "image image buttons"
+    //     "info info info" 
+    //   ;
+    //   // grid-template-columns: 2fr 1fr 1fr;
+    //   // grid-template-rows: 4fr 1fr;
+    //   box-shadow: vars.$secundary-black 0px 0px 13px;
+    //   padding: 0;
+    //   // overflow: visible;
+    //   width: 12rem;
 
-      img {
-        border-radius: 1% 1% 0% 0%;
-      }
+    //   border-radius: 8px;
+    //   background-color: vars.$primary-black;
 
-      .movie_info{
-        visibility: visible;
-        // transition: 0.2s visibility ease-in-out 0.8s;
+    //   .movie_info{
+    //     display: flex;
         
-      }
-    }
+        
+    //   }
 
-    &.hovering {
-      z-index: 12;
-      box-shadow: vars.$secundary-black 0px 0px 13px;
-    }
+    // }
   }
+
+
+  // Lograr que la película muestre la información de forma correcta, sin cortarla y con border redondeados
+
+  // El contenedor principal tiene que albergar tanto a la imagen como a la información

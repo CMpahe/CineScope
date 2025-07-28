@@ -1,0 +1,69 @@
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ---- 
+@use '../../styles/variables' as vars;
+
+.whiteBtn, .blackBtn, .redBtn, .noColor {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    padding: 3%;
+
+    border-radius: 100px;
+    border: none;
+
+    cursor: pointer;
+  }
+
+  .whiteBtn {
+    background-color: vars.$primary-white;
+  }
+
+  .blackBtn {
+    background-color: vars.$primary-black;
+  }
+  .redBtn {
+    background-color: vars.$primary-red;
+  }
+
+  .noColor {
+    background-color: transparent;
+  }
+
+  .gap {
+    gap: clamp(0.3rem, 1vw, 0.6rem);
+  }
+
+  .regularPadding {
+    padding: 0.9% 1.6%;
+  }
+
+  .whiteBorder{
+    border: 2px solid rgba(255, 255, 255, 0.501);
+  }
+
+  .blackBorder {
+    border: 2px solid rgba(0, 0, 0, 0.501);
+  }
+
+  .redBorder {
+    border: 2px solid vars.$primary-red;
+  }
+
+  .aspectRatio_1 {
+    aspect-ratio: 1/1;
+  }
+
+  .aspectRatio_2 {
+    aspect-ratio: 6/1;
+  }
+
+
+  
+//
+// ---- ---- DOCUMENTATION ---- ----
+//
+
+// - Cicular Button: In order to make a cicular button the '.regularPadding' class needs to be turned off and so the '.gap' class to prevente the icon from move to the left and leaving a blank space in the right.
+
+// - 

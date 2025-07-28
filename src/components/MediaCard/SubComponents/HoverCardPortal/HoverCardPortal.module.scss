@@ -1,0 +1,54 @@
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
+@use '../../../../styles/variables' as vars;
+
+.portalCard {
+    box-shadow: vars.$secundary-black 0px 0px 13px;
+    padding: 0;
+      
+    width: 12rem;
+    height: auto;
+
+    border-radius: 8px;
+    background-color: vars.$primary-black;
+    border-radius: 3px;
+    overflow: hidden;
+
+    img{
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      transition: .4s border-radius ease-in-out;
+      contain: layout paint;
+      grid-area: image;
+
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-area: info;
+        width: 100%;
+        box-sizing: border-box;
+        container-type: inline-size;
+        border-radius: 0 0 2% 2%;
+        container-type: inline-size;
+
+        p:first-child {
+            font-size: clamp(0.4rem, 5cqi, .8rem);
+            margin: 0;
+        }
+        p:last-child {
+            margin: 2% 2% 5% 2%;
+        }
+    }
+
+     .buttons {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 6%;
+      margin: 4%;
+      margin-bottom: 8%;
+    }
+
+}

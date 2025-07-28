@@ -2,7 +2,11 @@
 import styles from '../Carousel.module.scss'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { translateSliderWithIndicator, activateIndicatorWithTarget } from '../Carousel.logic'
+// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useState } from 'react'
+//
+//
+//
 
 export const PaginationIndicator = ({ sections }) => {
   const listItems = []

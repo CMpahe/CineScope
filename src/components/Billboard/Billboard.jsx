@@ -1,6 +1,12 @@
+// ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './Billboard.module.scss'
+// ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { RegularBtn } from '../buttons/RegularBtn'
 import { addIcon, playIcon } from '../icons'
+//
+//
+//
+
 export const Billboard = () => {
   return (
     <div className={`${styles.billboard}`}>
@@ -12,6 +18,7 @@ export const Billboard = () => {
         <div className={`${styles.btn_container}`}>
           <RegularBtn
             icon={playIcon}
+            gap
             background={2}
             color={2}
             bolder
@@ -20,6 +27,7 @@ export const Billboard = () => {
           </RegularBtn>
           <RegularBtn
             icon={addIcon}
+            gap
             background={1}
             color={1}
             bolder

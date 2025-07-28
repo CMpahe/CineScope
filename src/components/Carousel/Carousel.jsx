@@ -8,6 +8,9 @@ import { Control } from './SubComponents/Control.jsx'
 import useEmptySection from '../../customHooks/useEmptySection.js'
 import { useSections } from '../../customHooks/useSections.jsx'
 import { useRef } from 'react'
+//
+//
+//
 
 export function Carousel ({
   children,
@@ -18,8 +21,6 @@ export function Carousel ({
 }) {
   // ---- ---- CONTEXT DATA ---- ----
   const sections = useSections(children, itemsPerSection)
-
-  // También: revisar que ajusta la cantidad de películas que se muestran en una section del slider
 
   // ---- ---- ELEMENTS ---- ----
   const sliderRef = useRef(null)

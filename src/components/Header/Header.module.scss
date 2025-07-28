@@ -1,6 +1,6 @@
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
-@use './src/styles/globals/variables' as vars;
-@use './src/styles/globals/mixins';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins';
 
 .header {
     position: fixed;

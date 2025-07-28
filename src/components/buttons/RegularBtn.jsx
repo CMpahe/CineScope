@@ -1,14 +1,88 @@
-export const RegularBtn = ({ children, icon = false, background = 1, color = 1, bolder = false, opaque = false }) => {
-  const backgroundColor = background === 1 ? 'white-btn' : background === 2 ? 'red-btn' : ''
-  const textColor = color === 1 ? 'c-black' : color === 2 ? 'c-white' : ''
+// ---- ---- ---- ---- STYLES ---- ---- ---- ----
+import styles from './RegularBtn.module.scss'
+
+export const RegularBtn = ({
+  children,
+  icon = false,
+  gap = false,
+  padding = true,
+  background = 1,
+  color = 1,
+  bolder = false,
+  opaque = false,
+  border = false,
+  aspectRatio = false
+}) => {
+  //
+  const backgroundColor = background === 1
+    ? styles.whiteBtn
+    : background === 2
+      ? styles.redBtn
+      : background === 3
+        ? styles.noColor
+        : ''
+
+  const textColor = color === 1
+    ? 'c_black'
+    : color === 2
+      ? 'c_white'
+      : ''
+
+  const borderStyle = border === 1
+    ? styles.whiteBorder
+    : border === 2
+      ? styles.blackBorder
+      : border === 3
+        ? styles.redBorder
+        : ''
+
+  const ratio = aspectRatio === 1
+    ? styles.aspectRatio_1
+    : aspectRatio === 2
+      ? styles.aspectRatio_2
+      : ''
 
   return (
     <button
-      className={`${backgroundColor} ${textColor} 
-      ${bolder ? 'bolder' : ''} body`}
+      className={`
+        ${backgroundColor} 
+        ${textColor}
+        ${gap ? styles.gap : ''}
+        ${padding ? styles.regularPadding : ''} 
+        ${bolder ? 'bolder' : ''}
+        ${borderStyle}
+        ${ratio}
+        body
+        `}
     >
-      {icon ? <div className='icon-container'>{icon}</div> : ''}
-      <p className={`${opaque ? 'opaque' : ''}`}>{children}</p>
+      {icon ? <div className='icon_container'>{icon}</div> : ''}
+
+      {children && <p className={`${opaque ? 'opaque' : ''}`}>{children}</p>}
+
     </button>
   )
 }
+
+//
+// ---- ---- DOCUMENTATION ---- ----
+//
+
+// Props values
+
+// - background = 1 -> White background
+// - background = 2 -> Red background
+// - background = 3 -> Transparent background
+
+// - border = 1 -> white border
+// - border = 2 -> black border
+
+// - color = 1 -> Text color black
+// - color = 2 -> Text color white
+
+// - aspectRatio = false -> none
+// - aspectRatio = 1 -> 1/1
+// - aspectRatio = 2 -> 6/1
+
+// bolder = true -> Bold text
+
+// opaque = true -> Opaque text

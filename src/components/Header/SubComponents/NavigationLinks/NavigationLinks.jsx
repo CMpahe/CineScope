@@ -10,8 +10,8 @@ export const NavigationLinks = () => {
         <NavLink
           to='/' className={({ isActive }) => {
             return isActive
-              ? `c-white header_link ${styles.links} ${styles.is_active}`
-              : `c-white header_link ${styles.links}`
+              ? `c_white header_link ${styles.links} ${styles.is_active}`
+              : `c_white header_link ${styles.links}`
           }}
         >Home
         </NavLink>
@@ -21,8 +21,8 @@ export const NavigationLinks = () => {
         <NavLink
           to='/genres' className={({ isActive }) => {
             return isActive
-              ? `c-white header_link ${styles.is_active} ${styles.links}`
-              : `c-white header_link ${styles.links}`
+              ? `c_white header_link ${styles.is_active} ${styles.links}`
+              : `c_white header_link ${styles.links}`
           }}
         >Genres
         </NavLink>
@@ -31,8 +31,8 @@ export const NavigationLinks = () => {
         <NavLink
           to='/myList' className={({ isActive }) => {
             return isActive
-              ? `c-white header_link ${styles.is_active} ${styles.links}`
-              : `c-white header_link ${styles.links}`
+              ? `c_white header_link ${styles.is_active} ${styles.links}`
+              : `c_white header_link ${styles.links}`
           }}
         >My list
         </NavLink>

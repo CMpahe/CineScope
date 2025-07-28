@@ -1,6 +1,6 @@
 import { getScrollValues, eleMeasurements } from '../../utils/logic'
 
-// Handle Pointer enter event
+// ---- ---- ----  Handle Pointer enter event  ---- ---- ----
 export const pointerEnter = ({
   manageHover,
   children,
@@ -32,7 +32,7 @@ export const pointerEnter = ({
   }, 450)
 }
 
-// Handle Pointer leave event
+// ---- ---- ----  Handle Pointer leave event ---- ---- ----
 export const pointerLeave = ({
   pointerTimeout,
   manageHover,

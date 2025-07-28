@@ -133,13 +133,18 @@ export const App = () => {
 
         <Route path='/genres' element={<GenrePage mediaObject={sortedMedia} genres={{ movies: moviesGenresMap, tv: tvGenresMap }} />} />
 
-        <Route path='/myList' element={<div>
-          <h1 className='big-title1'>Hola mundo</h1>
-          <h1 className='title'>Hola mundo</h1>
-          <h2 className='subtitle'>Hola mundo</h2>
-          <h3 className='subtitle2'>Hola mundo</h3>
-          <p className='body'>Hola mundo</p>
-        </div>} />
+        <Route
+          path='/myList'
+          element={
+            <div>
+              <h1 className='big-title1'>Hola mundo</h1>
+              <h1 className='title'>Hola mundo</h1>
+              <h2 className='subtitle'>Hola mundo</h2>
+              <h3 className='subtitle2'>Hola mundo</h3>
+              <p className='body'>Hola mundo</p>
+            </div>
+          }
+        />
 
       </Routes>
     </div>

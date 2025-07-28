@@ -1,3 +1,6 @@
+// ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
+@use './variables' as vars;
+
 $white-color: #F2F2F2;
 $primary: #111215;
 
@@ -30,4 +33,14 @@ $primary: #111215;
     font-size: 1rem;
 
     color: $white-color;
+}
+
+// FONT COLORS
+
+.c_black {
+  color: vars.$primary-black;
+}
+  
+.c_white {
+  color: vars.$primary-white;
 }
