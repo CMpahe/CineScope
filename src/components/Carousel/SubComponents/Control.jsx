@@ -2,6 +2,9 @@
 import styles from '../Carousel.module.scss'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { scroll } from '../Carousel.logic'
+//
+//
+//
 
 export const Control = ({ sliderRef, direction, sections }) => {
   return (
@@ -14,3 +17,13 @@ export const Control = ({ sliderRef, direction, sections }) => {
     </div>
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// - sliderRef = this contains the Ref of the slider to be moved sideways so when pressing the Control button the right Slider is moved.
+
+// - direction = This prop helps to set the horizontal direction of the Control Icon.
+
+// - sections = This information helps to know how many available sections has the slider so the Control button could stop when necesary and keep from showing an empty section of the Slider.
