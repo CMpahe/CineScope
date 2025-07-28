@@ -43,7 +43,8 @@ export const GenrePage = ({ mediaObject, genres }) => {
                         key={genres[category][data[0]]}
                         pointerTimeout={pointerTimeout}
                         manageHover={manageHover}
-                      >{data[1]}
+                      >
+                        {data[1]}
                       </Carousel>
                     )
                   })
