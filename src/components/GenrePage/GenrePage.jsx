@@ -10,14 +10,16 @@ import { useManageHover } from '../../customHooks/useManageHover'
 import { usePointerTimeout } from '../../customHooks/usePointerTimeout'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 // import { SliderProvider } from '../context/slider'
+//
+//
+//
 
-// TO DO: METER OTRA PELICULA A LOS 1150px para un total de 6 peliculas por sección
 export const GenrePage = ({ mediaObject, genres }) => {
   const itemsPerSection = useWindowResize() // Set the amount of movies per section according on the viewport size
 
-  const pointerTimeout = usePointerTimeout()
+  const pointerTimeout = usePointerTimeout() // Global PointerEnter and PointerLeave timeout
 
-  const manageHover = useManageHover()
+  const manageHover = useManageHover() // Holds the media Id being hovered so just one at a time throw the portal
 
   if (!checkObject(mediaObject) || !checkObject(genres)) {
     return <h2>Something went wrong!!</h2>

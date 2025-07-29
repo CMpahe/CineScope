@@ -6,7 +6,7 @@ import { Slider } from './SubComponents/Slider.jsx'
 import { Control } from './SubComponents/Control.jsx'
 // ---- ---- ---- ---- CUSTOM HOOKS  ---- ---- ---- ----
 import useEmptySection from '../../customHooks/useEmptySection.js'
-import { useSections } from '../../customHooks/useSections.jsx'
+import { useSections } from '../../customHooks/useSections.js'
 // ---- ---- ---- ---- HOOKS  ---- ---- ---- ----
 import { useCurrentSection } from '../../customHooks/useCurrentSection.js'
 //
