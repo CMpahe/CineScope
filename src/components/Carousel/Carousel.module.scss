@@ -29,7 +29,6 @@
 
       .pagination_indicator {
         display: flex;
-        // display: none; // to see if this works
         align-items: center;
         margin: 0;
         padding: 0;
@@ -52,14 +51,10 @@
           &:hover {
             transform: scaleY(2.2);
           }
-          // &.active{
-          //   background-color: vars.$primary-white;
-          //   transform: scaleY(2.2);
-          // }
-        }
-        [data-active="true"] {
-          background-color: vars.$primary-white;
-          transform: scaleY(2.2);
+          &.active {
+            background-color: vars.$primary-white;
+            transform: scaleY(2.2);
+          }
         }
       }
     }

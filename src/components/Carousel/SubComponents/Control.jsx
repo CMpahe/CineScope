@@ -1,16 +1,16 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from '../Carousel.module.scss'
-// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { scroll } from '../Carousel.logic'
 //
 //
 //
 
-export const Control = ({ sliderRef, direction, sections }) => {
+export const Control = ({ direction, currentSection }) => {
+  const { moveUp, moveDown } = currentSection
   return (
     <div
-      className={`${styles.control_container} ${styles[direction]}`} onClick={() => {
-        scroll({ direction, sliderRef, sections })
+      className={`${styles.control_container} ${styles[direction]}`}
+      onClick={() => {
+        direction === 'right' ? moveUp() : moveDown()
       }}
     >
       <i className={`${styles.control} bi-chevron-compact-${direction}`} />
@@ -22,8 +22,6 @@ export const Control = ({ sliderRef, direction, sections }) => {
 // ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
 //
 
-// - sliderRef = this contains the Ref of the slider to be moved sideways so when pressing the Control button the right Slider is moved.
-
 // - direction = This prop helps to set the horizontal direction of the Control Icon.
 
-// - sections = This information helps to know how many available sections has the slider so the Control button could stop when necesary and keep from showing an empty section of the Slider.
+// - currentSection -> Control uses currentSection to manage the state of the current visible section. With this object, the Control component can read and modify the visible section.

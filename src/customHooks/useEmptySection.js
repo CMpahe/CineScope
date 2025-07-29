@@ -1,17 +1,22 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useEffect } from 'react'
-// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { scroll, getSliderPosition } from '../components/Carousel/Carousel.logic'
+//
+//
+//
 
-function useEmptySection (sections, slider) {
+function useEmptySection (sections, currentSection) { // Para que sirve esto? y cambiar para que funcione con el useCurrentSection
   useEffect(() => {
-    const sliderPosition = Math.ceil(getSliderPosition(slider.current) / 90)
-
-    if (sliderPosition > (sections - 1)) {
-      const direction = 'left'
-      scroll({ direction, slider, sections })
+    if (currentSection.section > (sections - 1)) {
+      currentSection.setSection(sections - 1)
     }
   }, [sections])
 }
 
 export default useEmptySection
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// This custom hook prevents the slider from being positioned into a empty section when rezising the viewport.
+// If the slider remains into an empty section after rezising the viewport the useEmptySection will move the slider to the last visible section.

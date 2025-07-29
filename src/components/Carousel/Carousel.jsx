@@ -8,7 +8,7 @@ import { Control } from './SubComponents/Control.jsx'
 import useEmptySection from '../../customHooks/useEmptySection.js'
 import { useSections } from '../../customHooks/useSections.jsx'
 // ---- ---- ---- ---- HOOKS  ---- ---- ---- ----
-import { useRef } from 'react'
+import { useCurrentSection } from '../../customHooks/useCurrentSection.js'
 //
 //
 //
@@ -20,13 +20,12 @@ export function Carousel ({
   pointerTimeout,
   manageHover
 }) {
-  // ---- ---- CONTEXT DATA ---- ----
-  const sections = useSections(children, itemsPerSection)
+//
+  const sections = useSections(children, itemsPerSection) // Says the number of sections within the carrousel
 
-  // ---- ---- ELEMENTS ---- ----
-  const sliderRef = useRef(null)
+  const currentSection = useCurrentSection(sections) // Carousel state to handle the current section position
 
-  useEmptySection(sections, sliderRef)
+  useEmptySection(sections, currentSection) // Prevent the Slider from being in an empty section
 
   return (
     <div className={`${styles.carousel}`}>
@@ -36,7 +35,7 @@ export function Carousel ({
 
         {
         children.length > itemsPerSection &&
-          <PaginationIndicator sections={sections} /> /* ---- PAGINATION INDICATOR ---- */
+          <PaginationIndicator sections={sections} currentSection={currentSection} /> /* ---- PAGINATION INDICATOR ---- */
         }
 
       </div>
@@ -44,20 +43,20 @@ export function Carousel ({
       <div className={`${styles.row_container}`}>
         {
         children.length > itemsPerSection &&
-          <Control sliderRef={sliderRef} sections={sections} direction='left' /> /* ---- RIGHT CONTROL ---- */
+          <Control sections={sections} direction='left' currentSection={currentSection} /> /* ---- RIGHT CONTROL ---- */
         }
 
         <Slider
-          ref={sliderRef}
           pointerTimeout={pointerTimeout}
           manageHover={manageHover}
+          currentSection={currentSection}
         >
           {children}
         </Slider>                                        {/* ---- SLIDER ---- */}
 
         {
         children.length > itemsPerSection &&
-          <Control sliderRef={sliderRef} sections={sections} direction='right' /> /* ---- LEFT CONTROL ---- */
+          <Control sections={sections} direction='right' currentSection={currentSection} /> /* ---- LEFT CONTROL ---- */
         }
       </div>
     </div>

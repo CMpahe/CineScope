@@ -1,29 +1,19 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from '../Carousel.module.scss'
-// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { translateSliderWithIndicator, activateIndicatorWithTarget } from '../Carousel.logic'
-// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { useState } from 'react'
 //
 //
 //
 
-export const PaginationIndicator = ({ sections }) => {
+export const PaginationIndicator = ({ sections, currentSection }) => {
   const listItems = []
 
   for (let i = 0; i < sections; i++) {
     listItems.push(i)
   }
 
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const handleClick = (index, e) => {
-    setActiveIndex(index)
-    activateIndicatorWithTarget(index, e.target)
-    translateSliderWithIndicator(index, e.target)
+  const handleClick = (index) => {
+    currentSection.setSection(index)
   }
-
-  // funciona el indicador pero no traslada el slider
 
   return (
     <ul className={`${styles.pagination_indicator}`}>
@@ -32,9 +22,8 @@ export const PaginationIndicator = ({ sections }) => {
           return (
             <li
               data-index={i}
-              data-active={i === activeIndex}
-              // className={`${i === activeIndex ? styles.active : ''}`}
-              key={i} onClick={(e) => handleClick(i, e)}
+              key={i} onClick={() => handleClick(i)}
+              className={i === currentSection.section ? styles.active : ''}
             />
           )
         })
@@ -42,3 +31,13 @@ export const PaginationIndicator = ({ sections }) => {
     </ul>
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// ---- ---- PROPS VALUES ---- ----
+
+// - sections -> gives the amount of sections available within the slider and so the amount of indicators to be displayed.
+
+// - currentSection -> PaginationIndicator uses currentSection to manage the state of the current visible section. With this object, the PaginationIndicator component can read and modify the visible section.
