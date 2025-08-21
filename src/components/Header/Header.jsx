@@ -1,126 +1,50 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './Header.module.scss'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
+// ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
+import { useManageDisplay } from './CustomHooks/useManageDisplay'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { NavigationLinks } from './SubComponents/NavigationLinks/NavigationLinks'
-import { Hamburger } from './SubComponents/Hamburger'
+import { Hamburger } from './SubComponents/Hamburger/Hamburger'
+import { NavBar } from './SubComponents/NavBar/NavBar'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
-import { burgerMenu } from '../icons'
+import { useScrollTrigger } from './CustomHooks/useScrollTrigger'
+// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
+import { Input } from './SubComponents/Input/Input'
+//
+//
+//
 
 export const Header = ({ search, setSearch }) => {
-  const [isActiveInput, setIsActiveInput] = useState(false)
+  const showSideBar = useManageDisplay(false)
+  const showHeader = useManageDisplay(true)
+
+  useScrollTrigger({ showHeader })
 
   const inputRef = useRef(null)
 
-  const clearInputValue = () => { // Clear input-field when closed
-    inputRef.current.value = ''
-    setSearch(false)
-    setIsActiveInput(false)
-  }
-
-  const focusInput = () => { // Auto focus input field when displayed
-    setTimeout(() => {
-      inputRef.current.focus()
-    }, 300)
-  }
-
-  const headerRef = useRef(null)
-  let lastScrollY = 0
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      const width = window.innerWidth
-
-      if (currentScrollY > (lastScrollY) && isOpen === false) {
-        headerRef.current.classList.add(`${styles.hidden}`)
-      } else {
-        headerRef.current.classList.remove(`${styles.hidden}`)
-      }
-
-      if (Math.floor(width) > 650 && isOpen === true) setIsOpen(false)
-
-      lastScrollY = currentScrollY
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  })
-
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggleMenu = () => setIsOpen((prev) => !prev)
-
   return (
-    <header ref={headerRef} className={styles.header}>
+    <header className={`${styles.header} ${showHeader.state ? '' : styles.hidden}`}>
 
-      <nav className={styles.desktop_navbar}>
-        <NavigationLinks />
-      </nav>
+      <NavBar showSideBar={showSideBar} />
 
-      <Hamburger isOpen={isOpen} ariaControls='mobile_menu' onClickFunction={toggleMenu} />
+      <Hamburger display={showSideBar.state} ariaControls='mobile_menu' onClickFunction={() => showSideBar.toggleState()} />
 
-      <nav id='mobile_menu' className={`${styles.mobile_menu} ${isOpen ? styles.isOpen : ''}`}>
-        <button
-          className={styles.closeBtn}
-          onClick={toggleMenu}
-        >
-          {burgerMenu}
-        </button>
-        <NavigationLinks />
-      </nav>
+      <NavBar mobileMode showSideBar={showSideBar} />
 
-      <div className={isActiveInput
-        ? `${styles.search_container} ${styles.is_active}`
-        : styles.search_container}
-      >
-
-        <button
-          className={styles.search_btn}
-          onClick={() => {
-            setIsActiveInput(!isActiveInput)
-            if (!inputRef.current.parentNode.parentNode.parentNode.className.includes(`${styles.is_active}`)) {
-              focusInput()
-            } else { inputRef.current.blur() }
-          }}
-        >
-          <i className={`${styles.search_icon} bi-search`} />
-        </button>
-
-        <div className={styles.input_container}>
-          <form
-            onSubmit={(ev) => {
-              ev.preventDefault()
-            }}
-          >
-            <input
-              className={styles.search_input}
-              id='search-input'
-              ref={inputRef}
-              type='text'
-              name='search'
-              placeholder='Search...'
-              onChange={ev => {
-                ev.preventDefault()
-                setSearch(ev.target.value)
-              }}
-            />
-
-            <button
-              className={search ? `${styles.close_icon} ${styles.show}` : styles.close_icon}
-              type='button'
-              onClick={() => { clearInputValue() }}
-            >
-              <i className='bi-x' />
-            </button>
-
-          </form>
-        </div>
-      </div>
+      <Input inputRef={inputRef} search={search} setSearch={setSearch} />
     </header>
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// - NavBar: This component has two navBar components, each one has slight differents settings and so each one can fit into each context. One has settings for mobile mode and the other one for desktop mode.
+
+// - showSideBar -> Is a hook intended to manage the visible state of the side bar on mobile screens. It can update the state, set a custom state and toogle the state.
+
+// - showHeader -> It is a hook intended to manage the visible state of the header, when scrolling down the header hides itself and when scrolling up again it show itself back again. This one also as the previous one has methods to update the state and set a custom one as well.
+
+// - useScrollTrigger -> Is the function that reads the viewport position and update the showHeader State so the header can hide itself depending on the scrolling direction.

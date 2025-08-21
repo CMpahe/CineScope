@@ -1,5 +1,5 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from './RegularBtn.module.scss'
+import styles from '../Buttons/RegularBtn.module.scss'
 //
 //
 //

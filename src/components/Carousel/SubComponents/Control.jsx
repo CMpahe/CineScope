@@ -5,7 +5,7 @@ import styles from '../Carousel.module.scss'
 //
 
 export const Control = ({ direction, currentSection }) => {
-  const { moveUp, moveDown } = currentSection
+  const { moveUp, moveDown } = currentSection // Carrousel movement fucntions
   return (
     <div
       className={`${styles.control_container} ${styles[direction]}`}

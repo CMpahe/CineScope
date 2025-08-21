@@ -7,7 +7,7 @@ import styles from '../MediaCard.module.scss'
 export const CoreCard = ({
   children,
   cardRef,
-  handlePointer = false
+  handlePointer
 }) => {
   return (
 
@@ -24,3 +24,11 @@ export const CoreCard = ({
 
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// This is the main component within MediaCard, this is the responsable of displaying the media image.
+
+// It has two functions to handle the pointer enter and pointer leave events.

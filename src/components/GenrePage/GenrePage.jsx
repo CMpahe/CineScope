@@ -25,9 +25,8 @@ export const GenrePage = ({ mediaObject, genres }) => {
     return <h2>Something went wrong!!</h2>
   }
 
-  // CARROUSEL RECIBE SOLO LA LISTA DE PELICULAS A MOSTRAR,NO EL OBJETO
+  // note: CARROUSEL ONLY RECEIVES A LIST OF MOVIES TO DISPLAY, NOT THE OBJECT.
 
-  // Mirar como limpiar mas esta fraccion de código
   return (
     <SectionWrapper translateUp>
       {
@@ -59,3 +58,15 @@ export const GenrePage = ({ mediaObject, genres }) => {
     </SectionWrapper>
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// This is the Genres main section, so all the genres categories will be placed here and organized.
+
+// This component maps the genres object and for each category it maps all the mediaObject wrapring together all medias that matches the category that has recently being mapped.
+
+// - mediaObject -> This is the object that contains all the medias to be displayed within this section. They are not organized by category, this component makes it own work to organize the information and displays it in order.
+
+// - genres -> This is the object that contains all the names of the categories that the medias will be organized by.

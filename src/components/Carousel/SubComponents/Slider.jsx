@@ -10,7 +10,7 @@ export const Slider = ({ children, pointerTimeout, manageHover, currentSection }
   return (
     <div
       style={
-        { transform: `translate(-${90 * currentSection.section}%)` }
+        { transform: `translate(-${90 * currentSection.section}%)` } // Set the slider position according to the current section.
       }
       className={styles.slider}
     >
@@ -33,7 +33,7 @@ export const Slider = ({ children, pointerTimeout, manageHover, currentSection }
 }
 
 //
-// ---- ---- DOCUMENTATION ---- ----
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
 //
 
 // - Items per section in each slider is set within the scss file

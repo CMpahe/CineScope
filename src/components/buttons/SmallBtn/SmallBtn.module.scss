@@ -1,0 +1,21 @@
+.smallBtn {
+    background-color: inherit;
+    color: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.closeBtn { // this is not reusable code
+    visibility: hidden;
+    font-size: 110%;
+    font-weight: bold;
+
+    &.show {
+        visibility: visible;
+    }
+}
+
+.searchBtn { // this is not reusable code
+    padding: .2rem;
+    font-size: inherit;
+}

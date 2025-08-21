@@ -1,7 +1,8 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './Billboard.module.scss'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { RegularBtn } from '../buttons/RegularBtn'
+import { RegularBtn } from '../Buttons/RegularBtn'
+// ---- ---- ---- ---- ICONS ---- ---- ---- ----
 import { addIcon, playIcon } from '../icons'
 //
 //
@@ -40,6 +41,14 @@ export const Billboard = () => {
     </div>
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// This component is temporarily not reusable, is a static component. Although it is intended to be reactive and interactive.
+
+// In the mean time it doesn't receive any prop, but is intented to received a list of medias so the component can display it one by one, just like a billboard.
 
 // "/pAT3Ie1lxxGBJn0USyxcUgBjw76.jpg"
 // "/naNXYdBzTEb1KwOdi1RbBkM9Zv1.jpg"

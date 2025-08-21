@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-// Provides a state and the method to update it to handle the hovered movie Id
+// Provides a state and a method to update it, allowing to handle the hovered movie Id
 export const useManageHover = () => {
   const [hoveredId, setHoveredId] = useState(null) // Handle media hovered: to avoid multiple media scales at a time
 

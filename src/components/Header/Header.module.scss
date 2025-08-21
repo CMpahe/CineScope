@@ -36,17 +36,6 @@
       }
     }
 
-    .hamburger {
-      display: none;
-      background-color: transparent;
-      border: none;
-      padding: 0;
-      svg {
-        width: calc(vars.$medium-font + 1.5vw);
-        height: auto;
-      }
-    }
-
     .mobile_menu {
       display: none;
       z-index: 200;
@@ -88,87 +77,12 @@
       .desktop_navbar {
         display: none;
       }
-
-      .hamburger {
-        display: flex;
-      }
   
       .mobile_menu {
         display: flex;
         flex-direction: column;
         ul {  
           flex-direction: column;
-        }
-      }
-    }
-
-    .search_container {
-      display: flex;
-      overflow: hidden;
-      max-width: max(3%, 1rem);
-      background-color: transparent;
-      font-size: vars.$medium-font;
-      
-      padding: 0.1rem;
-      border: solid transparent 2px;
-      border-radius: 999px;
-      transition: max-width .3s ease-in-out, border-color .3s ease-in-out;
-
-      &.is_active {
-        max-width: 100%;
-        border-color: vars.$primary-white; 
-
-        .input_container {
-          .search_input {
-            visibility: visible;
-          }
-        }
-      }
-
-      .search_btn {
-        background-color: inherit;
-        color: inherit;
-        cursor: pointer;
-        border: none;
-        
-        padding: .2rem;
-        font-size: inherit;
-      }
-
-      .input_container {
-        display: flex;
-        place-items: center;
-
-        transition: width .3s ease;
-        transform-origin: right;
-
-        form{
-          display:inline-flex;
-        }
-
-        .search_input {
-          visibility: hidden;
-          background-color: transparent;
-          color: inherit;
-          border: 0;
-          outline: none;
-          font-size: inherit;
-        }
-
-        .close_icon {
-          visibility: hidden;
-
-          font-size: 110%;
-          font-weight: bold;
-          cursor: pointer;
-
-          color: vars.$primary-white;
-          background-color: transparent;
-          border: none;
-
-          &.show {
-            visibility: visible;
-          }
         }
       }
     }

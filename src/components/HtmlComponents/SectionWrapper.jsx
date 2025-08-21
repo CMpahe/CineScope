@@ -1,5 +1,8 @@
 // ---- ---- ---- ----  STYLES  ---- ---- ---- ----
 import styles from './TextTags.module.scss'
+//
+//
+//
 
 export const SectionWrapper = ({ children, coreSection = false, marginDown = false, translateUp = false }) => {
   return (
@@ -15,12 +18,14 @@ export const SectionWrapper = ({ children, coreSection = false, marginDown = fal
   )
 }
 
-// INFO
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
 
 // SectionWrapper
 
-// This component returns a html section tag
-// It allow to add some settings to the section tag through the component prop
+// This component returns a html section tag e.g.: "<section>Something here</section>"
+// It allows to add some settings to the section tag through the component prop
 
 // This settings are:
 // - marginDown = true => Add a margin bottom to the section

@@ -1,12 +1,15 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from '../Header.module.scss'
+import styles from './Hamburger.module.scss'
+//
+//
+//
 
-export const Hamburger = ({ isOpen, ariaControls, onClickFunction }) => {
+export const Hamburger = ({ display, ariaControls, onClickFunction }) => {
   return (
     <button
       id='hamburger'
       className={styles.hamburger}
-      aria-expanded={isOpen}
+      aria-expanded={display}
       aria-controls={ariaControls}
       onClick={onClickFunction}
     >
@@ -14,3 +17,11 @@ export const Hamburger = ({ isOpen, ariaControls, onClickFunction }) => {
     </button>
   )
 }
+
+//
+// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
+//
+
+// This component is not reusable by the moment.
+
+// It is intended to make its parent component more readable.
