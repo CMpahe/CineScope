@@ -8,7 +8,7 @@ export const getData = async (endpoint) => {
       Authorization: `Bearer ${TOKEN}`
     }
   }
-  console.log('Hello I am here! tranqui ya entre')
+  // console.log('Hello I am here! tranqui ya entre')
   try {
     if (endpoint === undefined || endpoint === null) {
       throw new Error('Invalid endpoint value, you are passing an undifined or null')

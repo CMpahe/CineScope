@@ -15,6 +15,8 @@ export const MoviePage = ({ children, search }) => {
     return <h2>Something went wrong!!</h2>
   }
 
+  console.log('lo que recibe moviePage: ', children)
+
   const data = children.movies[0] // Extracting the data we want for this section.
 
   const pointerTimeout = usePointerTimeout() // Manage two timeout reference for the pointer enter and leave events.

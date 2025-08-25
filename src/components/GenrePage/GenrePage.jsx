@@ -34,7 +34,7 @@ export const GenrePage = ({ mediaObject, genres }) => {
           return (
             <SectionWrapper key={category} marginDown>
               <GenreTitle>{category}</GenreTitle> {/* nombre de la categoria, ejemplo: pelicula */}
-              {Object.entries(mediaObject[category]).map((pageData) => {
+              {Object.entries(mediaObject[category]).map((pageData) => { // Explicar como se está iterando este array u obejto.
                 return (
                   Object.entries(pageData[1]).map((data) => {
                     return (

@@ -1,14 +1,13 @@
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import React, { useEffect, useMemo, useState } from 'react'
+// import { useUpdateMediaData } from './CustomHooks/useUpdateMediaData'
 
 // ---- ---- ---- ---- SERVICES ---- ---- ---- ----
 // import { getMovie } from './services/getMovie'
-import { useFetchMediaData } from '../../customHooks/useFetchMediaData'
-import { useFetchGenresData } from '../../customHooks/useFecthGenresData'
-
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { addGenres, restructureGenresData, sortData } from './App.logic'
+import { sortData } from './App.logic'
+import { formatData } from '../../features/media/utils/formatData'
 
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from '../Header/Header'
@@ -19,109 +18,50 @@ import { Routes, Route } from 'react-router-dom'
 import { Billboard } from '../Billboard/Billboard'
 
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
-import { mediaEndpoints, genresEndpoints } from '../../data/endpoints'
+import { genresEndpoints, mediaEndpoints } from '../../data/endpoints'
+import { formatGenres } from '../../features/media/utils/formatGenres'
+import { useDataSWRO } from '../../features/data/customHooks/useDataSWRO'
 
 export const App = () => {
   // ---- ---- STATES ---- ----
-  // const [movies, setMovies] = useState()
-  const [media, setMedia] = useState(null) // Movies delivered to 'MovieSection' - It is initialized with a local package of movies and then update with the movie data got from the API
+  const [media, setMedia] = useState(null) // Movies delivered to 'MovieSection' esta se pasa solo a la seccion de películas
 
   const [search, setSearch] = useState(false) // Nothing in the meantime!
 
-  const [moviesResponse, setMoviesResponse] = useState(null) // mediaDataResponse = { moviesData, tvData }
-  const [tvResponse, setTvResponse] = useState(null)
+  const [apiResponse, setApiResponse] = useState(null) // Media data received from the API
 
-  const [sortedMedia, setSortedMedia] = useState({})
+  const [genresResponse, SetGenresResponse] = useState(null) // Genres data received from de API
 
-  useEffect(() => {
-    const cachedData = window.localStorage.getItem('mediaData')
-    if (cachedData) {
-      setMoviesResponse(JSON.parse(cachedData).moviesPackage)
-      setTvResponse(JSON.parse(cachedData).tvPackage)
-    } else {
-      useFetchMediaData({ mediaEndpoints }).then(res => {
-        if (res) {
-          setMoviesResponse(res.moviesPackage)
-          setTvResponse(res.tvPackage)
-          window.localStorage.setItem('mediaData', JSON.stringify(res))
-        }
-      })
-    }
-  }, [])
+  const [sortedMedia, setSortedMedia] = useState({}) // Esta es la que se pasa a los componentes hijos para que la consuman.
 
-  const [genresResponse, SetGenresResponse] = useState(null) // mediaGenresResponse = { movieGenresResponse, tvGenresResponse }
-  useEffect(() => {
-    const cachedData = window.localStorage.getItem('genresResponse')
-    if (cachedData) {
-      SetGenresResponse(JSON.parse(cachedData))
-    } else {
-      useFetchGenresData({ genresEndpoints }).then(res => {
-        if (res) {
-          SetGenresResponse(res)
-          window.localStorage.setItem('genresResponse', JSON.stringify(res))
-        }
-        // console.error('Something failed with Genres Response!')
-      })
-    }
-  }, [])
+  // MediaData API request
+  useEffect(() => useDataSWRO(setApiResponse, 'mediaData', mediaEndpoints), [])
 
-  const moviesGenresMap = useMemo(() => {
-    if (typeof genresResponse === 'object' && genresResponse !== null && !Array.isArray(genresResponse)) {
-      // console.error('moviesGenresMap recibe null o un objeto vacio de mediaGenresResponse')
-      return restructureGenresData(genresResponse.moviesGenres.genres)
-    }
-    return null
-  }, [genresResponse])
+  // Genres API request
+  useEffect(() => useDataSWRO(SetGenresResponse, 'genresData', genresEndpoints), [])
 
-  const tvGenresMap = useMemo(() => {
-    if (typeof genresResponse === 'object' && genresResponse !== null && !Array.isArray(genresResponse)) {
-      // console.error('tvGenresMap recibe null o un objeto vacio')
-      return restructureGenresData(genresResponse.tvGenres.genres)
-    }
-    return null
-  }, [genresResponse])
+  // Format the genres object into a better structure
+  const formattedGenres = useMemo(() => formatGenres(genresResponse), [genresResponse])
+
+  // Translate genres from numbers into strings
+  const formattedData = useMemo(() => formatData(apiResponse, formattedGenres), [apiResponse])
+
+  // Updated movies to be displayed
+  useEffect(() => { if (formattedData !== null) setMedia(formattedData) }, [formattedData])
 
   // Navegate automatically everytime the user search a movie
   // useAutoNavegate({ setMoviesToDisplay, filterMovies, search, movies }) // Arreglar para que no cambie el path cuando esta en otra sección y se elimina el contenido del input (solución en el archivo del customHook)
 
-  // Create a copy of the object but with a new property with the genres of the movies -> (results: [Action, Horror, Comedy])
-  const moviesWithGenres = useMemo(() => {
-    if (Array.isArray(moviesResponse) && moviesResponse.length > 0 && moviesGenresMap !== null) {
-      // console.log(moviesResponse)
-      return moviesResponse.map((pack) => ({
-        ...pack,
-        results: addGenres(pack.results, moviesGenresMap)
-      }))
-    }
-    return []
-  }, [moviesGenresMap, moviesResponse])
+  // adding this new hook to replace the above
+  // useUpdateMediaData(moviesWithGenres, tvWithGenres, setMedia)
 
-  // Create a copy of the object but with a new property with the genres of the TV programs -> (results: [Action, Horror, Comedy])
-  const tvWithGenres = useMemo(() => {
-    if (Array.isArray(moviesResponse) && moviesResponse.length > 0 && tvGenresMap !== null) {
-      // console.error('tvWithGenres recibe un array')
-      return tvResponse.map((pack) => ({
-        ...pack,
-        results: addGenres(pack.results, tvGenresMap)
-      }))
-    }
-    return null
-  }, [tvGenresMap, tvResponse]) // verificar si realmente modifica la propiedad 'results'  !!!
-
-  // Updated movies to be displayed
-  useEffect(() => {
-    if (moviesWithGenres !== null && tvWithGenres !== null) {
-      setMedia({ movies: moviesWithGenres, tv: tvWithGenres })
-    }
-  }, [moviesWithGenres, tvWithGenres])
-
-  useEffect(() => {
-    const genres = { movies: moviesGenresMap, tv: tvGenresMap }
-    if (media !== null && genres !== null) {
-      const result = sortData(media, genres)
+  useEffect(() => { // mover esta logica a la pagina de Genres
+    // const genres = { movies: moviesGenresMap, tv: tvGenresMap }
+    if (media !== null && formattedGenres !== null) {
+      const result = sortData(media, formattedGenres) // Organizar la data por generos
       setSortedMedia(result)
     }
-  }, [media, moviesGenresMap, tvGenresMap])
+  }, [media, formattedGenres])
 
   return (
     <div className='container'>
@@ -131,7 +71,7 @@ export const App = () => {
 
         <Route path='/' element={<MoviePage search={search}>{media}</MoviePage>} />
 
-        <Route path='/genres' element={<GenrePage mediaObject={sortedMedia} genres={{ movies: moviesGenresMap, tv: tvGenresMap }} />} />
+        <Route path='/genres' element={<GenrePage mediaObject={sortedMedia} genres={formattedGenres} />} />
 
         <Route
           path='/myList'

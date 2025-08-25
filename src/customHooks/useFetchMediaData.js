@@ -1,11 +1,10 @@
-// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-// import { useEffect, useState } from 'react'
 // ---- ---- ---- ----  SERVICES  ---- ---- ---- ----
 import { getData } from '../services/getData'
+//
+//
+//
 
 export const useFetchMediaData = async ({ mediaEndpoints }) => {
-  console.log('Estoy en UseFetchMedia!')
-  console.log(mediaEndpoints.discover[0].endpoint) // to see if the object is working properly
   const [discoverMoviesResponse, discoverTvResponse, trendingMoviesResponse, trendingTvResponse] = await Promise.all([
     getData(mediaEndpoints.discover[0].endpoint),
     getData(mediaEndpoints.discover[1].endpoint),
@@ -13,7 +12,7 @@ export const useFetchMediaData = async ({ mediaEndpoints }) => {
     getData(mediaEndpoints.trending[1].endpoint)
   ])
 
-  const moviesPackage = [ // List with movies data for each discover and trends
+  const movies = [ // List with movies data for each discover and trends
     {
       ...await discoverMoviesResponse,
       content_category: 'discover',
@@ -25,7 +24,7 @@ export const useFetchMediaData = async ({ mediaEndpoints }) => {
       media_type: 'movies'
     }
   ]
-  const tvPackage = [ // List with TV data for each discover and trends
+  const tv = [ // List with TV data for each discover and trends
     {
       ...await discoverTvResponse,
       content_category: 'discover',
@@ -38,7 +37,5 @@ export const useFetchMediaData = async ({ mediaEndpoints }) => {
     }
   ]
 
-  return { moviesPackage, tvPackage }
-  // [moviesData, tvData]
-  // return { moviesPackages, tvPackages } Check this warning here !!!
+  return { movies, tv }
 }

@@ -51,7 +51,7 @@ export function Carousel ({
           manageHover={manageHover}
           currentSection={currentSection}
         >
-          {children}
+          {children}        {/* Array passed to the Slider */}
         </Slider>                                        {/* ---- SLIDER ---- */}
 
         {
@@ -67,7 +67,7 @@ export function Carousel ({
 // ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
 //
 
-// - Children = Carousel receives an array as a children and the media within that the Carousel has to display.
+// - Children = Carousel receives an ARRAY as a children and the media within that the Carousel has to display.
 
 // - temsPerSection = Is a prop that receives Carousel and carry the information of the amount of items visible per Slider section.
 
