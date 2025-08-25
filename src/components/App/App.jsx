@@ -6,7 +6,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 // import { getMovie } from './services/getMovie'
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { sortData } from './App.logic'
 import { formatData } from '../../features/media/utils/formatData'
 
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
@@ -32,8 +31,6 @@ export const App = () => {
 
   const [genresResponse, SetGenresResponse] = useState(null) // Genres data received from de API
 
-  const [sortedMedia, setSortedMedia] = useState({}) // Esta es la que se pasa a los componentes hijos para que la consuman.
-
   // MediaData API request
   useEffect(() => useDataSWRO(setApiResponse, 'mediaData', mediaEndpoints), [])
 
@@ -48,20 +45,13 @@ export const App = () => {
 
   // Updated movies to be displayed
   useEffect(() => { if (formattedData !== null) setMedia(formattedData) }, [formattedData])
+  // esto se puede quitar si se mueve la logica de organizar data por genero a la pagina de generos. Y puedo pasar directament formattedData a ambos componentes.
 
   // Navegate automatically everytime the user search a movie
   // useAutoNavegate({ setMoviesToDisplay, filterMovies, search, movies }) // Arreglar para que no cambie el path cuando esta en otra sección y se elimina el contenido del input (solución en el archivo del customHook)
 
   // adding this new hook to replace the above
   // useUpdateMediaData(moviesWithGenres, tvWithGenres, setMedia)
-
-  useEffect(() => { // mover esta logica a la pagina de Genres
-    // const genres = { movies: moviesGenresMap, tv: tvGenresMap }
-    if (media !== null && formattedGenres !== null) {
-      const result = sortData(media, formattedGenres) // Organizar la data por generos
-      setSortedMedia(result)
-    }
-  }, [media, formattedGenres])
 
   return (
     <div className='container'>
@@ -71,7 +61,7 @@ export const App = () => {
 
         <Route path='/' element={<MoviePage search={search}>{media}</MoviePage>} />
 
-        <Route path='/genres' element={<GenrePage mediaObject={sortedMedia} genres={formattedGenres} />} />
+        <Route path='/genres' element={<GenrePage formattedData={formattedData} formattedGenres={formattedGenres} />} />
 
         <Route
           path='/myList'
@@ -91,7 +81,6 @@ export const App = () => {
   )
 }
 
-// FIRST OF ALL VERIFY THE API FETCHING IS WORKING PROPERLY AND THE CODE IS RUNNIG SMOOTHLY
 // THEN, WORK ON CREATING THE NEW PAGES AND SECTIONS NEEDED TO EFFECTIVELY DIVIDE THE PAGE IN STRUCTURE SECTIONS (steps explained below).
 
 // Create a principal page to display different types of media content.

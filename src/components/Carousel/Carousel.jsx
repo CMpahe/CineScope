@@ -51,8 +51,8 @@ export function Carousel ({
           manageHover={manageHover}
           currentSection={currentSection}
         >
-          {children}        {/* Array passed to the Slider */}
-        </Slider>                                        {/* ---- SLIDER ---- */}
+          {children}
+        </Slider>  {/* Array passed to the Slider */}
 
         {
         children.length > itemsPerSection &&
