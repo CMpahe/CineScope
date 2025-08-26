@@ -1,5 +1,6 @@
 // ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
-import { useFetchMediaData } from './useFetchMediaData'
+import { useFetchMediaData } from '../../services/useFetchMediaData'
+import { useFetchGenresData } from '../../services/useFecthGenresData'
 //
 //
 //
@@ -8,8 +9,15 @@ export const useDataSWRO = (updateState, cacheItemName, endPoints) => {
   const cachedData = window.localStorage.getItem(cacheItemName)
   if (cachedData) { // Check whether there is any data saved in the localStorage
     updateState(JSON.parse(cachedData))
-  } else {
+  } else if (cacheItemName === 'mediaData') {
     useFetchMediaData(endPoints).then(res => { // Call the API if not
+      if (res) {
+        updateState(res)
+        window.localStorage.setItem(cacheItemName, JSON.stringify(res))
+      }
+    })
+  } else {
+    useFetchGenresData(endPoints).then(res => { // Call the API if not
       if (res) {
         updateState(res)
         window.localStorage.setItem(cacheItemName, JSON.stringify(res))

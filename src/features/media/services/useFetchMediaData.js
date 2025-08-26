@@ -4,7 +4,7 @@ import { getData } from '../../../services/getData'
 //
 //
 
-export const useFetchMediaData = async ({ mediaEndpoints }) => {
+export const useFetchMediaData = async (mediaEndpoints) => {
   const [discoverMoviesResponse, discoverTvResponse, trendingMoviesResponse, trendingTvResponse] = await Promise.all([
     getData(mediaEndpoints.discover[0].endpoint),
     getData(mediaEndpoints.discover[1].endpoint),

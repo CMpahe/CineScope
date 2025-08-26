@@ -9,7 +9,7 @@ import useWindowResize from '../../customHooks/useWindowResize'
 import { useManageHover } from '../../customHooks/useManageHover'
 import { usePointerTimeout } from '../../customHooks/usePointerTimeout'
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { useSortDataByGenre } from '../../features/media/customHooks/useSortDataByGenre'
+import { useSortDataByGenre } from '../../features/media/data/customHooks/useSortDataByGenre'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 // import { SliderProvider } from '../context/slider'
 //
