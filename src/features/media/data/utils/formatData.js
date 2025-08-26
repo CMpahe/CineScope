@@ -1,5 +1,5 @@
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
-import { addGenres } from '../../../components/App/App.logic'
+import { addGenres } from './addGenres'
 //
 //
 //

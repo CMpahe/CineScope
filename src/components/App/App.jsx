@@ -1,13 +1,11 @@
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import React, { useEffect, useMemo, useState } from 'react'
-// import { useUpdateMediaData } from './CustomHooks/useUpdateMediaData'
-
 // ---- ---- ---- ---- SERVICES ---- ---- ---- ----
 // import { getMovie } from './services/getMovie'
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { formatData } from '../../features/media/utils/formatData'
-
+import { formatData } from '../../features/media/data/utils/formatData'
+import { formatGenres } from '../../features/media/data/utils/formatGenres'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from '../Header/Header'
 import { MoviePage } from '../MoviePage'
@@ -15,11 +13,12 @@ import { GenrePage } from '../GenrePage/GenrePage'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'
 import { Billboard } from '../Billboard/Billboard'
-
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
 import { genresEndpoints, mediaEndpoints } from '../../data/endpoints'
-import { formatGenres } from '../../features/media/utils/formatGenres'
-import { useDataSWRO } from '../../features/data/customHooks/useDataSWRO'
+import { useDataSWRO } from '../../features/media/data/customHooks/useDataSWRO'
+//
+//
+//
 
 export const App = () => {
   // ---- ---- STATES ---- ----
@@ -45,7 +44,6 @@ export const App = () => {
 
   // Updated movies to be displayed
   useEffect(() => { if (formattedData !== null) setMedia(formattedData) }, [formattedData])
-  // esto se puede quitar si se mueve la logica de organizar data por genero a la pagina de generos. Y puedo pasar directament formattedData a ambos componentes.
 
   // Navegate automatically everytime the user search a movie
   // useAutoNavegate({ setMoviesToDisplay, filterMovies, search, movies }) // Arreglar para que no cambie el path cuando esta en otra sección y se elimina el contenido del input (solución en el archivo del customHook)

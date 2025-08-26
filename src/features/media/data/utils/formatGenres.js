@@ -1,5 +1,5 @@
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
-import { restructureGenresData } from '../../../components/App/App.logic'
+import { restructureGenresData } from './restructureGenresData'
 //
 //
 //

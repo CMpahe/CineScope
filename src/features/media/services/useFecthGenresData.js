@@ -1,7 +1,10 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 // import { useEffect, useState } from 'react'
 // ---- ---- ---- ----  SERVICES  ---- ---- ---- ----
-import { getData } from '../services/getData'
+import { getData } from '../../../services/getData'
+//
+//
+//
 
 export const useFetchGenresData = async ({ genresEndpoints }) => {
   // console.log('Pidiendo los generos')

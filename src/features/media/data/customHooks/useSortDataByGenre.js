@@ -1,7 +1,7 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
 import { useState, useEffect } from 'react'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { sortData } from '../../../components/App/App.logic'
+import { sortData } from '../utils/sortData'
 //
 //
 //

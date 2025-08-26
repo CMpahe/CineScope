@@ -1,5 +1,5 @@
 // ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
-import { useFetchMediaData } from '../../../customHooks/useFetchMediaData'
+import { useFetchMediaData } from './useFetchMediaData'
 //
 //
 //

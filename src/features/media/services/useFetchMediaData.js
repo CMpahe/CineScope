@@ -1,5 +1,5 @@
 // ---- ---- ---- ----  SERVICES  ---- ---- ---- ----
-import { getData } from '../services/getData'
+import { getData } from '../../../services/getData'
 //
 //
 //
