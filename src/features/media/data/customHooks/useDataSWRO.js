@@ -1,27 +1,53 @@
 // ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
 import { useFetchMediaData } from '../../services/useFetchMediaData'
 import { useFetchGenresData } from '../../services/useFecthGenresData'
+import { hash } from '../../../../utils/hash'
 //
 //
 //
 
 export const useDataSWRO = (updateState, cacheItemName, endPoints) => {
-  const cachedData = window.localStorage.getItem(cacheItemName)
-  if (cachedData) { // Check whether there is any data saved in the localStorage
-    updateState(JSON.parse(cachedData))
-  } else if (cacheItemName === 'mediaData') {
-    useFetchMediaData(endPoints).then(res => { // Call the API if not
-      if (res) {
+  const TTL = 5 * 60 * 1000 // 5 minutes
+  const cached = JSON.parse(window.localStorage.getItem(cacheItemName)) // retrive the data from cache
+  const now = Date.now()
+
+  // 1. Show the cache if it exist and is not expired
+  if (cached?.data) { // Check whether there is any data saved in the localStorage
+    updateState(cached.data)
+  }
+
+  // 2. Dicide whether to revalidate
+  const mustRevalidate = !cached || now - cached.savedAt > TTL
+
+  if (cacheItemName === 'mediaData' && mustRevalidate) {
+    useFetchMediaData(endPoints).then(res => {
+      console.log('respuesta: ', res)
+      const freshHash = hash(res)
+      const changed = !cached || cached.hash !== freshHash
+
+      if (changed) {
         updateState(res)
-        window.localStorage.setItem(cacheItemName, JSON.stringify(res))
       }
+
+      window.localStorage.setItem(cacheItemName, JSON.stringify({
+        data: res,
+        savedAt: now,
+        hash: freshHash
+      }))
     })
-  } else {
-    useFetchGenresData(endPoints).then(res => { // Call the API if not
-      if (res) {
+  } else if (mustRevalidate) {
+    useFetchGenresData(endPoints).then(res => {
+      const freshHash = hash(res)
+      const changed = !cached || cached.hash !== freshHash
+
+      if (changed) {
         updateState(res)
-        window.localStorage.setItem(cacheItemName, JSON.stringify(res))
       }
+      window.localStorage.setItem(cacheItemName, JSON.stringify({
+        data: res,
+        savedAt: now,
+        hash: freshHash
+      }))
     })
   }
 }
