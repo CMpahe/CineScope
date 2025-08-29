@@ -1,7 +1,7 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './SmallBtn.module.scss'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
-import { searchIcon, closeIcon } from '../../icons'
+import { searchIcon, closeIcon } from '../../../assets/icons/icons'
 //
 //
 //

@@ -5,9 +5,9 @@ import { SectionWrapper } from '../../components/HtmlComponents/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  CUSTOM HOOKS  ---- ---- ---- ----
-import useWindowResize from '../../customHooks/useWindowResize'
-import { useManageHover } from '../../customHooks/useManageHover'
-import { usePointerTimeout } from '../../customHooks/usePointerTimeout'
+import useWindowResize from '../../components/Carousel/hooks/useWindowResize'
+import { useManageHover } from '../../hooks/useManageHover'
+import { usePointerTimeout } from '../../hooks/usePointerTimeout'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 // import { SliderProvider } from '../context/slider'
 //

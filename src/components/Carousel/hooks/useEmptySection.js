@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 //
 //
 
-function useEmptySection (sections, currentSection) { // Para que sirve esto? y cambiar para que funcione con el useCurrentSection
+function useEmptySection (sections, currentSection) {
   useEffect(() => {
     if (currentSection.section > (sections - 1)) {
       currentSection.setSection(sections - 1)

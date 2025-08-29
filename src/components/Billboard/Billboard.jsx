@@ -3,7 +3,7 @@ import styles from './Billboard.module.scss'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { RegularBtn } from '../Buttons/RegularBtn'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
-import { addIcon, playIcon } from '../icons'
+import { addIcon, playIcon } from '../../assets/icons/icons'
 //
 //
 //

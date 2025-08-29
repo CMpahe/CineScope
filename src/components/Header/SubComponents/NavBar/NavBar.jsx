@@ -3,7 +3,7 @@ import styles from '../../Header.module.scss'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { NavigationLinks } from './NavigationLinks'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
-import { burgerMenu } from '../../../icons'
+import { burgerMenu } from '../../../../assets/icons/icons'
 //
 //
 //

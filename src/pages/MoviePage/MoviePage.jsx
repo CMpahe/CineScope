@@ -4,8 +4,8 @@ import { SectionWrapper } from '../../components/HtmlComponents/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { usePointerTimeout } from '../../customHooks/usePointerTimeout'
-import { useManageHover } from '../../customHooks/useManageHover'
+import { usePointerTimeout } from '../../hooks/usePointerTimeout'
+import { useManageHover } from '../../hooks/useManageHover'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './MoviePage.module.scss'
 //

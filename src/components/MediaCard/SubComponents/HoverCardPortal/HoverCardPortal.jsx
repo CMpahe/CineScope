@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { RegularBtn } from '../../../Buttons/RegularBtn'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
-import { addIcon, playIcon } from '../../../icons'
+import { addIcon, playIcon } from '../../../../assets/icons/icons'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './HoverCardPortal.module.scss'
 //
