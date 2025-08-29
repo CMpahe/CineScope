@@ -1,5 +1,5 @@
 // ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { sortData } from '../utils/sortData'
 //
@@ -9,7 +9,7 @@ import { sortData } from '../utils/sortData'
 export const useSortDataByGenre = (formattedData, formattedGenres) => {
   const [sortedMedia, setSortedMedia] = useState({})
 
-  useEffect(() => {
+  useMemo(() => {
     if (formattedData !== null && formattedGenres !== null) { // Check the data received
       const result = sortData(formattedData, formattedGenres) // Organize data by genre
       setSortedMedia(result)

@@ -8,24 +8,20 @@ import { checkObject } from '../../utils/logic'
 import useWindowResize from '../../customHooks/useWindowResize'
 import { useManageHover } from '../../customHooks/useManageHover'
 import { usePointerTimeout } from '../../customHooks/usePointerTimeout'
-// ---- ---- ---- ----  HOOKS  ---- ---- ---- ----
-import { useSortDataByGenre } from '../../features/media/data/customHooks/useSortDataByGenre'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
 // import { SliderProvider } from '../context/slider'
 //
 //
 //
 
-export const GenrePage = ({ formattedData, formattedGenres }) => {
-  const sortedMedia = useSortDataByGenre(formattedData, formattedGenres) // Organize the data received into genres category so the component can use it properly.
-
+export const GenrePage = ({ sortedData, formattedGenres }) => {
   const itemsPerSection = useWindowResize() // Set the amount of movies per section according on the viewport size
 
   const pointerTimeout = usePointerTimeout() // Global PointerEnter and PointerLeave timeout
 
   const manageHover = useManageHover() // Holds the media Id being hovered so just one at a time throw the portal
 
-  if (!checkObject(sortedMedia) || !checkObject(formattedGenres)) {
+  if (!checkObject(sortedData)) {
     return <h2>Something went wrong!!</h2>
   }
 
@@ -34,11 +30,11 @@ export const GenrePage = ({ formattedData, formattedGenres }) => {
   return (
     <SectionWrapper translateUp>
       {
-        Object.keys(sortedMedia).map((category) => {
+        Object.keys(sortedData).map((category) => {
           return (
             <SectionWrapper key={category} marginDown>
               <GenreTitle>{category}</GenreTitle> {/* name of the category, e.g.: pelicula */}
-              {Object.entries(sortedMedia[category]).map((pageData) => { // Explicar como se está iterando este array u obejto.
+              {Object.entries(sortedData[category]).map((pageData) => { // Explicar como se está iterando este array u obejto.
                 return (
                   Object.entries(pageData[1]).map((data) => {
                     return (

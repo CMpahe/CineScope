@@ -7,8 +7,6 @@ import { MediaCard } from '../../MediaCard/MediaCard'
 //
 
 export const Slider = ({ children, pointerTimeout, manageHover, currentSection }) => {
-  console.log(children)
-
   return (
     <div
       style={
@@ -18,7 +16,6 @@ export const Slider = ({ children, pointerTimeout, manageHover, currentSection }
     >
       {
         children.map((media) => { // Iterate through the array.
-          console.log('media: ', media)
           return (
             <div className={styles.media_frame} key={media.id}>
               <MediaCard // Create a MediaCard component for each media within the array.

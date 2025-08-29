@@ -16,14 +16,14 @@ import { Billboard } from '../Billboard/Billboard'
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
 import { genresEndpoints, mediaEndpoints } from '../../data/endpoints'
 import { useDataSWRO } from '../../features/media/data/customHooks/useDataSWRO'
+
+import { useSortDataByGenre } from '../../features/media/data/customHooks/useSortDataByGenre'
 //
 //
 //
 
 export const App = () => {
   // ---- ---- STATES ---- ----
-  const [media, setMedia] = useState(null) // Movies delivered to 'MovieSection' esta se pasa solo a la seccion de películas
-
   const [search, setSearch] = useState(false) // Nothing in the meantime!
 
   const [apiResponse, setApiResponse] = useState(null) // Media data received from the API
@@ -42,8 +42,7 @@ export const App = () => {
   // Translate genres from numbers into strings
   const formattedData = useMemo(() => formatData(apiResponse, formattedGenres), [apiResponse])
 
-  // Updated movies to be displayed
-  useEffect(() => { if (formattedData !== null) setMedia(formattedData) }, [formattedData])
+  const sortedData = useSortDataByGenre(formattedData, formattedGenres) // Organize the data received into genres category so the component can use it properly.
 
   // Navegate automatically everytime the user search a movie
   // useAutoNavegate({ setMoviesToDisplay, filterMovies, search, movies }) // Arreglar para que no cambie el path cuando esta en otra sección y se elimina el contenido del input (solución en el archivo del customHook)
@@ -57,9 +56,9 @@ export const App = () => {
       <Billboard />
       <Routes>
 
-        <Route path='/' element={<MoviePage search={search}>{media}</MoviePage>} />
+        <Route path='/' element={<MoviePage search={search}>{formattedData}</MoviePage>} />
 
-        <Route path='/genres' element={<GenrePage formattedData={formattedData} formattedGenres={formattedGenres} />} />
+        <Route path='/genres' element={<GenrePage sortedData={sortedData} formattedGenres={formattedGenres} />} />
 
         <Route
           path='/myList'
