@@ -4,20 +4,20 @@ import React, { useEffect, useMemo, useState } from 'react'
 // import { getMovie } from './services/getMovie'
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { formatData } from '../../features/media/data/utils/formatData'
-import { formatGenres } from '../../features/media/data/utils/formatGenres'
+import { formatData } from '../features/media/data/utils/formatData'
+import { formatGenres } from '../features/media/data/utils/formatGenres'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { Header } from '../Header/Header'
-import { MoviePage } from '../MoviePage'
-import { GenrePage } from '../GenrePage/GenrePage'
+import { Header } from '../components/Header/Header'
+import { MoviePage } from '../pages/MoviePage'
+import { GenrePage } from '../pages/GenrePage/GenrePage'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'
-import { Billboard } from '../Billboard/Billboard'
+import { Billboard } from '../components/Billboard/Billboard'
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
-import { genresEndpoints, mediaEndpoints } from '../../data/endpoints'
-import { useDataSWRO } from '../../features/media/data/customHooks/useDataSWRO'
+import { genresEndpoints, mediaEndpoints } from '../data/endpoints'
+import { useDataSWRO } from '../features/media/data/customHooks/useDataSWRO'
 
-import { useSortDataByGenre } from '../../features/media/data/customHooks/useSortDataByGenre'
+import { useSortDataByGenre } from '../features/media/data/customHooks/useSortDataByGenre'
 //
 //
 //

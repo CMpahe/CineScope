@@ -1,6 +1,6 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { MediaCard } from './MediaCard/MediaCard'
-import { SectionWrapper } from './HtmlComponents/SectionWrapper'
+import { MediaCard } from '../components/MediaCard/MediaCard'
+import { SectionWrapper } from '../components/HtmlComponents/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../utils/logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
