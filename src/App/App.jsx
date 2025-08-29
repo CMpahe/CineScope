@@ -8,7 +8,7 @@ import { formatData } from '../features/media/data/utils/formatData'
 import { formatGenres } from '../features/media/data/utils/formatGenres'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from '../components/Header/Header'
-import { MoviePage } from '../pages/MoviePage'
+import { MoviePage } from '../pages/MoviePage/MoviePage'
 import { GenrePage } from '../pages/GenrePage/GenrePage'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'

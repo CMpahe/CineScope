@@ -1,11 +1,13 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { MediaCard } from '../components/MediaCard/MediaCard'
-import { SectionWrapper } from '../components/HtmlComponents/SectionWrapper'
+import { MediaCard } from '../../components/MediaCard/MediaCard'
+import { SectionWrapper } from '../../components/HtmlComponents/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { checkObject } from '../utils/logic'
+import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { usePointerTimeout } from '../customHooks/usePointerTimeout'
-import { useManageHover } from '../customHooks/useManageHover'
+import { usePointerTimeout } from '../../customHooks/usePointerTimeout'
+import { useManageHover } from '../../customHooks/useManageHover'
+// ---- ---- ---- ---- STYLES ---- ---- ---- ----
+import styles from './MoviePage.module.scss'
 //
 //
 //
@@ -22,7 +24,7 @@ export const MoviePage = ({ children, search }) => {
 
   return (
     <SectionWrapper coreSection translateUp>
-      <div className='moviesGrid'>
+      <div className={styles.moviesGrid}>
         {data.results.map((media) => (
           <MediaCard
             key={media.id}
