@@ -1,7 +1,7 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from '../Carousel.module.scss'
+import styles from '../../styles/Carousel.module.scss'
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { MediaCard } from '../../MediaCard/MediaCard'
+import { MediaCard } from '../../../../components/MediaCard/MediaCard'
 //
 //
 //

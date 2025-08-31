@@ -1,11 +1,11 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { Carousel } from '../../components/Carousel/Carousel'
+import { Carousel } from '../../features/Carousel/components/Carousel'
 import { GenreTitle } from '../../components/common/TextTags/GenreTitle'
 import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  CUSTOM HOOKS  ---- ---- ---- ----
-import useWindowResize from '../../components/Carousel/hooks/useWindowResize'
+import useWindowResize from '../../features/Carousel/hooks/useWindowResize'
 import { useManageHover } from '../../hooks/useManageHover'
 import { usePointerTimeout } from '../../hooks/usePointerTimeout'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----

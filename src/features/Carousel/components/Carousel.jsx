@@ -1,14 +1,13 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ---- ----
-import styles from './Carousel.module.scss'
+import styles from '../styles/Carousel.module.scss'
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { PaginationIndicator } from './SubComponents/PaginationIndicator.jsx'
 import { Slider } from './SubComponents/Slider.jsx'
 import { Control } from './SubComponents/Control.jsx'
 // ---- ---- ---- ---- CUSTOM HOOKS  ---- ---- ---- ----
-import useEmptySection from './hooks/useEmptySection.js'
-import { useSections } from './hooks/useSections.js'
-// ---- ---- ---- ---- HOOKS  ---- ---- ---- ----
-import { useCurrentSection } from './hooks/useCurrentSection.js'
+import useEmptySection from '../hooks/useEmptySection.js'
+import { useSections } from '../hooks/useSections.js'
+import { useCurrentSection } from '../hooks/useCurrentSection.js'
 //
 //
 //

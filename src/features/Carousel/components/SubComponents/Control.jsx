@@ -1,5 +1,5 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from '../Carousel.module.scss'
+import styles from '../../styles/Carousel.module.scss'
 //
 //
 //
