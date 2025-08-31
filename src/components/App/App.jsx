@@ -4,20 +4,20 @@ import React, { useEffect, useMemo, useState } from 'react'
 // import { getMovie } from './services/getMovie'
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { formatData } from '../features/media/data/utils/formatData'
-import { formatGenres } from '../features/media/data/utils/formatGenres'
+import { formatData } from '../../features/media/data/utils/formatData'
+import { formatGenres } from '../../features/media/data/utils/formatGenres'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { Header } from '../components/Header/Header'
-import { HomePage } from '../pages/HomePage/HomePage'
-import { GenrePage } from '../pages/GenrePage/GenrePage'
+import { Header } from '../../components/Header/Header'
+import { MoviePage } from '../MoviePage'
+import { GenrePage } from '../GenrePage/GenrePage'
 // import { useAutoNavegate } from '../customHooks/useAutoNavegate'
 import { Routes, Route } from 'react-router-dom'
-import { Billboard } from '../components/Billboard/Billboard'
+import { Billboard } from '../../components/Billboard/Billboard'
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
-import { genresEndpoints, mediaEndpoints } from '../constants/endpoints'
-import { useDataSWRO } from '../features/media/data/hooks/useDataSWRO'
+import { genresEndpoints, mediaEndpoints } from '../../data/endpoints'
+import { useDataSWRO } from '../../features/media/data/hooks/useDataSWRO'
 
-import { useSortDataByGenre } from '../features/media/data/hooks/useSortDataByGenre'
+import { useSortDataByGenre } from '../../features/media/data/hooks/useSortDataByGenre'
 //
 //
 //
@@ -31,10 +31,10 @@ export const App = () => {
   const [genresResponse, SetGenresResponse] = useState(null) // Genres data received from de API
 
   // MediaData API request
-  useEffect(() => useDataSWRO(setApiResponse, 'media_data', mediaEndpoints), [])
+  useEffect(() => useDataSWRO(setApiResponse, 'mediaData', mediaEndpoints), [])
 
   // Genres API request
-  useEffect(() => useDataSWRO(SetGenresResponse, 'genres_data', genresEndpoints), [])
+  useEffect(() => useDataSWRO(SetGenresResponse, 'genresData', genresEndpoints), [])
 
   // Format the genres object into a better structure
   const formattedGenres = useMemo(() => formatGenres(genresResponse), [genresResponse])
@@ -56,7 +56,7 @@ export const App = () => {
       <Billboard />
       <Routes>
 
-        <Route path='/' element={<HomePage search={search}>{formattedData}</HomePage>} />
+        <Route path='/' element={<MoviePage search={search}>{formattedData}</MoviePage>} />
 
         <Route path='/genres' element={<GenrePage sortedData={sortedData} formattedGenres={formattedGenres} />} />
 

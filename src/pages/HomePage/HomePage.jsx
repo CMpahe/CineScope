@@ -1,18 +1,18 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { MediaCard } from '../../components/MediaCard/MediaCard'
-import { SectionWrapper } from '../../components/HtmlComponents/SectionWrapper'
+import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import { usePointerTimeout } from '../../hooks/usePointerTimeout'
 import { useManageHover } from '../../hooks/useManageHover'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from './MoviePage.module.scss'
+import styles from './HomePage.module.scss'
 //
 //
 //
 
-export const MoviePage = ({ children, search }) => {
+export const HomePage = ({ children, search }) => {
   if (!checkObject(children)) {
     return <h2>Something went wrong!!</h2>
   }

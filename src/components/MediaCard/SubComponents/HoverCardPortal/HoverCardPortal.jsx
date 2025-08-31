@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { RegularBtn } from '../../../Buttons/RegularBtn'
+import { RegularBtn } from '../../../Buttons/RegularBtn/RegularBtn'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
 import { addIcon, playIcon } from '../../../../assets/icons/icons'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----

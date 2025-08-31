@@ -1,7 +1,7 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { Carousel } from '../../components/Carousel/Carousel'
-import { GenreTitle } from '../../components/HtmlComponents/TextTags/GenreTitle'
-import { SectionWrapper } from '../../components/HtmlComponents/SectionWrapper'
+import { GenreTitle } from '../../components/common/TextTags/GenreTitle'
+import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  CUSTOM HOOKS  ---- ---- ---- ----

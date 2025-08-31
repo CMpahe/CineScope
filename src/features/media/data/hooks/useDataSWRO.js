@@ -19,7 +19,7 @@ export const useDataSWRO = (updateState, cacheItemName, endPoints) => {
   // 2. Dicide whether to revalidate
   const mustRevalidate = !cached || now - cached.savedAt > TTL
 
-  if (cacheItemName === 'mediaData' && mustRevalidate) {
+  if (cacheItemName === 'media_data' && mustRevalidate) {
     useFetchMediaData(endPoints).then(res => {
       const freshHash = hash(res)
       const changed = !cached || cached.hash !== freshHash
