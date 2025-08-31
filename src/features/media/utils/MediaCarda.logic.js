@@ -1,5 +1,5 @@
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { getScrollValues, eleMeasurements } from '../../utils/logic'
+import { getScrollValues, eleMeasurements } from '../../../utils/logic'
 //
 //
 //

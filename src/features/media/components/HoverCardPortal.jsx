@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { RegularBtn } from '../../../Buttons/RegularBtn/RegularBtn'
+import { RegularBtn } from '../../../components/Buttons/RegularBtn/RegularBtn'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
-import { addIcon, playIcon } from '../../../../assets/icons/icons'
+import { addIcon, playIcon } from '../../../assets/icons/icons'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from './HoverCardPortal.module.scss'
+import styles from '../styles/HoverCardPortal.module.scss'
 //
 //
 //

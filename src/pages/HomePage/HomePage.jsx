@@ -1,5 +1,5 @@
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { MediaCard } from '../../components/MediaCard/MediaCard'
+import { MediaCard } from '../../features/media/components/MediaCard'
 import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'

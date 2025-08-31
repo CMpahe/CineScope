@@ -1,5 +1,5 @@
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { checkObject, sortMediaByGenre } from '../../../../utils/logic'
+import { checkObject, sortMediaByGenre } from '../../../utils/logic'
 //
 //
 //

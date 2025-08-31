@@ -1,7 +1,7 @@
 // ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
-import { useFetchMediaData } from '../../services/useFetchMediaData'
-import { useFetchGenresData } from '../../services/useFecthGenresData'
-import { hash } from '../../../../utils/hash'
+import { useFetchMediaData } from '../services/useFetchMediaData'
+import { useFetchGenresData } from '../services/useFecthGenresData'
+import { hash } from '../../../utils/hash'
 //
 //
 //

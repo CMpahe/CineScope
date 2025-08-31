@@ -4,8 +4,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 // import { getMovie } from './services/getMovie'
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 // import { filterMovies } from '../logic/logic'
-import { formatData } from '../features/media/data/utils/formatData'
-import { formatGenres } from '../features/media/data/utils/formatGenres'
+import { formatData } from '../features/media/utils/formatData'
+import { formatGenres } from '../features/media/utils/formatGenres'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
 import { Header } from '../components/Header/Header'
 import { HomePage } from '../pages/HomePage/HomePage'
@@ -15,9 +15,9 @@ import { Routes, Route } from 'react-router-dom'
 import { Billboard } from '../components/Billboard/Billboard'
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
 import { genresEndpoints, mediaEndpoints } from '../constants/endpoints'
-import { useDataSWRO } from '../features/media/data/hooks/useDataSWRO'
+import { useDataSWRO } from '../features/media/hooks/useDataSWRO'
 
-import { useSortDataByGenre } from '../features/media/data/hooks/useSortDataByGenre'
+import { useSortDataByGenre } from '../features/media/hooks/useSortDataByGenre'
 //
 //
 //

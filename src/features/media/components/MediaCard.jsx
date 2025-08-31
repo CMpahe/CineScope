@@ -1,10 +1,10 @@
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
-import { HoverCardPortal } from './SubComponents/HoverCardPortal/HoverCardPortal'
-import { CoreCard } from './SubComponents/CoreCard'
+import { HoverCardPortal } from './HoverCardPortal'
+import { CoreCard } from './CoreCard'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 import { useRef, useState } from 'react'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { pointerEnter, pointerLeave } from './MediaCarda.logic'
+import { pointerEnter, pointerLeave } from '../utils/MediaCarda.logic'
 //
 //
 //

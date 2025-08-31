@@ -1,7 +1,10 @@
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
-@use '../../styles/variables' as vars;
+@use '../../../styles/variables' as vars;
 // ---- ---- ---- ---- MIXINS ---- ---- ---- ----
-@use '../../styles/mixins';
+@use '../../../styles/mixins';
+//
+//
+//
 
 .movie {
     display: flex;  
