@@ -60,7 +60,7 @@ export const nullOrUndefinedObject = (object) => {
 
 export const emptyObject = (object) => {
   if (Object.keys(object).length === 0) {
-    console.error('It is an empty object')
+    // console.error('It is an empty object')
     return true
   } else return false
 }
