@@ -15,12 +15,12 @@ import { useCurrentSection } from '../hooks/useCurrentSection.js'
 export function Carousel ({
   children,
   title,
-  itemsPerSection,
+  windowInfo,
   pointerTimeout,
   manageHover
 }) {
 //
-  const sections = useSections(children, itemsPerSection) // Says the number of sections within the carrousel
+  const sections = useSections(children, windowInfo.itemsPerSection) // Says the number of sections within the carrousel
 
   const currentSection = useCurrentSection(sections) // Carousel state to handle the current section position
 
@@ -33,7 +33,7 @@ export function Carousel ({
         <h2 className='body'>{title}</h2>            {/* ---- TITLE ---- */}
 
         {
-        children.length > itemsPerSection &&
+        children.length > windowInfo.itemsPerSection &&
           <PaginationIndicator sections={sections} currentSection={currentSection} /> /* ---- PAGINATION INDICATOR ---- */
         }
 
@@ -41,7 +41,7 @@ export function Carousel ({
 
       <div className={`${styles.row_container}`}>
         {
-        children.length > itemsPerSection &&
+        children.length > windowInfo.itemsPerSection &&
           <Control sections={sections} direction='left' currentSection={currentSection} /> /* ---- RIGHT CONTROL ---- */
         }
 
@@ -49,12 +49,13 @@ export function Carousel ({
           pointerTimeout={pointerTimeout}
           manageHover={manageHover}
           currentSection={currentSection}
+          desktopMode={windowInfo.desktopMode}
         >
           {children}
         </Slider>  {/* Array passed to the Slider */}
 
         {
-        children.length > itemsPerSection &&
+        children.length > windowInfo.itemsPerSection &&
           <Control sections={sections} direction='right' currentSection={currentSection} /> /* ---- LEFT CONTROL ---- */
         }
       </div>

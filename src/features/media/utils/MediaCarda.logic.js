@@ -12,28 +12,32 @@ export const pointerEnter = ({
   setHoveredPos,
   setIsHovered,
   pointerTimeout,
-  cardRef
+  cardRef,
+  time
 }) => {
-  clearTimeout(pointerTimeout.enter.current) // clear the last timer before setting other
+  clearTimeout(pointerTimeout.enter.current) // 1. clear the last timer before setting other
+
   pointerTimeout.enter.current = setTimeout(() => {
-    // Get the scroll values
+    //
+    // 2. Get the scroll values and element measures
     const scrollValue = getScrollValues()
     const [rect, width, height] = eleMeasurements({ cardRef })
 
-    setEleSize({
+    setEleSize({ // 3. Update the state within the parent component
       width: rect.width,
       height: rect.height
     })
 
-    // Wrap all the information together
+    // 4. Wrap all the information together
     setHoveredPos({
-      top: rect.top + scrollValue.top + height,
+      top: rect.top + scrollValue.top + height, // Calculate the exact position within the page
       left: rect.left + scrollValue.left + width
     })
 
+    // 5. Update the id state within the manageHover object and set the hover state to true
     manageHover.setId(children.id)
-    setIsHovered(true) // update the hovered state
-  }, 450)
+    setIsHovered(true)
+  }, time)
 }
 
 // - pointerEnter -> Is a function that is executed when a MediaCard is hovered, cleaning the timeout and setting a new one.
@@ -45,8 +49,10 @@ export const pointerLeave = ({
   manageHover,
   setIsHovered
 }) => {
-  clearTimeout(pointerTimeout.leave.current) // clear the last timer before setting other
+  // 1. Clean the last timer before setting other
+  clearTimeout(pointerTimeout.leave.current)
   clearTimeout(pointerTimeout.enter.current)
+  // 2. Clean the hover state and the id of the component being hovered
   manageHover.cleanId()
   setIsHovered(false)
 }

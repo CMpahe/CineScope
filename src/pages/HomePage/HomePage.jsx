@@ -8,6 +8,7 @@ import { usePointerTimeout } from '../../hooks/usePointerTimeout'
 import { useManageHover } from '../../hooks/useManageHover'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './HomePage.module.scss'
+import useWindowInfo from '../../features/Carousel/hooks/useWindowInfo'
 //
 //
 //
@@ -16,6 +17,8 @@ export const HomePage = ({ children, search }) => {
   if (!checkObject(children)) {
     return <h2>Something went wrong!!</h2>
   }
+
+  const windowInfo = useWindowInfo()
 
   const data = children.movies[0] // Extracting the data we want for this section.
 
@@ -30,6 +33,7 @@ export const HomePage = ({ children, search }) => {
             key={media.id}
             pointerTimeout={pointerTimeout}
             manageHover={manageHover}
+            desktopMode={windowInfo.desktopMode}
           >{media}
           </MediaCard>
         ))}

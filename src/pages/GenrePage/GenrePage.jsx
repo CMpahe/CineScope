@@ -5,7 +5,7 @@ import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  CUSTOM HOOKS  ---- ---- ---- ----
-import useWindowResize from '../../features/Carousel/hooks/useWindowResize'
+import useWindowInfo from '../../features/Carousel/hooks/useWindowInfo'
 import { useManageHover } from '../../hooks/useManageHover'
 import { usePointerTimeout } from '../../hooks/usePointerTimeout'
 // ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
@@ -15,7 +15,7 @@ import { usePointerTimeout } from '../../hooks/usePointerTimeout'
 //
 
 export const GenrePage = ({ sortedData, formattedGenres }) => {
-  const itemsPerSection = useWindowResize() // Set the amount of movies per section according on the viewport size
+  const windowInfo = useWindowInfo() // Set the amount of movies per section according on the viewport size
 
   const pointerTimeout = usePointerTimeout() // Global PointerEnter and PointerLeave timeout
 
@@ -40,7 +40,7 @@ export const GenrePage = ({ sortedData, formattedGenres }) => {
                     return (
                       <Carousel
                         title={formattedGenres[category][data[0]]}
-                        itemsPerSection={itemsPerSection}
+                        windowInfo={windowInfo}
                         key={formattedGenres[category][data[0]]}
                         pointerTimeout={pointerTimeout}
                         manageHover={manageHover}

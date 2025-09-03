@@ -9,13 +9,13 @@ import { pointerEnter, pointerLeave } from '../utils/MediaCarda.logic'
 //
 //
 
-export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
+export const MediaCard = ({ children, pointerTimeout, manageHover, desktopMode }) => {
   const cardRef = useRef(null)
   const [hoverPos, setHoveredPos] = useState({ top: 500, left: 500 })
   const [eleSize, setEleSize] = useState({ Width: 0, height: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
-  const handlePointerEnter = () => {
+  const handlePointerEnter = (time) => {
     pointerEnter({ // Retrieve all the necessary information to place the portal.
       manageHover,
       children,
@@ -23,7 +23,8 @@ export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
       setHoveredPos,
       setIsHovered,
       pointerTimeout,
-      cardRef
+      cardRef,
+      time
     })
   }
 
@@ -40,8 +41,22 @@ export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
   return (
     <>
       <CoreCard
+        id={children.id}
         cardRef={cardRef}
-        handlePointer={{ enter: handlePointerEnter, leave: handlePointerLeave }}
+        {...(!desktopMode // 1. If working on Mobile mode
+          ? {
+              onClick: (ev) => {
+                manageHover.setId(ev.currentTarget.id) // 1.1. Update the hovered Id
+                setIsHovered(true) // 1.2. Set this component hover state to true
+                children.id === Number(manageHover.id) ? handlePointerLeave() : handlePointerEnter(0) // 1.3. Show or hide the portal according to the case
+              }
+            }
+          : { // 2. If working on Desktop mode
+              onPointerEnter: () => handlePointerEnter(450),
+              onPointerLeave: () => handlePointerLeave()
+            }
+
+      )}
       >
         {children}
       </CoreCard>
@@ -69,3 +84,7 @@ export const MediaCard = ({ children, pointerTimeout, manageHover }) => {
 // - manageHover -> Is a hook just as before, placed in the main component to ensure that all MediaCards works with the same information at the same time. This hook has a state that holds the Id of the movie that is being hovering. All MediaCard uses this information to compare it with its own Id and whenever both Ids matches, the MediaCard will display the HoverCardPortal.
 // This hook works with a timeout preventing the Portal to be throw immdiatly when the MediaCard is hovered.
 // Its main function is ensure that only one movie at a time throwS the portal.
+
+// {...(!desktopMode && {
+//           onClick: (ev) => { manageHover.setId(ev.currentTarget.id); setIsHovered(true); console.log(ev.currentTarget) }
+//         })}

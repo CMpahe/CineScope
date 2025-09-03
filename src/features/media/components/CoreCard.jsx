@@ -7,16 +7,14 @@ import styles from '../styles/MediaCard.module.scss'
 export const CoreCard = ({
   children,
   cardRef,
-  handlePointer
+  ...props // Received the props from its parent
 }) => {
   return (
 
     <div
       className={`${styles.movie}`}
       ref={cardRef}
-      // Hover handling functions
-      onPointerEnter={() => handlePointer.enter()}
-      onPointerLeave={() => handlePointer.leave()}
+      {...props}
     >
 
       <img src={`https://image.tmdb.org/t/p/w500${children.poster_path}`} alt={children.title} />
