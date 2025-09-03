@@ -1,6 +1,6 @@
-# 🎬 MovieApp
+# 🎬 CineScope
 
-**MovieApp** es una aplicación web tipo **SPA (Single Page Application)** desarrollada con **React + Vite** que permite explorar y descubrir películas de forma sencilla y rápida.  
+**CineScope** es una aplicación web tipo **SPA (Single Page Application)** desarrollada con **React + Vite** que permite explorar y descubrir películas de forma sencilla y rápida.  
 Consume la API de [TMDB](https://www.themoviedb.org/) para mostrar información actualizada sobre estrenos, carteleras y detalles de cada película.  
 
 Este proyecto está pensado como práctica de desarrollo frontend moderno y como ejemplo para portafolio.
