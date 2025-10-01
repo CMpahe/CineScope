@@ -23,6 +23,8 @@ export const Billboard = () => {
             background={2}
             color={2}
             bolder
+            padding='medium'
+            width='small'
           >
             Whatch
           </RegularBtn>
@@ -33,6 +35,7 @@ export const Billboard = () => {
             color={1}
             bolder
             opaque
+            padding='medium'
           >
             Add list
           </RegularBtn>

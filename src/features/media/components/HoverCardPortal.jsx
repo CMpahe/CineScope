@@ -38,9 +38,9 @@ export const HoverCardPortal = ({ children, position, eleSize }) => {
 
       <div className={styles.buttons}> {/* Buttons section */}
 
-        <RegularBtn icon={playIcon} background={2} padding={false} border={3} aspectRatio={2} />
+        <RegularBtn icon={playIcon} background={2} padding={false} border={3} aspectRatio={2} width='medium' />
 
-        <RegularBtn icon={addIcon} background={3} padding={false} border={1} color={2} aspectRatio={2} />
+        <RegularBtn icon={addIcon} background={3} padding={false} border={1} color={2} aspectRatio={2} width='small' />
 
       </div>
 
