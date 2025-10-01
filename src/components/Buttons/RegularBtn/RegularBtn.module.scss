@@ -46,6 +46,10 @@
   .regularPadding {
     padding: 0.9% 1.6%;
   }
+
+  .mediumPadding {
+    padding: 1.2% 1.9%;
+  }
   
   // ---- ---- ---- BORDER ---- ---- ---- 
 
@@ -69,6 +73,19 @@
 
   .aspectRatio_2 {
     aspect-ratio: 6/1;
+  }
+
+  // ---- ---- ---- WIDTH ---- ---- ----
+  .small {
+    width: 30%;
+  }
+
+  .medium {
+    width: 50%;
+  }
+
+  .large {
+    width: 60%;
   }
 
 

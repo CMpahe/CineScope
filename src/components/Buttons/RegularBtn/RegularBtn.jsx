@@ -14,7 +14,8 @@ export const RegularBtn = ({
   bolder = false,
   opaque = false,
   border = false,
-  aspectRatio = false
+  aspectRatio = false,
+  width = false
 }) => {
   //
   const backgroundColor = background === 1
@@ -45,16 +46,31 @@ export const RegularBtn = ({
       ? styles.aspectRatio_2
       : ''
 
+  const btnWidth = width === 'small'
+    ? styles.small
+    : width === 'medium'
+      ? styles.medium
+      : width === 'large'
+        ? styles.large
+        : ''
+
+  const btnPadding = padding === true
+    ? styles.regularPadding
+    : padding === 'medium'
+      ? styles.mediumPadding
+      : ''
+
   return (
     <button
       className={`
         ${backgroundColor} 
         ${textColor}
         ${gap ? styles.gap : ''}
-        ${padding ? styles.regularPadding : ''} 
+        ${btnPadding} 
         ${bolder ? 'bolder' : ''}
         ${borderStyle}
         ${ratio}
+        ${btnWidth}
         body
         `}
     >
@@ -91,6 +107,8 @@ export const RegularBtn = ({
 // - gap = true -> Add some gap between the icon and the button text.
 
 // - padding = true -> add some padding to he button.
+
+// - width = 'small', 'medium', 'large' -> Customize the button width with some values already presets.
 
 // - bolder = true -> Bold text.
 
