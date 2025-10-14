@@ -15,9 +15,7 @@ import { useCurrentSection } from '../hooks/useCurrentSection.js'
 export function Carousel ({
   children,
   title,
-  windowInfo,
-  pointerTimeout,
-  manageHover
+  windowInfo
 }) {
 //
   const sections = useSections(children, windowInfo.itemsPerSection) // Says the number of sections within the carrousel
@@ -45,12 +43,7 @@ export function Carousel ({
           <Control sections={sections} direction='left' currentSection={currentSection} /> /* ---- RIGHT CONTROL ---- */
         }
 
-        <Slider
-          pointerTimeout={pointerTimeout}
-          manageHover={manageHover}
-          currentSection={currentSection}
-          desktopMode={windowInfo.desktopMode}
-        >
+        <Slider currentSection={currentSection}>
           {children}
         </Slider>  {/* Array passed to the Slider */}
 
@@ -72,7 +65,3 @@ export function Carousel ({
 // - temsPerSection = Is a prop that receives Carousel and carry the information of the amount of items visible per Slider section.
 
 // - title = Holds the category name that Caorusel component will display.
-
-// - pointerTimeout = It is an object with the timeout references, one (enter) for handling the pointerEnter timeout and the other one (leave) for handling the pointerLeave timeout. This is passed as a prop to keep the timeout at the top component so no more timeouts are created simultaneously within various Carousels components.
-
-// - manageHover = It is an object that carry a state and two methods to modify that state, 1) first one (setId) for setting the state and 2) the secound one (cleanId) for cleaning the state. The main function of this custom hook is to keep the movie id currently hovered, preventing other movies to display the HoverCardPortal at the same time.

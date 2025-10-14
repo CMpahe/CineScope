@@ -6,21 +6,15 @@ import { SectionWrapper } from '../../components/common/SectionWrapper'
 import { checkObject } from '../../utils/logic'
 // ---- ---- ---- ----  CUSTOM HOOKS  ---- ---- ---- ----
 import useWindowInfo from '../../features/Carousel/hooks/useWindowInfo'
-import { useManageHover } from '../../hooks/useManageHover'
-import { usePointerTimeout } from '../../hooks/usePointerTimeout'
-// ---- ---- ---- ----  CONTEXT PROVIDER  ---- ---- ---- ----
-// import { SliderProvider } from '../context/slider'
 //
 //
 //
 
 export const GenrePage = ({ sortedData, formattedGenres }) => {
-  const windowInfo = useWindowInfo() // Set the amount of movies per section according on the viewport size
+  // 1) Calculate the amount of movies per section according on the viewport size
+  const windowInfo = useWindowInfo()
 
-  const pointerTimeout = usePointerTimeout() // Global PointerEnter and PointerLeave timeout
-
-  const manageHover = useManageHover() // Holds the media Id being hovered so just one at a time throw the portal
-
+  // 2) Check whether sortedData is valid
   if (!checkObject(sortedData)) {
     return <h2>Something went wrong!!</h2>
   }
@@ -42,8 +36,6 @@ export const GenrePage = ({ sortedData, formattedGenres }) => {
                         title={formattedGenres[category][data[0]]}
                         windowInfo={windowInfo}
                         key={formattedGenres[category][data[0]]}
-                        pointerTimeout={pointerTimeout}
-                        manageHover={manageHover}
                       >
                         {data[1]}
                       </Carousel>

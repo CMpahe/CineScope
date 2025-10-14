@@ -3,12 +3,8 @@ import { MediaCard } from '../../features/media/components/MediaCard'
 import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { checkObject } from '../../utils/logic'
-// ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { usePointerTimeout } from '../../hooks/usePointerTimeout'
-import { useManageHover } from '../../hooks/useManageHover'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './HomePage.module.scss'
-import useWindowInfo from '../../features/Carousel/hooks/useWindowInfo'
 //
 //
 //
@@ -18,23 +14,14 @@ export const HomePage = ({ children, search }) => {
     return <h2>Something went wrong!!</h2>
   }
 
-  const windowInfo = useWindowInfo()
-
   const data = children.movies[0] // Extracting the data we want for this section.
-
-  const pointerTimeout = usePointerTimeout() // Manage two timeout reference for the pointer enter and leave events.
-  const manageHover = useManageHover() // To handle the pointer event, when hovering.
 
   return (
     <SectionWrapper coreSection translateUp>
       <div className={styles.moviesGrid}>
         {data.results.map((media) => (
-          <MediaCard
-            key={media.id}
-            pointerTimeout={pointerTimeout}
-            manageHover={manageHover}
-            desktopMode={windowInfo.desktopMode}
-          >{media}
+          <MediaCard key={media.id}>
+            {media}
           </MediaCard>
         ))}
       </div>

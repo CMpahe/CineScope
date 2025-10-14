@@ -13,6 +13,7 @@
     "vite": "^5.3.1"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.16",
     "@vitejs/plugin-react": "4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -6,7 +6,7 @@ import { MediaCard } from '../../../../features/media/components/MediaCard'
 //
 //
 
-export const Slider = ({ children, pointerTimeout, manageHover, currentSection, desktopMode }) => {
+export const Slider = ({ children, currentSection }) => {
   return (
     <div
       style={
@@ -18,12 +18,8 @@ export const Slider = ({ children, pointerTimeout, manageHover, currentSection, 
         children.map((media) => { // Iterate through the array.
           return (
             <div className={styles.media_frame} key={media.id}>
-              <MediaCard // Create a MediaCard component for each media within the array.
-                key={media.id}
-                pointerTimeout={pointerTimeout}
-                manageHover={manageHover}
-                desktopMode={desktopMode}
-              >{media}
+              <MediaCard key={media.id}>
+                {media}
               </MediaCard>
             </div>
           )

@@ -2,68 +2,53 @@
 import { HoverCardPortal } from './HoverCardPortal'
 import { CoreCard } from './CoreCard'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { useRef, useState } from 'react'
-// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { pointerEnter, pointerLeave } from '../utils/MediaCarda.logic'
+import { useState } from 'react'
+import { autoUpdate, flip, offset, shift, useClick, useDismiss, useFloating, useInteractions } from '@floating-ui/react'
 //
 //
 //
 
-export const MediaCard = ({ children, pointerTimeout, manageHover, desktopMode }) => {
-  const cardRef = useRef(null)
-  const [hoverPos, setHoveredPos] = useState({ top: 500, left: 500 })
-  const [eleSize, setEleSize] = useState({ Width: 0, height: 0 })
-  const [isHovered, setIsHovered] = useState(false)
+export const MediaCard = ({ children }) => {
+  // 1) Open portal state
+  const [open, setOpen] = useState(false)
+  // 2) basic floating settings
+  const { refs, floatingStyles, context } = useFloating({
+    open,
+    onOpenChange: setOpen,
+    placement: 'top',
+    whileElementsMounted: autoUpdate,
+    middleware: [
+      offset(({ rects }) => -(rects.reference.height / 2 + rects.floating.height / 2)),
+      flip(),
+      shift({ padding: 10 })
+    ]
+  })
 
-  const handlePointerEnter = (time) => {
-    pointerEnter({ // Retrieve all the necessary information to place the portal.
-      manageHover,
-      children,
-      setEleSize,
-      setHoveredPos,
-      setIsHovered,
-      pointerTimeout,
-      cardRef,
-      time
-    })
-  }
-
-  const handlePointerLeave = () => {
-    pointerLeave({ // Clean the media Id hovered from the state, and hides the portal.
-      pointerTimeout,
-      manageHover,
-      setIsHovered
-    })
-  }
-
-  const showPortal = manageHover.id === children.id && isHovered // Holds a boolean value that decides whether the portal is displayed or not.
+  // 3) interactions settings
+  const click = useClick(context)
+  const dismiss = useDismiss(context)
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss
+  ])
 
   return (
     <>
-      <CoreCard
+      <CoreCard // a) Reference
         id={children.id}
-        cardRef={cardRef}
-        {...(!desktopMode // 1. If working on Mobile mode
-          ? {
-              onClick: (ev) => {
-                manageHover.setId(ev.currentTarget.id) // 1.1. Update the hovered Id
-                setIsHovered(true) // 1.2. Set this component hover state to true
-                children.id === Number(manageHover.id) ? handlePointerLeave() : handlePointerEnter(0) // 1.3. Show or hide the portal according to the case
-              }
-            }
-          : { // 2. If working on Desktop mode
-              onPointerEnter: () => handlePointerEnter(450),
-              onPointerLeave: () => handlePointerLeave()
-            }
-
-      )}
+        ref={refs.setReference}
+        {...getReferenceProps()}
       >
         {children}
       </CoreCard>
 
-      {showPortal &&
+      {open &&
 
-        <HoverCardPortal position={hoverPos} eleSize={eleSize}>
+        <HoverCardPortal // b) Floating portal
+          ref={refs.setFloating}
+          style={floatingStyles}
+          {...getFloatingProps()}
+        >
           {children}
         </HoverCardPortal>}
     </>
@@ -78,13 +63,4 @@ export const MediaCard = ({ children, pointerTimeout, manageHover, desktopMode }
 
 // - children -> Is the object received by the component and used to be passed to the CoreCard to be displayed.
 
-// - pointerTimeout -> Is a hook that holds an timeout and some methods to update it. This hook is placed in the main component o section so to ensure all the MediaCards works with the same timeout avoinding duplicity. The timeout and its methods are all wrap together in an object to make it easier to handle.
-// This
-
-// - manageHover -> Is a hook just as before, placed in the main component to ensure that all MediaCards works with the same information at the same time. This hook has a state that holds the Id of the movie that is being hovering. All MediaCard uses this information to compare it with its own Id and whenever both Ids matches, the MediaCard will display the HoverCardPortal.
-// This hook works with a timeout preventing the Portal to be throw immdiatly when the MediaCard is hovered.
-// Its main function is ensure that only one movie at a time throwS the portal.
-
-// {...(!desktopMode && {
-//           onClick: (ev) => { manageHover.setId(ev.currentTarget.id); setIsHovered(true); console.log(ev.currentTarget) }
-//         })}
+// This component works with floating-ui as the main tool for position the floating portal. Here are the main position settings.

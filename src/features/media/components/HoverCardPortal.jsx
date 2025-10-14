@@ -5,35 +5,22 @@ import { RegularBtn } from '../../../components/Buttons/RegularBtn/RegularBtn'
 import { addIcon, playIcon } from '../../../assets/icons/icons'
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from '../styles/HoverCardPortal.module.scss'
+import { forwardRef } from 'react'
 //
 //
 //
 
-export const HoverCardPortal = ({ children, position, eleSize }) => {
+export const HoverCardPortal = forwardRef(({ children, style, ...props }, ref) => {
   return ReactDOM.createPortal(
     <div
-      style={{ // Some preset styles for this component
-        position: 'absolute',
-        top: `${position.top}px`,
-        left: `${position.left}px`,
-        width: 'auto',
-        height: 'auto',
-        transform: 'translate(-50%, -50%)',
-        transition: '.3s all easy-in', // revisar por qué esto no funciona!!
-        zIndex: 1000,
-        pointerEvents: 'none' // para que no interfiera con scroll, MIRAR ESTO PORQUE SINO NO FUNCIONAN LOS BOTONES EN EL PORTAL
-      }}
+      {...props}
+      ref={ref}
+      style={style}
       className={styles.portalCard}
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${children.poster_path}`}
         alt={children.title}
-        style={
-          {
-            width: `${eleSize.width * 1.5}px`,
-            height: `${eleSize.height * 1.3}px`
-          }
-        }
       />
 
       <div className={styles.buttons}> {/* Buttons section */}
@@ -56,7 +43,7 @@ export const HoverCardPortal = ({ children, position, eleSize }) => {
     </div>,
     document.body
   )
-}
+})
 
 //
 // ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
