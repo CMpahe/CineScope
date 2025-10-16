@@ -22,11 +22,11 @@ export const GenrePage = ({ sortedData, formattedGenres }) => {
   // note: CARROUSEL ONLY RECEIVES A LIST OF MOVIES TO DISPLAY, NOT THE OBJECT.
 
   return (
-    <SectionWrapper translateUp>
+    <SectionWrapper variant='coreSection' margin='m-bottom--10rem'>
       {
         Object.keys(sortedData).map((category) => {
           return (
-            <SectionWrapper key={category} marginDown>
+            <SectionWrapper key={category} margin='r-m-bottom'>
               <GenreTitle>{category}</GenreTitle> {/* name of the category, e.g.: pelicula */}
               {Object.entries(sortedData[category]).map((pageData) => { // Explicar como se está iterando este array u obejto.
                 return (

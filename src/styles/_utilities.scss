@@ -1,0 +1,148 @@
+@use './variables' as vars;
+
+// ---- ---- ---- DISPLAY ---- ---- ----
+.flex { display: flex; }
+
+.inline-flex { display: inline-flex; }
+
+.flex-box { display: flexbox; }
+
+.block { display: block; }
+
+.inline-block { display: inline-block; }
+
+// ---- ---- ---- FLEX ---- ---- ----
+.flex-g--1 { flex-grow: 1; }
+
+// ---- ---- ---- JUSTIFY CONTENT ---- ---- ----
+.jC-center { justify-content: center; }
+
+.jC-right { justify-content: right; }
+
+.jC-left { justify-content: left; }
+
+// ---- ---- ---- JUSTIFY ITEMS ---- ---- ----
+.ji-center { justify-items: center; }
+
+.ji-right { justify-items: right; }
+
+.ji-left { justify-items: left; }
+
+// ---- ---- ---- ALIGN CONTENT ---- ---- ----
+.al-c--center { align-content: center; }
+
+.al-c--start { align-content: start; }
+
+.al-c--end { align-content: end; }
+
+// ---- ---- ---- ALIGN ITEMS ---- ---- ----
+.al-i--center { align-items: center; }
+
+.al-i--start { align-items: start; }
+
+.al-i--end { align-items: end; }
+
+// ---- ---- ---- PLACE CONTENT ---- ---- ----
+.pl-c--center { place-content: center;}
+
+.pl-c--start { place-content: start;}
+
+.pl-c--end { place-content: end;}
+
+// ---- ---- ---- BACKGROUNDS ---- ---- ----
+.bg-red { background-color: vars.$primary-red; }
+
+.bg-white { background-color: vars.$primary-white; }
+
+.bg-black { background-color: vars.$primary-black; }
+
+.bg-transparent { background-color: transparent; }
+
+// ---- ---- ---- TEXT COLOR ---- ---- ----
+.text-white { color: vars.$primary-white; }
+
+.text-black { color: vars.$primary-black; }
+
+.text-red { color: vars.$primary-red; }
+
+// ---- ---- ---- BORDER COLOR ---- ---- ----
+ .border-white { border: solid 2px vars.$primary-white; }
+
+ .border-black { border: solid 2px vars.$primary-black; }
+
+ .border-red { border: solid 2px vars.$primary-red; }
+
+// ---- ---- ---- BORDER WITH ---- ---- ----
+ .border-width--1px { border-width: 1px; }
+
+ .border-width--3px { border-width: 3px; }
+
+ .border-width--4px { border-width: 4px; }
+
+// ---- ---- ---- BORDER RADIUS ---- ---- ----
+.border-radius--2px { border-radius: 2px; }
+
+.border-radius--3px { border-radius: 3px; }
+
+.border-radius--4px { border-radius: 4px; }
+
+.border-radius--5px { border-radius: 5px; }
+
+.border-radius--7px { border-radius: 7px; }
+
+.border-radius--10px { border-radius: 10px; }
+
+// ---- ---- ---- PADDING ---- ---- ----
+.padding--1px { padding: 1px; }
+
+.padding--2px { padding: 2px; }
+
+.padding--3px { padding: 3px; }
+
+.padding--5px { padding: 5px; }
+
+.padding--8px { padding: 8px; }
+
+.padding--10px { padding: 10px; }
+
+
+.r-padding { padding: 0.9% 1.6%; }
+
+.m-padding { padding: 1.2% 1.9%; }
+
+.b-padding--8rem { padding-bottom: 8rem; }
+
+.b-padding--10rem { padding-bottom: 10rem; }
+
+.b-padding--15rem { padding-bottom: 15rem; }
+
+
+// ---- ---- ---- ASPECT RATIO ---- ---- ----
+.aspect-ratio--1-1 { aspect-ratio: 1/1; }
+
+.aspect-ratio--6-1 { aspect-ratio: 6/1; }
+
+// ---- ---- ---- WIDTH ---- ---- ----
+.w--30 { width: 30%; }
+
+.w--50 { width: 50%; }
+
+.w--60 { width: 60%; }
+
+.w-full { width: 100%; }
+
+// ---- ---- ---- TRANSLATE ---- ---- ----
+
+.r-trnslt-up { transform: translateY(-2.5vw); }
+
+.r-trnslt-down { transform: translate(2.5vw); }
+
+// ---- ---- ---- MARGIN ---- ---- ----
+.r-m-bottom { margin-bottom: 8rem; }
+
+.m-bottom--10rem { margin-bottom: 10rem; }
+
+.m-bottom--15rem { margin-bottom: 15rem; }
+
+ 
+

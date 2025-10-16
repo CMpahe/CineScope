@@ -17,7 +17,7 @@ export const HomePage = ({ children, search }) => {
   const data = children.movies[0] // Extracting the data we want for this section.
 
   return (
-    <SectionWrapper coreSection translateUp>
+    <SectionWrapper variant='coreSection' padding='b-padding--10rem'>
       <div className={styles.moviesGrid}>
         {data.results.map((media) => (
           <MediaCard key={media.id}>
