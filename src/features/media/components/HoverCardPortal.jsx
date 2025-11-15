@@ -25,7 +25,7 @@ export const HoverCardPortal = forwardRef(({ children, style, ...props }, ref) =
 
       <div className={styles.buttons}> {/* Buttons section */}
 
-        <RegularBtn icon={playIcon} variant='red' />
+        <RegularBtn icon={playIcon} variant='red' width='w--40' />
 
         <RegularBtn variant={null} icon={addIcon} width='w--30' padding='padding--px1' />
 

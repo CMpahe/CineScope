@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 function useWindowInfo () { // revisar si es necesario aplicar un useCallback
   const [itemsPerSection, setItemsPerSection] = useState( // 1. Setting the initial values for itemsPerSection
     window.innerWidth < 450
-      ? 5
+      ? 4
       : window.innerWidth >= 1050
         ? 9
         : window.innerWidth >= 800 ? 7 : 5
@@ -58,7 +58,7 @@ export default useWindowInfo
 
 // Evaluate the window width and return the amount of items that should contain according to the width
 const getItemsPerSection = (windowWidth) => {
-  if (windowWidth < 450) return 5
+  if (windowWidth < 450) return 4
   if (windowWidth >= 1050) return 9
   if (windowWidth >= 800) return 7
   return 5

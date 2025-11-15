@@ -25,7 +25,7 @@ export const RegularBtn = ({
 
   const variantClasses = {
     regular: 'bg-white text-black m-padding r-gap bold',
-    red: 'bg-red text-white m-padding r-gap bold w--40'
+    red: 'bg-red text-white m-padding r-gap bold'
   }
 
   const classes = clsx(
