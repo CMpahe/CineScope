@@ -4,7 +4,7 @@
 
   // ---- ---- ---- GLOBAL BTN STYLE ---- ---- ---- 
 
-.whiteBtn, .blackBtn, .redBtn, .noColor {
+.r_btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -43,16 +43,15 @@
   
   // ---- ---- ---- PADDING ---- ---- ---- 
 
-  .regularPadding {
+  .r-padding {
     padding: 0.9% 1.6%;
   }
 
-  .mediumPadding {
+  .m-padding {
     padding: 1.2% 1.9%;
   }
   
   // ---- ---- ---- BORDER ---- ---- ---- 
-
   .whiteBorder{
     border: 2px solid rgba(255, 255, 255, 0.501);
   }

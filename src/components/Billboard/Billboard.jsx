@@ -17,28 +17,8 @@ export const Billboard = () => {
         <h1 className='big-title1 bolder'>Movie Title Here</h1>
         {/* <p className='big-text light'>Description of the movie here, is a main summary of the movie, is a main summary of the movie. Description of the movie here</p> */}
         <div className={`${styles.btn_container}`}>
-          <RegularBtn
-            icon={playIcon}
-            gap
-            background={2}
-            color={2}
-            bolder
-            padding='medium'
-            width='small'
-          >
-            Whatch
-          </RegularBtn>
-          <RegularBtn
-            icon={addIcon}
-            gap
-            background={1}
-            color={1}
-            bolder
-            opaque
-            padding='medium'
-          >
-            Add list
-          </RegularBtn>
+          <RegularBtn variant='red' icon={playIcon}> Whatch </RegularBtn>
+          <RegularBtn icon={addIcon} opaque> Add list </RegularBtn>
         </div>
       </div>
     </div>

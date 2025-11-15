@@ -65,6 +65,9 @@
 
 .text-red { color: vars.$primary-red; }
 
+// ---- ---- ---- TEXT COLOR ---- ---- ----
+
+
 // ---- ---- ---- BORDER COLOR ---- ---- ----
  .border-white { border: solid 2px vars.$primary-white; }
 
@@ -125,6 +128,8 @@
 // ---- ---- ---- WIDTH ---- ---- ----
 .w--30 { width: 30%; }
 
+.w--40 { width: 40%; }
+
 .w--50 { width: 50%; }
 
 .w--60 { width: 60%; }
@@ -144,5 +149,10 @@
 
 .m-bottom--15rem { margin-bottom: 15rem; }
 
+// ---- ---- ---- GAP ---- ---- ----
+ 
+.r-gap {
+    gap: clamp(0.3rem, 1vw, 0.6rem);
+}
  
 
