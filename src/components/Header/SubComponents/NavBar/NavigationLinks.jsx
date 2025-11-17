@@ -6,12 +6,13 @@ import { NavLink } from 'react-router-dom'
 //
 //
 
-export const NavigationLinks = ({ path, children }) => {
+export const NavigationLinks = ({ path, children, ...props }) => {
   return (
     <li>
       <NavLink
-        to={path} className={
-          ({ isActive }) => `c_white header_link ${styles.links} ${isActive ? styles.is_active : ''}`
+        to={path}
+        className={
+          ({ isActive }) => `nav-item c_white header_link border-glass s-padding border-radius--15px ${styles.links} ${isActive ? styles.is_active : ''}`
         }
       >
         {children}

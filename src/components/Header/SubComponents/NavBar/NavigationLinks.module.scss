@@ -12,7 +12,8 @@ ul {
             position: relative;
         }
 
-        .is_active::before {
+        @media (min-width: 650px) {
+            .is_active::before {
             content: '';
             display: block;
             position: absolute;
@@ -25,6 +26,13 @@ ul {
         
             left: 50%;
             transform: translateX(-50%);
+            }
+            .links{
+                border: none;              /* quita el borde del “botón” */
+                background: none;          /* quita el glass */
+                backdrop-filter: none;     
+                border-radius: 0;
+            }
         }
       }
   }
@@ -37,14 +45,15 @@ ul {
         width: 100%;
         gap: 3%;
         li {
-            .is_active::before {
-                width: .2rem;
-                height: 100%;
-                left: 0;
-                bottom: 0;
-                //transform: translateY(-100%);
-                
-                transform: translateX(-200%);
+            .is_active {
+                // width: .2rem;
+                // height: 100%;
+                // left: 0;
+                // bottom: 0;
+                // transform: translateY(-100%);
+                // transform: translateX(-200%);
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(20px);
             }
         }
     }

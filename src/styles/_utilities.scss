@@ -58,6 +58,13 @@
 
 .bg-transparent { background-color: transparent; }
 
+.bg-glass { 
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+}
+
 // ---- ---- ---- TEXT COLOR ---- ---- ----
 .text-white { color: vars.$primary-white; }
 
@@ -74,6 +81,10 @@
  .border-black { border: solid 2px vars.$primary-black; }
 
  .border-red { border: solid 2px vars.$primary-red; }
+
+ .border-b-glass { border-bottom: 1px solid rgba(255, 255, 255, 0.20); }
+ 
+ .border-glass { border: 2px solid rgba(255, 255, 255, 0.25); }
 
 // ---- ---- ---- BORDER WITH ---- ---- ----
  .border-width--1px { border-width: 1px; }
@@ -95,6 +106,10 @@
 
 .border-radius--10px { border-radius: 10px; }
 
+.border-radius--12px { border-radius: 12px; }
+
+.border-radius--15px { border-radius: 15px; }
+
 // ---- ---- ---- PADDING ---- ---- ----
 .padding--1px { padding: 1px; }
 
@@ -114,6 +129,8 @@
 // .r-padding2 { padding: 2% 3.2%; }
 
 .m-padding { padding: clamp(0.5rem, 1.5%, 0.8rem) clamp(1.1rem, 5.6%, 1.7rem); }
+
+.s-padding { padding: clamp(0.3rem, 1.5%, 0.8rem) clamp(1.1rem, 5.6%, 1.7rem); }
 
 // .m-padding { padding: 1.2% 1.9%; }
 

@@ -17,7 +17,7 @@
     padding: min(1.5%, 0.6rem) min(3.5%, 1.2rem);
 
     color: vars.$primary-white;
-    @include mixins.header-gradient();
+    //  @include mixins.header-gradient();
     transition: transform ease-in-out .4s;
 
     &.hidden {
@@ -27,11 +27,14 @@
     .desktop_navbar {
       ul {
         display: flex;
+        margin: 0;
         gap: 2rem;
   
         li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           position: relative;
-       
         }
       }
     }
@@ -74,9 +77,9 @@
     }
 
     @media (max-width: 650px) {
-      .desktop_navbar {
-        display: none;
-      }
+      // .desktop_navbar {
+      //   display: none;
+      // }
   
       .mobile_menu {
         display: flex;

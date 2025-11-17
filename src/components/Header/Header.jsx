@@ -24,11 +24,11 @@ export const Header = ({ search, setSearch }) => {
   const inputRef = useRef(null)
 
   return (
-    <header className={`${styles.header} ${showHeader.state ? '' : styles.hidden}`}>
-
-      <NavBar showSideBar={showSideBar} />
+    <header className={`${styles.header} bg-glass border-b-glass ${showHeader.state ? '' : styles.hidden}`}>
 
       <Hamburger display={showSideBar.state} ariaControls='mobile_menu' onClickFunction={() => showSideBar.toggleState()} />
+
+      <NavBar showSideBar={showSideBar} />
 
       <NavBar mobileMode showSideBar={showSideBar} />
 

@@ -23,9 +23,9 @@ export const NavBar = ({ showSideBar, mobileMode = false }) => {
         </button>}
 
       <ul>
-        <NavigationLinks path='/'>Home</NavigationLinks>
-        <NavigationLinks path='/genres'>Genres</NavigationLinks>
-        <NavigationLinks path='/myList'>My list</NavigationLinks>
+        <NavigationLinks className='border-glass border-radius--15px s-padding' path='/'>Home</NavigationLinks>
+        <NavigationLinks className='border-glass border-radius--15px s-padding' path='/genres'>Genres</NavigationLinks>
+        <NavigationLinks className='border-glass border-radius--15px s-padding' path='/myList'>My list</NavigationLinks>
       </ul>
     </nav>
   )
