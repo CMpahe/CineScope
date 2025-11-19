@@ -25,6 +25,7 @@
     }
 
     .desktop_navbar {
+      transition: opacity .2s ease;
       ul {
         display: flex;
         margin: 0;
@@ -89,4 +90,10 @@
         }
       }
     }
+  }
+
+  .header.searchActive .desktop_navbar{
+    opacity: 0;
+    display: none;
+    pointer-events: none;
   }

@@ -3,26 +3,32 @@ import styles from '../Input/Input.module.scss'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
 import { clearInput, focusInput } from '../../Header.logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { useState } from 'react'
+// import { useState } from 'react'
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { SmallBtn } from '../../../Buttons/SmallBtn/SmallBtn'
 //
 //
 //
 
-export const Input = ({ inputRef, search, setSearch }) => {
-  const [isActiveInput, setIsActiveInput] = useState(false) // Visibility input state
+export const Input = ({ inputRef, searchActive, search, setSearch }) => {
+  // const [isActiveInput, setIsActiveInput] = useState(false) // Visibility input state
 
-  const handleSearchClick = () => { // // Open the input field
-    setIsActiveInput(prev => !prev)
-    if (!isActiveInput) focusInput({ inputRef })
+  // const handleSearchClick = () => { // // Open the input field
+  //   setIsActiveInput(prev => !prev)
+  //   if (!isActiveInput) focusInput({ inputRef })
+  //   else inputRef.current.blur()
+  // }
+
+  const handleSearchClick = () => {
+    searchActive[1](prev => !prev)
+    if (!searchActive.state) focusInput({ inputRef })
     else inputRef.current.blur()
   }
 
-  const handleCloseClick = () => clearInput({ inputRef, setSearch, setIsActiveInput }) // Clean and close the input field
+  const handleCloseClick = () => clearInput({ inputRef, setSearch, searchActive }) // Clean and close the input field
 
   return (
-    <div className={`${styles.search_container} ${isActiveInput ? styles.is_active : ''}`}>
+    <div className={`${styles.search_container} ${searchActive[0] ? styles.is_active : ''}`}>
 
       <SmallBtn handleClick={handleSearchClick} type={2} />
 

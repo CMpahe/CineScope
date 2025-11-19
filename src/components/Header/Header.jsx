@@ -1,7 +1,7 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from './Header.module.scss'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 // ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
 import { useManageDisplay } from './CustomHooks/useManageDisplay'
 // ---- ---- ---- ---- COMPONENTS ---- ---- ---- ----
@@ -18,13 +18,15 @@ import { Input } from './SubComponents/Input/Input'
 export const Header = ({ search, setSearch }) => {
   const showSideBar = useManageDisplay(false)
   const showHeader = useManageDisplay(true)
+  const searchActive = useState(false) // probando alternativa para manejo de botones e input.
+  console.log(searchActive)
 
   useScrollTrigger({ showHeader })
 
   const inputRef = useRef(null)
 
   return (
-    <header className={`${styles.header} bg-glass border-b-glass ${showHeader.state ? '' : styles.hidden}`}>
+    <header className={`${styles.header} bg-glass border-b-glass ${showHeader.state ? '' : styles.hidden} ${searchActive[0] ? styles.searchActive : ''}`}>
 
       <Hamburger display={showSideBar.state} ariaControls='mobile_menu' onClickFunction={() => showSideBar.toggleState()} />
 
@@ -32,7 +34,7 @@ export const Header = ({ search, setSearch }) => {
 
       <NavBar mobileMode showSideBar={showSideBar} />
 
-      <Input inputRef={inputRef} search={search} setSearch={setSearch} />
+      <Input inputRef={inputRef} searchActive={searchActive} search={search} setSearch={setSearch} />
     </header>
   )
 }

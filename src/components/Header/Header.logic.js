@@ -1,7 +1,8 @@
-export const clearInput = ({ inputRef, setSearch, setIsActiveInput }) => { // Clear input-field when closed
+export const clearInput = ({ inputRef, setSearch, searchActive }) => { // Clear input-field when closed
   inputRef.current.value = ''
   setSearch(false)
-  setIsActiveInput(false)
+  // setIsActiveInput(false)
+  searchActive[1](false)
 }
 
 // - ClearInput -> Using the input reference this function clear the input field by setting the state an empty string.

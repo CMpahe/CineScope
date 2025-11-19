@@ -12,6 +12,13 @@
       border-radius: 999px;
       transition: max-width .3s ease-in-out, border-color .3s ease-in-out;
 
+      .input_container {
+        .search_input {
+          transition: width .2s ease;
+          width: 0;
+        }
+      }
+
       &.is_active {
         max-width: 100%;
         border-color: vars.$primary-white; 
@@ -19,6 +26,7 @@
         .input_container {
           .search_input {
             visibility: visible;
+            width: 22rem;
           }
         }
       }
