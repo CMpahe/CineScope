@@ -19,7 +19,7 @@ export const Header = ({ search, setSearch }) => {
   const showSideBar = useManageDisplay(false)
   const showHeader = useManageDisplay(true)
   const searchActive = useState(false) // probando alternativa para manejo de botones e input.
-  console.log(searchActive)
+  // console.log(searchActive)
 
   useScrollTrigger({ showHeader })
 
@@ -28,7 +28,7 @@ export const Header = ({ search, setSearch }) => {
   return (
     <header className={`${styles.header} bg-glass border-b-glass ${showHeader.state ? '' : styles.hidden} ${searchActive[0] ? styles.searchActive : ''}`}>
 
-      <Hamburger display={showSideBar.state} ariaControls='mobile_menu' onClickFunction={() => showSideBar.toggleState()} />
+      <Hamburger display={showSideBar.state} className={styles.burgerBtn} ariaControls='mobile_menu' onClickFunction={() => showSideBar.toggleState()} />
 
       <NavBar showSideBar={showSideBar} />
 

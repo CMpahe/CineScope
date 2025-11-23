@@ -8,6 +8,7 @@
 
     display: flex;
     align-items: center;
+    align-content: center  ;
     justify-content: space-between;
     box-sizing: border-box;
 
@@ -25,11 +26,18 @@
     }
 
     .desktop_navbar {
-      transition: opacity .2s ease;
+      transition: opacity .3s ease;
+      width: 100%;
+
+      margin: 0 0.5rem;
+
       ul {
-        display: flex;
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        justify-content: space-evenly;
+        align-items: center;
         margin: 0;
-        gap: 2rem;
   
         li {
           display: flex;
@@ -92,7 +100,17 @@
     }
   }
 
+  .header.searchActive{
+    justify-content: end;
+  }
+
   .header.searchActive .desktop_navbar{
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+  }
+
+  .header.searchActive .burgerBtn {
     opacity: 0;
     display: none;
     pointer-events: none;

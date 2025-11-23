@@ -6,14 +6,14 @@ import { searchIcon, closeIcon } from '../../../assets/icons/icons'
 //
 //
 
-export const SmallBtn = ({ handleClick, type, search }) => {
+export const SmallBtn = ({ handleClick, type, search, className = '' }) => {
   const icon = type === 1 ? closeIcon : searchIcon // Decides the icon placed within the button
 
   const style = type === 1 ? styles.closeBtn : styles.searchBtn
 
   return (
     <button
-      className={`${styles.smallBtn} ${style} ${search ? styles.show : ''}`}
+      className={`${styles.smallBtn} ${className} ${style} ${search ? styles.show : ''}`}
       onClick={() => handleClick()}
     >
       {icon}

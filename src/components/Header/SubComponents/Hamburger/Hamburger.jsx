@@ -4,11 +4,11 @@ import styles from './Hamburger.module.scss'
 //
 //
 
-export const Hamburger = ({ display, ariaControls, onClickFunction }) => {
+export const Hamburger = ({ display, ariaControls, onClickFunction, className = '' }) => {
   return (
     <button
       id='hamburger'
-      className={styles.hamburger}
+      className={`${styles.hamburger} ${className}`}
       aria-expanded={display}
       aria-controls={ariaControls}
       onClick={onClickFunction}
