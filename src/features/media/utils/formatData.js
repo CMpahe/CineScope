@@ -1,5 +1,6 @@
 // ---- ---- ---- ---- LOGIC ---- ---- ---- ----
 import { addGenres } from './addGenres'
+import { addTitleProp } from './addTitleProp'
 //
 //
 //
@@ -13,6 +14,18 @@ export const formatData = (apiResponse, formattedGenres) => {
 
     const result = destructuredData.map(([key, item]) => { // e.g.: key => 'movies' | item => [{...}, {...}]
       if (Array.isArray(item) && item.length > 0 && item !== null) { // Checking each item within the main object received from the API
+        //
+        //
+
+        if (key === 'tv') { // If 'tv' add before the 'title' prop to each media so it can be filter properly
+          return [
+            key,
+            addTitleProp(item).map(pack => ({ // mapping the value (list) of the movies and tv properties => [{...}, {...}]]
+              ...pack,
+              results: addGenres(pack.results, formattedGenres[key]) // Add a new property to the object
+            }))
+          ]
+        }
         return [
           key,
           item.map(pack => ({ // mapping the value (list) of the movies and tv properties => [{...}, {...}]]
@@ -20,7 +33,11 @@ export const formatData = (apiResponse, formattedGenres) => {
             results: addGenres(pack.results, formattedGenres[key]) // Add a new property to the object
           }))
         ]
+        //
+        //
       } else return [] // if check fails returns an empty list
+      //
+      //
     })
 
     if (result) return Object.fromEntries(result) // turns result back into an object before returning it

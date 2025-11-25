@@ -10,7 +10,7 @@ import { SmallBtn } from '../../../Buttons/SmallBtn/SmallBtn'
 //
 //
 
-export const Input = ({ inputRef, searchActive, search, setSearch }) => {
+export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) => {
   // const [isActiveInput, setIsActiveInput] = useState(false) // Visibility input state
 
   // const handleSearchClick = () => { // // Open the input field
@@ -25,7 +25,7 @@ export const Input = ({ inputRef, searchActive, search, setSearch }) => {
     else inputRef.current.blur()
   }
 
-  const handleCloseClick = () => clearInput({ inputRef, setSearch, searchActive }) // Clean and close the input field
+  const handleCloseClick = () => clearInput({ inputRef, setSearchQuery, searchActive }) // Clean and close the input field
 
   return (
     <div className={`${styles.search_container} ${searchActive[0] ? styles.is_active : ''}`}>
@@ -45,11 +45,11 @@ export const Input = ({ inputRef, searchActive, search, setSearch }) => {
             placeholder='Search...'
             onChange={ev => {
               ev.preventDefault()
-              setSearch(ev.target.value)
+              setSearchQuery(ev.target.value)
             }}
           />
 
-          <SmallBtn handleClick={handleCloseClick} type={1} search={search} />
+          <SmallBtn handleClick={handleCloseClick} type={1} searchQuery={searchQuery} />
 
         </form>
       </div>

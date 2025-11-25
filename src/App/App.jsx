@@ -24,7 +24,7 @@ import { useSortDataByGenre } from '../features/media/hooks/useSortDataByGenre'
 
 export const App = () => {
   // ---- ---- STATES ---- ----
-  const [search, setSearch] = useState(false) // Nothing in the meantime!
+  const [searchQuery, setSearchQuery] = useState('') // Nothing in the meantime!
 
   const [apiResponse, setApiResponse] = useState(null) // Media data received from the API
 
@@ -44,7 +44,25 @@ export const App = () => {
 
   const sortedData = useSortDataByGenre(formattedData, formattedGenres) // Organize the data received into genres category so the component can use it properly.
 
-  // Navegate automatically everytime the user search a movie
+  const filteredMovies = useMemo(() => {
+    if (!searchQuery.trim()) return formattedData
+
+    console.log('formattedData: ', formattedData)
+
+    if (formattedData) {
+      const result = [...formattedData.movies[0].results, ...formattedData.movies[1].results, ...formattedData.tv[0].results, ...formattedData.tv[1].results] // gather all the movie and tv list together
+      const cleanResult = result.filter(movie => // Remove movies duplicated
+        movie.title ? movie.title.toLowerCase().includes(searchQuery.toLowerCase()) : movie.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      return {
+        results: Array.from(
+          new Map(cleanResult.map(movie => [movie.id, movie]))
+        ).map(([_, movie]) => movie)
+      }
+    }
+  }, [formattedData, searchQuery])
+
+  // Navegate automatically everytime the user searchs a movie
   // useAutoNavegate({ setMoviesToDisplay, filterMovies, search, movies }) // Arreglar para que no cambie el path cuando esta en otra sección y se elimina el contenido del input (solución en el archivo del customHook)
 
   // adding this new hook to replace the above
@@ -52,11 +70,11 @@ export const App = () => {
 
   return (
     <div className='container'>
-      <Header search={search} setSearch={setSearch} />
+      <Header search={searchQuery} setSearchQuery={setSearchQuery} />
       <Billboard />
       <Routes>
 
-        <Route path='/' element={<HomePage search={search}>{formattedData}</HomePage>} />
+        <Route path='/' element={<HomePage search={searchQuery}>{filteredMovies}</HomePage>} />
 
         <Route path='/genres' element={<GenrePage sortedData={sortedData} formattedGenres={formattedGenres} />} />
 

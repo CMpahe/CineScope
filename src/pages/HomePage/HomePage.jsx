@@ -9,12 +9,12 @@ import styles from './HomePage.module.scss'
 //
 //
 
-export const HomePage = ({ children, search }) => {
+export const HomePage = ({ children }) => {
   if (!checkObject(children)) {
     return <h2>Something went wrong!!</h2>
   }
 
-  const data = children.movies[0] // Extracting the data we want for this section.
+  const data = Object.keys(children).length === 1 ? children : children.movies[0] // Extracting the data we want for this section.
 
   return (
     <SectionWrapper variant='coreSection' padding='b-padding--10rem'>

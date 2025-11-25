@@ -15,7 +15,7 @@ import { Input } from './SubComponents/Input/Input'
 //
 //
 
-export const Header = ({ search, setSearch }) => {
+export const Header = ({ searchQuery, setSearchQuery }) => {
   const showSideBar = useManageDisplay(false)
   const showHeader = useManageDisplay(true)
   const searchActive = useState(false) // probando alternativa para manejo de botones e input.
@@ -34,7 +34,7 @@ export const Header = ({ search, setSearch }) => {
 
       <NavBar mobileMode showSideBar={showSideBar} />
 
-      <Input inputRef={inputRef} searchActive={searchActive} search={search} setSearch={setSearch} />
+      <Input inputRef={inputRef} searchActive={searchActive} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
     </header>
   )
 }
