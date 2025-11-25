@@ -47,12 +47,10 @@ export const App = () => {
   const filteredMovies = useMemo(() => {
     if (!searchQuery.trim()) return formattedData
 
-    console.log('formattedData: ', formattedData)
-
     if (formattedData) {
       const result = [...formattedData.movies[0].results, ...formattedData.movies[1].results, ...formattedData.tv[0].results, ...formattedData.tv[1].results] // gather all the movie and tv list together
       const cleanResult = result.filter(movie => // Remove movies duplicated
-        movie.title ? movie.title.toLowerCase().includes(searchQuery.toLowerCase()) : movie.name.toLowerCase().includes(searchQuery.toLowerCase())
+        movie.title ? movie.title.toLowerCase().includes(searchQuery.trim().toLowerCase()) : movie.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
       return {
         results: Array.from(
@@ -70,7 +68,7 @@ export const App = () => {
 
   return (
     <div className='container'>
-      <Header search={searchQuery} setSearchQuery={setSearchQuery} />
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <Billboard />
       <Routes>
 

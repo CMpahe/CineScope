@@ -20,5 +20,5 @@ export const searchIcon = (
 )
 
 export const closeIcon = (
-  <i className='bi-x' />
+  <i className='bi-x' id='closeIcon' />
 )

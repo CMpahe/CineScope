@@ -1,23 +1,27 @@
 // ---- ---- ---- ---- STYLES ---- ---- ---- ----
 import styles from '../Input/Input.module.scss'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { clearInput, focusInput } from '../../Header.logic'
+import { focusInput } from '../../Header.logic'
 // ---- ---- ---- ---- HOOKS ---- ---- ---- ----
 // import { useState } from 'react'
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { SmallBtn } from '../../../Buttons/SmallBtn/SmallBtn'
+import { useEffect } from 'react'
 //
 //
 //
 
 export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) => {
-  // const [isActiveInput, setIsActiveInput] = useState(false) // Visibility input state
+  useEffect(() => { // Close the input field when clicking outside
+    function handleClickOutside (ev) {
+      if (ev.target.id === 'closeIcon') { setSearchQuery(''); searchActive[1](false) }
+      if (inputRef.current && !inputRef.current.contains(ev.target)) {
+        searchActive[1](false)
+      }
+    }
 
-  // const handleSearchClick = () => { // // Open the input field
-  //   setIsActiveInput(prev => !prev)
-  //   if (!isActiveInput) focusInput({ inputRef })
-  //   else inputRef.current.blur()
-  // }
+    document.addEventListener('mousedown', handleClickOutside)
+  })
 
   const handleSearchClick = () => {
     searchActive[1](prev => !prev)
@@ -25,7 +29,7 @@ export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) =
     else inputRef.current.blur()
   }
 
-  const handleCloseClick = () => clearInput({ inputRef, setSearchQuery, searchActive }) // Clean and close the input field
+  // const handleCloseClick = () => clearInput({ inputRef, setSearchQuery, searchActive }) // Clean and close the input field
 
   return (
     <div className={`${styles.search_container} ${searchActive[0] ? styles.is_active : ''}`}>
@@ -43,13 +47,14 @@ export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) =
             type='text'
             name='search'
             placeholder='Search...'
+            value={searchQuery}
             onChange={ev => {
               ev.preventDefault()
               setSearchQuery(ev.target.value)
             }}
           />
 
-          <SmallBtn handleClick={handleCloseClick} type={1} searchQuery={searchQuery} />
+          <SmallBtn type={1} searchQuery={searchQuery} />
 
         </form>
       </div>

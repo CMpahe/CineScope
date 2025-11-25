@@ -16,6 +16,8 @@ export const HomePage = ({ children }) => {
 
   const data = Object.keys(children).length === 1 ? children : children.movies[0] // Extracting the data we want for this section.
 
+  if (data.results.length === 0) return <h1 className='m-top--5rem'>No results</h1>
+
   return (
     <SectionWrapper variant='coreSection' padding='b-padding--10rem'>
       <div className={styles.moviesGrid}>
