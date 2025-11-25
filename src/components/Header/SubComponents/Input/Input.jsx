@@ -30,7 +30,7 @@ export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) =
   return (
     <div className={`${styles.search_container} ${searchActive[0] ? styles.is_active : ''}`}>
 
-      <SmallBtn className='l-padding--0' handleClick={handleSearchClick} type={2} />
+      <SmallBtn className={`${!searchActive[0] ? 'l-padding--0 r-padding--0' : ''}2 ${styles.search_btn}`} handleClick={handleSearchClick} type={2} />
 
       <div className={styles.input_container}>
         <form
