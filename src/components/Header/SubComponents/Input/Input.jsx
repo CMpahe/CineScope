@@ -7,11 +7,15 @@ import { focusInput } from '../../Header.logic'
 // ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
 import { SmallBtn } from '../../../Buttons/SmallBtn/SmallBtn'
 import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 //
 //
 //
 
 export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) => {
+  const navegate = useNavigate()
+  const location = useLocation()
+
   useEffect(() => { // Close the input field when clicking outside
     function handleClickOutside (ev) {
       if (ev.target.id === 'closeIcon') { setSearchQuery(''); searchActive[1](false) }
@@ -23,13 +27,19 @@ export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) =
     document.addEventListener('mousedown', handleClickOutside)
   })
 
-  const handleSearchClick = () => {
+  const handleSearchClick = () => { // Handle click on search Icon
     searchActive[1](prev => !prev)
     if (!searchActive.state) focusInput({ inputRef })
     else inputRef.current.blur()
   }
 
-  // const handleCloseClick = () => clearInput({ inputRef, setSearchQuery, searchActive }) // Clean and close the input field
+  const handleChange = (ev) => {
+    const value = ev.target.value
+    setSearchQuery(value)
+
+    // if user writes anything, navegate to Home page
+    if (value.trim().length > 0 && location.pathname !== '/') navegate('/')
+  }
 
   return (
     <div className={`${styles.search_container} ${searchActive[0] ? styles.is_active : ''}`}>
@@ -48,10 +58,7 @@ export const Input = ({ inputRef, searchActive, searchQuery, setSearchQuery }) =
             name='search'
             placeholder='Search...'
             value={searchQuery}
-            onChange={ev => {
-              ev.preventDefault()
-              setSearchQuery(ev.target.value)
-            }}
+            onChange={ev => { ev.preventDefault(); handleChange(ev) }}
           />
 
           <SmallBtn type={1} searchQuery={searchQuery} />

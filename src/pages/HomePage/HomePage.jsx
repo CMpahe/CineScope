@@ -11,7 +11,7 @@ import styles from './HomePage.module.scss'
 
 export const HomePage = ({ children }) => {
   if (!checkObject(children)) {
-    return <h2>Something went wrong!!</h2>
+    return <h1>Loading...</h1>
   }
 
   const data = Object.keys(children).length === 1 ? children : children.movies[0] // Extracting the data we want for this section.
