@@ -84,7 +84,7 @@ export const App = () => {
   return (
     <div className='container'>
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <Billboard />
+      <Billboard>{moviesToShow}</Billboard>
       <Routes>
 
         <Route path='/' element={<HomePage search={searchQuery}>{moviesToShow}</HomePage>} />

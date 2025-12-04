@@ -78,7 +78,6 @@ export const checkObject = (object) => { // Check whether the object is null, em
 
 export const nullOrUndefinedList = (list) => {
   if (list === null) {
-    console.error('List is null')
     return true
   } else if (list === undefined) {
     console.error('List is undefined')

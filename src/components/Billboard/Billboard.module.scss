@@ -1,31 +1,75 @@
 @use '../../styles/variables' as vars;
 
 .billboard {
+    margin-top: 3rem;
+
     position: relative;
+    width: 100%;
+    height: 70VH;
 
     display: flex;
-    justify-content:left;
-    width: 100%;
-    justify-content: center;
+    // justify-content:left;
+    // justify-content: center;
+    overflow: hidden;
 
-    img{
-      width: 85%;
-      filter:brightness(0.5);
-      aspect-ratio: 9/5;
-      mask-image: linear-gradient(black 80%, transparent);
+    // img{
+    //   position:absolute;
+    //   inset: 0;
+  
+    //   width: 100%;
+    //   height: 100%;
+    //   object-fit: cover;
+
+    //   filter:brightness(0.5);
+    //   transition: opacity 1s ease;
+    //   opacity: 0;
+    //   // aspect-ratio: 9/5;
+
+    //   mask-image: linear-gradient(black 80%, transparent);
+    // }
+
+    .layer {
+      position: absolute;
+      inset: 0; 
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 3rem;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 900ms ease;
+      opacity: 0;
+      pointer-events: none; // Only the visible layer answers
     }
+
+    // .layerVisible {
+    //   opacity: 1;
+    //   pointer-events: auto;
+    // }
+
     .media_info {
       position: absolute;
-      top: 40%;
       display: flex;
-      width: fit-content;
-      height: fit-content;
       flex-direction: column;
+      z-index: 2;
+
+      bottom: 1%;
+      left: 5%;
+
+      max-width: 40vw;
       padding: 7% 5%;
       gap: clamp(0rem, 0.9vw, 2.5rem);
       
       p, h1 {
         margin: 0;
+      }
+      p {
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        cursor: pointer;
       }
     }
 
@@ -36,18 +80,28 @@
     }
   }
 
-  @media (max-width:760px) {
+  .billboardSwiper {
+    width: 100%;
+    height: 70vh;
+    position: relative;
+  }
+
+  @media (max-width:730px) {
     .billboard {
-      width: 80%;
-      justify-content: center;
+      width: 100%;
+      // justify-content: center;
 
-      .media_info { top: 65%; text-align: center; }
+      .media_info { bottom: 8%; 
+        // text-align: center; 
+      }
 
-      .btn_container { justify-content: space-around; }
+      .btn_container {
+        // justify-content: space-around; 
+      }
       img {
         aspect-ratio: 9/14;
       }
     }
   }
 
-  @media (max-width: 400px) { .billboard { .media_info { top:60% } } }
+  @media (max-width: 400px) { .billboard { .media_info { bottom:9%; max-width: 80vw; } } }
