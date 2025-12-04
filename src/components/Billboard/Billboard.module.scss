@@ -40,6 +40,7 @@
       transition: opacity 900ms ease;
       opacity: 0;
       pointer-events: none; // Only the visible layer answers
+      mask-image: linear-gradient(black 80%, transparent);
     }
 
     // .layerVisible {
