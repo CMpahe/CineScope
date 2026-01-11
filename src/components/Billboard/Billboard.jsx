@@ -4,7 +4,6 @@ import styles from './Billboard.module.scss'
 import { RegularBtn } from '../Buttons/RegularBtn/RegularBtn'
 // ---- ---- ---- ---- ICONS ---- ---- ---- ----
 import { addIcon, playIcon } from '../../assets/icons/icons'
-import { checkObject } from '../../utils/logic'
 import { useMemo, useEffect, useState, useRef } from 'react'
 // import Swiper from 'swiper'
 // import { Swiper, SwiperSlide } from 'swiper/react'
@@ -16,11 +15,8 @@ import 'swiper/css/effect-fade'
 //
 //
 
-export const Billboard = ({ children, delay = 5000, fadeMs = 900 }) => {
-  if (!checkObject(children)) {
-    return <h1>Loading...</h1>
-  }
-  const data = Object.keys(children).length === 1 ? children.results : children.movies[0].results // Extracting the data we want for this section.
+export const Billboard = ({ data, delay = 5000, fadeMs = 900 }) => {
+  if (!Array.isArray(data)) { console.error('Invalid prop in Billboard: data is not an Array'); return <h1>Loading...</h1> }
 
   const shuffled = useMemo(() => shuffle(data), [data])
   const len = shuffled.length

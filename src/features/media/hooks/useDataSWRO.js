@@ -1,12 +1,11 @@
 // ---- ---- ---- ---- CUSTOM HOOKS ---- ---- ---- ----
-import { useFetchMediaData } from '../services/useFetchMediaData'
-import { useFetchGenresData } from '../services/useFecthGenresData'
 import { hash } from '../../../utils/hash'
+import { getData } from '../../../services/getData'
 //
 //
 //
 
-export const useDataSWRO = (updateState, cacheItemName, endPoints) => {
+export const useDataSWRO = (updateState, cacheItemName, endPoint) => {
   const TTL = 5 * 60 * 1000 // 5 minutes
   const cached = JSON.parse(window.localStorage.getItem(cacheItemName)) // retrive the data from cache
   const now = Date.now()
@@ -19,14 +18,12 @@ export const useDataSWRO = (updateState, cacheItemName, endPoints) => {
   // 2. Dicide whether to revalidate
   const mustRevalidate = !cached || now - cached.savedAt > TTL
 
-  if (cacheItemName === 'media_data' && mustRevalidate) {
-    useFetchMediaData(endPoints).then(res => {
+  if (mustRevalidate) { // cacheItemName === 'media_data' &&
+    getData(endPoint).then(res => {
       const freshHash = hash(res)
       const changed = !cached || cached.hash !== freshHash
 
-      if (changed) {
-        updateState(res)
-      }
+      if (changed) { updateState(res) }
 
       window.localStorage.setItem(cacheItemName, JSON.stringify({
         data: res,
@@ -34,20 +31,19 @@ export const useDataSWRO = (updateState, cacheItemName, endPoints) => {
         hash: freshHash
       }))
     })
-  } else if (mustRevalidate) {
-    useFetchGenresData(endPoints).then(res => {
-      const freshHash = hash(res)
-      const changed = !cached || cached.hash !== freshHash
+    // } else
+    //   if (mustRevalidate) {
+    //     useFetchGenresData(endPoint).then(res => {
+    //       const freshHash = hash(res)
+    //       const changed = !cached || cached.hash !== freshHash
 
-      if (changed) {
-        updateState(res)
-      }
-      window.localStorage.setItem(cacheItemName, JSON.stringify({
-        data: res,
-        savedAt: now,
-        hash: freshHash
-      }))
-    })
+  //       if (changed) { updateState(res) }
+  //       window.localStorage.setItem(cacheItemName, JSON.stringify({
+  //         data: res,
+  //         savedAt: now,
+  //         hash: freshHash
+  //       }))
+  //     })
   }
 }
 

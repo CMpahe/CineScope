@@ -1,30 +1,24 @@
-// ---- ---- ---- ----  COMPONENTS  ---- ---- ---- ----
-import { MediaCard } from '../../features/media/components/MediaCard'
 import { SectionWrapper } from '../../components/common/SectionWrapper'
-// ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-// ---- ---- ---- ---- STYLES ---- ---- ---- ----
-import styles from './HomePage.module.scss'
-import { useState, useEffect, useMemo } from 'react'
+import { MediaCard } from '../../features/media/components/MediaCard'
+import { useEffect, useMemo, useState } from 'react'
+import { useDataSWRO } from '../../features/media/hooks/useDataSWRO.js'
 import { genresEndpoints, mediaEndpoints } from '../../constants/endpoints'
-import { useDataSWRO } from '../../features/media/hooks/useDataSWRO'
+import styles from '../styles/Pages.module.scss'
 import { formatGenres } from '../../features/media/utils/formatGenres'
 import { formatData } from '../../features/media/utils/formatData'
-import { Billboard } from '../../components/Billboard/Billboard'
-//
-//
-//
+import { Billboard } from '../../components/Billboard/Billboard.jsx'
 
-export const HomePage = () => {
+export const MoviePage = () => {
   const [dataResponse, setDataResponse] = useState(null)
   const [genreResponse, setGenreResponse] = useState(null)
 
-  const dataEndPoint = mediaEndpoints.discover.movies
+  const dataEndPoint = mediaEndpoints.trending.movies
   const genreEndPoint = genresEndpoints.movies
 
   // 1. Fetch: genres and data
   useEffect(() => {
     useDataSWRO(setGenreResponse, 'genres_data', genreEndPoint)
-    useDataSWRO(setDataResponse, 'discover_movies_data', dataEndPoint)
+    useDataSWRO(setDataResponse, 'trending_movies_data', dataEndPoint)
   }, [])
 
   // 2. Translate genres from numbers to strings
@@ -39,9 +33,8 @@ export const HomePage = () => {
     return []
   }, [dataResponse, formattedGenres])
 
-  console.log(uiData)
   return (
-    <SectionWrapper variant='coreSection' padding='b-padding--10rem'>
+    <SectionWrapper variant='coreSection'>
       {uiData.results && <Billboard data={uiData.results} />}
       <div className={styles.moviesGrid}>
         {uiData.results?.map((media) => (
@@ -53,11 +46,3 @@ export const HomePage = () => {
     </SectionWrapper>
   )
 }
-
-//
-// ---- ---- ---- ---- DOCUMENTATION ---- ---- ---- ----
-//
-
-// This is the main section for movies, this section will display a group of movies without any order or category, so the user can navegate through the page and discover some interesting movies.
-
-// - children -> This is an object with all the movies and medias received from the API, the component uses this object and extract only the information of its interest and then map it to show it.

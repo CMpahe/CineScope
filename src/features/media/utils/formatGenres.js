@@ -1,19 +1,17 @@
-// ---- ---- ---- ---- LOGIC ---- ---- ---- ----
-import { restructureGenresData } from './restructureGenresData'
-//
-//
-//
+export const formatGenres = (data) => {
+  // 1. Check the object received as an argument
+  if (!typeof data === 'object' || data === null || Array.isArray(data)) return null
 
-export const formatGenres = (genresResponse) => {
-  if (typeof genresResponse === 'object' && genresResponse !== null && !Array.isArray(genresResponse)) { // Check the object received as an argument
-    const result = Object.entries(genresResponse).map(([key, item]) => [
-      key,
-      restructureGenresData(item.genres) // Restructure the genres into = movies: {28: 'Action', 12: 'Adventure'}
-    ])
+  const genres = data.genres
 
-    return Object.fromEntries(result) // Turns the list back into an object before returning the result.
-  }
-  return null // if argument is invalid
+  // 2. Restructure the genres object
+  const result = genres.reduce((acc, genre) => {
+    acc[genre.id] = genre.name
+    return acc
+  }, {})
+
+  // 3. Returns genres
+  return result
 }
 
 //

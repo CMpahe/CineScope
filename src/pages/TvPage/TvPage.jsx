@@ -3,21 +3,44 @@ import { Carousel } from '../../features/Carousel/components/Carousel'
 import { GenreTitle } from '../../components/common/TextTags/GenreTitle'
 import { SectionWrapper } from '../../components/common/SectionWrapper'
 // ---- ---- ---- ----  LOGIC  ---- ---- ---- ----
-import { checkObject } from '../../utils/logic'
+import { mediaEndpoints, genresEndpoints } from '../../constants/endpoints'
+import { useDataSWRO } from '../../features/media/hooks/useDataSWRO'
+import { formatGenres } from '../../features/media/utils/formatGenres'
+import { formatData } from '../../features/media/utils/formatData'
 // ---- ---- ---- ----  CUSTOM HOOKS  ---- ---- ---- ----
-import useWindowInfo from '../../features/Carousel/hooks/useWindowInfo'
+// import useWindowInfo from '../../features/Carousel/hooks/useWindowInfo'
+import { useState, useEffect, useMemo } from 'react'
 //
 //
 //
 
-export const GenrePage = ({ sortedData, formattedGenres }) => {
+export const TvPage = () => {
+  const [dataResponse, setDataResponse] = useState(null)
+  const [genreResponse, setGenreResponse] = useState(null)
+
+  const dataEndPoint = mediaEndpoints.trending.movies
+  const genreEndPoint = genresEndpoints.movies
+
+  // 1. Fetch: genres and data
+  useEffect(() => {
+    useDataSWRO(setGenreResponse, 'genres_data', genreEndPoint)
+    useDataSWRO(setDataResponse, 'trending_movies_data', dataEndPoint)
+  }, [])
+
+  // 2. Translate genres from numbers to strings
+  const formattedGenres = useMemo(() => {
+    if (genreResponse) return formatGenres(genreResponse)
+  }, [genreResponse])
+
+  // 3. Add string genres to the data
+  const uiData = useMemo(() => {
+    console.log('dataResponse: ', dataResponse)
+    if (dataResponse && formattedGenres) return formatData(dataResponse, formattedGenres)
+    return []
+  }, [dataResponse, formattedGenres])
+
   // 1) Calculate the amount of movies per section according on the viewport size
-  const windowInfo = useWindowInfo()
-
-  // 2) Check whether sortedData is valid
-  if (!checkObject(sortedData)) {
-    return <h2>Something went wrong!!</h2>
-  }
+  // const windowInfo = useWindowInfo()
 
   // note: CARROUSEL ONLY RECEIVES A LIST OF MOVIES TO DISPLAY, NOT THE OBJECT.
 
