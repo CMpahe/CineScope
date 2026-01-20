@@ -21,6 +21,7 @@ export const useDataSWRO = (updateState, cacheItemName, endPoint) => {
   if (mustRevalidate) { // cacheItemName === 'media_data' &&
     getData(endPoint).then(res => {
       const freshHash = hash(res)
+
       const changed = !cached || cached.hash !== freshHash
 
       if (changed) { updateState(res) }

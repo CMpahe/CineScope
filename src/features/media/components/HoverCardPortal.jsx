@@ -10,7 +10,7 @@ import { forwardRef } from 'react'
 //
 //
 
-export const HoverCardPortal = forwardRef(({ children, style, ...props }, ref) => {
+export const HoverCardPortal = forwardRef(({ media, style, ...props }, ref) => {
   return ReactDOM.createPortal(
     <div
       {...props}
@@ -19,8 +19,8 @@ export const HoverCardPortal = forwardRef(({ children, style, ...props }, ref) =
       className={styles.portalCard}
     >
       <img
-        src={`https://image.tmdb.org/t/p/w500${children.poster_path}`}
-        alt={children.title}
+        src={media.poster}
+        alt={media.title}
       />
 
       <div className={styles.buttons}> {/* Buttons section */}
@@ -32,11 +32,11 @@ export const HoverCardPortal = forwardRef(({ children, style, ...props }, ref) =
       </div>
 
       <div className={styles.info}> {/* Media information section */}
-        <p className='card-text opaque'>{children.release_date}</p>
+        <p className='card-text opaque'>{media.year}</p>
 
         <p className='card-text'>
-          {children.genres?.length
-            ? children.genres.join(' • ')
+          {media.genres?.length
+            ? media.genres.join(' • ')
             : 'No genres available'}
         </p>
       </div>

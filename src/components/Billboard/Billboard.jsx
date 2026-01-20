@@ -34,9 +34,10 @@ export const Billboard = ({ data, delay = 5000, fadeMs = 900 }) => {
     // set initial backgrounds
     const a = layerARef.current
     const b = layerBRef.current
-    if (a) a.style.backgroundImaga = `url(https://image.tmdb.org/t/p/w500${shuffled[0].backdrop_path})`
-    if (b) b.style.backgroundImaga = `url(https://image.tmdb.org/t/p/w500${shuffled[1 % len].backdrop_path})`
+    if (a) a.style.backgroundImage = `url(${shuffled[0].backdrop})`
+    if (b) b.style.backgroundImage = `url(${shuffled[1 % len].backdrop})`
 
+    console.log(a.style)
     // force first visible
     if (a) a.style.opacity = '1'
     visibleIsA.current = true
@@ -54,7 +55,7 @@ export const Billboard = ({ data, delay = 5000, fadeMs = 900 }) => {
       // Load data of the next movie in the hidden layer
       const movie = shuffled[nextIndex]
       if (!movie) return
-      nextLayer.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+      nextLayer.style.backgroundImage = movie.backdrop
 
       // use requestAnimationFrame to ensure that the browser record the background change before opacity change.
       requestAnimationFrame(() => {
@@ -93,7 +94,7 @@ export const Billboard = ({ data, delay = 5000, fadeMs = 900 }) => {
       <div ref={layerBRef} className={styles.layer} />
       <div className={`${styles.media_info}`} area-live='polite'>
         <h1 className='big-title1 bolder'>{movie?.title}</h1>
-        <p className='body opaque'>{movie?.overview}</p>
+        <p className='body opaque'>{movie?.description}</p>
         {/* <p className='big-text light'>Description of the movie here, is a main summary of the movie, is a main summary of the movie. Description of the movie here</p> */}
         <div className={`${styles.btn_container}`}>
           <RegularBtn variant='red' icon={playIcon}> Whatch </RegularBtn>

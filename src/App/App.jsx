@@ -12,8 +12,7 @@ import { Routes, Route } from 'react-router-dom'
 // ---- ---- ---- ----  DATA  ---- ---- ---- ----
 // import { useSortDataByGenre } from '../features/media/hooks/useSortDataByGenre'
 import { MoviePage } from '../pages/Movies/MoviePage'
-import { HomePage } from '../pages/HomePage/HomePage'
-import { TvPage } from '../pages/TvPage/TvPage'
+import { TvPage } from '../pages/Tv/TvPage'
 // import { useSections } from '../features/Carousel/hooks/useSections'
 //
 //
@@ -22,9 +21,6 @@ export const App = () => {
   // ---- ---- STATES ---- ----
   const [searchQuery, setSearchQuery] = useState('') // Nothing in the meantime!
 
-  // const sortedData = useSortDataByGenre(formattedData, formattedGenres) // Organize the data received into genres category so the component can use it properly.
-
-  // const [filteredMovies, setFilteredMovies] = useState(formattedData)
   // const timeoutRef = useRef(null)
 
   // useEffect(() => { // Manage input logic with a timeout to wait until de user enter the entire value for the search
@@ -65,8 +61,8 @@ export const App = () => {
     <div className='container'>
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <Routes>
-        <Route path='/movies' element={<MoviePage />} />
-        <Route path='/' element={<HomePage search={searchQuery} />} />
+        <Route path='/' element={<MoviePage />} />
+        {/* <Route path='/movies' element={<HomePage search={searchQuery} />} /> */}
 
         <Route path='/tv' element={<TvPage />} />
 

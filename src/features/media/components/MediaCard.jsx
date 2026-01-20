@@ -8,7 +8,7 @@ import { autoUpdate, flip, offset, shift, useClick, useDismiss, useFloating, use
 //
 //
 
-export const MediaCard = ({ children }) => {
+export const MediaCard = ({ media }) => {
   // 1) Open portal state
   const [open, setOpen] = useState(false)
   // 2) basic floating settings
@@ -35,12 +35,11 @@ export const MediaCard = ({ children }) => {
   return (
     <>
       <CoreCard // a) Reference
-        id={children.id}
+        id={media.id}
         ref={refs.setReference}
         {...getReferenceProps()}
-      >
-        {children}
-      </CoreCard>
+        media={media}
+      />
 
       {open &&
 
@@ -48,9 +47,8 @@ export const MediaCard = ({ children }) => {
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}
-        >
-          {children}
-        </HoverCardPortal>}
+          media={media}
+        />}
     </>
   )
 }
