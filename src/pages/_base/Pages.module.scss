@@ -13,7 +13,11 @@
        box-sizing: border-box; 
 
        overflow: visible;
+
+      .marginTop { margin-top: 4rem;}
 }
+
+.marginTop { margin-top: 12rem;}
 
 @media (max-width: 495px) {
   .mediaGrid{

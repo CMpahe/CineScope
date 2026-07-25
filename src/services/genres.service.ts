@@ -1,39 +1,39 @@
-import { genresEndpoints } from "../constants/endpoints"
+import { genresEndpoints } from "@/constants/endpoints"
+import { request } from "./api.service"
+import { cache, cacheExists, isExpired, load } from "@/domain/media/media.cache"
 
-export interface GenreDTO {
-  id: number
-  name: string
+export type GenreMap = Record<number, string>
+
+export interface GenresData { 
+  movie: GenreMap
+  tv: GenreMap
 }
 
 interface GenresResponseDTO {
-  genres: GenreDTO[]
+  genres: { id: number, name: string }[]
 }
 
-type MediaType = 'media' | 'tv'
+export async function resolveGenres(): Promise<GenresData> {
+  
+  if (cacheExists('genres') && !isExpired('genres', 30 * 60 * 1000)) return load('genres')  
 
-const TOKEN = import.meta.env.VITE_REACT_APP_TOKEN
+  const moviesResponse = await request<GenresResponseDTO>(genresEndpoints.movie)
 
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${TOKEN}`
-}
-}
+  const tvResponse = await request<GenresResponseDTO>(genresEndpoints.tv)
 
+  console.log(moviesResponse, tvResponse)
 
-export async function getGenres(type: MediaType): Promise<GenreDTO[]> {
-    const endpoint = genresEndpoints[type]
-  const response = await fetch(
-    `https://api.themoviedb.org/3${endpoint}`,
-    options
-  )
+  const data = {
+    movie: Object.fromEntries( 
+      moviesResponse.genres.map(g => [g.id, g.name])
+    ),
+    tv:  Object.fromEntries( 
+      tvResponse.genres.map(g => [g.id, g.name])
+    )
+  } 
 
-  if (!response.ok) {
-    throw new Error(`Error fetching ${type} genres`)
-  }
+  cache(data, 'genres')
+  
+  return data
 
-  const data: GenresResponseDTO = await response.json()
-
-  return data.genres
 }

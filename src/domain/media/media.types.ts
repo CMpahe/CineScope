@@ -8,6 +8,7 @@ export interface MediaDTO {
   name?: string
   overview: string
   poster_path: string | null
+  media_type: string
   backdrop_path: string | null
   release_date?: string
   first_air_date?: string

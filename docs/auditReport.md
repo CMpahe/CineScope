@@ -168,3 +168,36 @@ Auditoría v1.0
 ## 11. Notas finales
 
 Este documento no busca señalar errores, sino convertir un proyecto de aprendizaje en un proyecto profesional, documentando de forma transparente su evolución técnica y decisiones de diseño.
+
+## Cierre de la fase de arquitectura y migración a TypeScript
+
+## Objetivos alcanzados
+
+- Migración completa del proyecto a TypeScript.
+- Separación de responsabilidades entre dominio, servicios y componentes.
+- Eliminación de lógica duplicada.
+- Centralización de las peticiones HTTP.
+- Introducción de adaptadores para transformar DTO → dominio.
+- Implementación de un sistema de caché desacoplado.
+- Simplificación de hooks y componentes.
+- Eliminación de código obsoleto.
+
+## Estado actual
+
+- ✅ Arquitectura estable.
+- ✅ Proyecto completamente funcional.
+- ✅ Sin errores de TypeScript.
+- ✅ Build de producción correcta.
+
+## Deuda técnica pendiente
+
+- Reestructurar el sistema de estilos.
+- Simplificar los componentes Button.
+- Mejorar la organización de las utilidades CSS.
+
+## Próxima etapa
+
+- Sistema de favoritos.
+- Página de detalles de la película.
+- Reproducción de trailers.
+- Mejoras de diseño y experiencia de usuario.
