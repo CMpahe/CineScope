@@ -7,6 +7,7 @@ import { useSections } from './carousel.hooks/useSections'
 import { useSectionController } from './carousel.hooks/useSectionController'
 import { MediaSection } from '@/domain/media/media.sections'
 import { useMedia } from '@/hooks/useMedia'
+import { Loader } from '../common/Loader/Loader'
 
 type CarouselProp = {
   section: MediaSection
@@ -38,10 +39,10 @@ export function Carousel ({
 
   useEmptySection(sectionNumber, sectionController)
 
-  if (loading) return <p className={styles.state}>Cargando…</p>
+  if (loading) return <Loader></Loader>
 
   if (error) return <p className={styles.state}>Error: {error}</p>
-
+  
   if (!data.length) return <p className={styles.state}>No hay contenido disponible</p>
 
   return (
