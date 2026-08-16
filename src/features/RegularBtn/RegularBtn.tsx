@@ -22,6 +22,7 @@ type RegularBtnProps = {
 
 export const RegularBtn = ({
   children,
+  onClick,
   variant = 'regular',
   icon = null,
   gap = null,
@@ -57,7 +58,7 @@ export const RegularBtn = ({
   )
 
   return (
-    <button className={classes}>
+    <button onClick={onClick} className={classes}>
       {icon ? <div className='icon_container'>{icon}</div> : ''}
 
       {children && <p className={`${opaque ? 'opaque' : ''}`}>{children}</p>}

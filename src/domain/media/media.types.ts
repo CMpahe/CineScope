@@ -35,5 +35,6 @@ export type Media = {
   description: string
 
   poster: string | null
+  type: string
   backdrop: string | null
 }

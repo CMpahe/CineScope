@@ -1,6 +1,7 @@
 import { genresEndpoints } from "@/constants/endpoints"
 import { request } from "./api.service"
-import { cache, cacheExists, isExpired, load } from "@/domain/media/media.cache"
+import { cacheExists, load } from "@/shared/local-storage"
+import { cache, isExpired } from "@/shared/cache"
 
 export type GenreMap = Record<number, string>
 
@@ -20,8 +21,6 @@ export async function resolveGenres(): Promise<GenresData> {
   const moviesResponse = await request<GenresResponseDTO>(genresEndpoints.movie)
 
   const tvResponse = await request<GenresResponseDTO>(genresEndpoints.tv)
-
-  console.log(moviesResponse, tvResponse)
 
   const data = {
     movie: Object.fromEntries( 

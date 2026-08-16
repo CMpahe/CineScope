@@ -1,32 +1,58 @@
-import { hash } from "@/utils/hash";
+import { cache } from "@/shared/cache";
+import { Media } from "./media.types";
+import { load, cacheExists } from "@/shared/local-storage";
+import { FavoriteReference, FavoriteReferences } from "../favorite/favorite.types";
 
-export function cache (data: any, cacheKey: string) {
+const MEDIA_CACHE_INDEX_KEY = "media-cache-index"
 
-    localStorage.setItem(
-        cacheKey,
-        JSON.stringify({ 
-            data, 
-            saveAt: Date.now(), 
-            hash: hash(data) })
-    )
+function getIndex () {
+    if(cacheExists(MEDIA_CACHE_INDEX_KEY)) {
+        const keys = load(MEDIA_CACHE_INDEX_KEY)
+        return keys
+    }
+    return null
 }
 
-export function load(cacheKey: string) {
-    const cacheData = window.localStorage.getItem(cacheKey)
-
-    return cacheData ? JSON.parse(cacheData).data : null
+function saveIndex (index: Array<string>) {
+    cache(index, MEDIA_CACHE_INDEX_KEY)
 }
 
-export function invalidate (cacheKey: string) { localStorage.removeItem(cacheKey) }  
+export function save (key: string) {
+    const index = getIndex()
 
-export function cacheExists (cacheKey: string): boolean {
-    return window.localStorage.getItem(cacheKey) ? true : false
+    if (index) {
+
+        const keys: string[] = load(MEDIA_CACHE_INDEX_KEY)
+        const newIndex = new Set(keys)
+        newIndex.add(key)
+
+        const array: string[] = [...newIndex]
+
+        saveIndex(array)
+    } else {
+        saveIndex([key])
+    }
 }
 
-export function isExpired (cacheKey: string, ttl: number): boolean {
-    const data = load(cacheKey)
+function findMedia (reference: FavoriteReference): Media | undefined {
+    const index = getIndex()
 
-    const now = Date.now()
+    for (const i of index) {
+        const mediaList: Media[] = load(i)
+        for (const media of mediaList) {
+                if ( media.id === reference.id && media.type === reference.type) return media
+            }
+    }
 
-    return now - data.saveAt > ttl
+}
+
+export function findMediaList (references: FavoriteReferences) {
+    const data: Media[] = []
+
+    for (const reference of references) {
+        const result = findMedia(reference)
+        if(result !== undefined) data.push(result)
+    }
+
+    return data
 }

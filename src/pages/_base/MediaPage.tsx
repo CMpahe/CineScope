@@ -1,4 +1,4 @@
-import { SectionWrapper } from '@/shared/SectionWrapper'
+import { SectionWrapper } from '@/features/common/SectionWrapper'
 import { MediaCard } from '@/features/MediaCard/MediaCard'
 import styles from './Pages.module.scss'
 import { Media } from '@/domain/media/media.types'

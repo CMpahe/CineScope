@@ -4,6 +4,7 @@ import { addIcon, playIcon } from '@/assets/icons/icons'
 import styles from './HoverCardPortal.module.scss'
 import { CSSProperties, forwardRef } from 'react'
 import { Media } from '@/domain/media/media.types'
+import { update } from '@/domain/favorite/favorite.store'
 
 type HoverCardPortalProp = {
   media: Media
@@ -27,7 +28,7 @@ export const HoverCardPortal = forwardRef<HTMLDivElement, HoverCardPortalProp>((
 
         <RegularBtn icon={playIcon} variant='red' width='w--40' />
 
-        <RegularBtn variant={null} icon={addIcon} width='w--30' padding='padding--px1' />
+        <RegularBtn onClick={() => update(media)} variant={null} icon={addIcon} width='w--30' padding='padding--px1' />
 
       </div>
 

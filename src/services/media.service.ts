@@ -1,4 +1,6 @@
-import { cacheExists, isExpired, load, cache } from "@/domain/media/media.cache";
+import { isExpired, cache} from "@/shared/cache";
+import { cacheExists, load } from "@/shared/local-storage";
+import { save } from "@/domain/media/media.cache";
 import { Media, MediaDTO, MediaResponseDTO} from "@/domain/media/media.types";
 import { request } from "./api.service";
 import { adaptDtoToMedia } from "@/domain/media/media.adapter";
@@ -26,7 +28,10 @@ export async function resolveMedia (
         .filter(item => item.media_type !== "person")
         .map((media: MediaDTO) => adaptDtoToMedia(media, genres))
  
-    if (cacheSetting.enable && cacheSetting.key) cache(data, cacheSetting.key)
+    if (cacheSetting.enable && cacheSetting.key) {
+        cache(data, cacheSetting.key)
+        save(cacheSetting.key)
+    }
 
     return data
 

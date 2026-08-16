@@ -19,6 +19,7 @@ export function adaptDtoToMedia(movie: MediaDTO, genres: GenresData): Media {
     genres: movie.title ? mapGenres(movie.genre_ids, genres.movie) : mapGenres(movie.genre_ids, genres.tv),
     description: movie.overview,
     poster: movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : null,
+    type: movie.media_type,
     backdrop: movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : null
   }
 }

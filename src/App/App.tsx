@@ -4,6 +4,7 @@ import { MoviePage } from '@/pages/Movies/MoviePage'
 import { TvPage } from '@/pages/Tv/TvPage'
 import { HomePage } from '@/pages/Home/HomePage'
 import { SearchPage } from '@/pages/Search/SearchPage'
+import { FavoritePage } from '@/pages/Favorite/FavoritePage'
 
 
 export const App = () => {
@@ -21,18 +22,7 @@ export const App = () => {
 
         <Route path='/search' element={<SearchPage />} />
 
-        <Route
-          path='/myList'
-          element={
-            <div>
-              <h1 className='big-title1'>Hola mundo</h1>
-              <h1 className='title'>Hola mundo</h1>
-              <h2 className='subtitle'>Hola mundo</h2>
-              <h3 className='subtitle2'>Hola mundo</h3>
-              <p className='body'>Hola mundo</p>
-            </div>
-          }
-        />
+        <Route path='/myList' element={<FavoritePage/>}/>
 
       </Routes>
     </div>

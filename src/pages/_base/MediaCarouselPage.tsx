@@ -1,4 +1,4 @@
-import { SectionWrapper } from '@/shared/SectionWrapper'
+import { SectionWrapper } from '@/features/common/SectionWrapper'
 import { Carousel } from '@/features/Carousel/Carousel'
 import useWindowInfo from '@/features/Carousel/carousel.hooks/useWindowInfo'
 import { MediaSection } from '@/domain/media/media.sections'
