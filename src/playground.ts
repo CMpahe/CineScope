@@ -1,5 +1,4 @@
 import { findMediaList } from "./domain/media/media.cache"
-import { update } from "./domain/favorite/favorite.cache"
 
 const references = [
     {
