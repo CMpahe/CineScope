@@ -12,6 +12,25 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+    window.addEventListener('error', function (event) {
+        document.body.innerHTML = `
+            <div style="padding: 20px; font-family: monospace;">
+                <h1>JavaScript Error</h1>
+                <pre style="white-space: pre-wrap;">${event.error?.stack || event.message}</pre>
+            </div>
+        `;
+    });
+
+    window.addEventListener('unhandledrejection', function (event) {
+        document.body.innerHTML = `
+            <div style="padding: 20px; font-family: monospace;">
+                <h1>Unhandled Promise Error</h1>
+                <pre style="white-space: pre-wrap;">${event.reason?.stack || event.reason}</pre>
+            </div>
+        `;
+    });
+</script>
     <script type="module" src="/main.tsx"></script>
   </body>
 </html>
