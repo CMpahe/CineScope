@@ -1,16 +1,12 @@
 import { cache } from "@/shared/cache";
 import { Media } from "./media.types";
-import { load, cacheExists } from "@/shared/local-storage";
+import { load } from "@/shared/local-storage";
 import { FavoriteReference, FavoriteReferences } from "../favorite/favorite.types";
 
 const MEDIA_CACHE_INDEX_KEY = "media-cache-index"
 
 function getIndex () {
-    if(cacheExists(MEDIA_CACHE_INDEX_KEY)) {
-        const keys = load(MEDIA_CACHE_INDEX_KEY)
-        return keys
-    }
-    return null
+    return load(MEDIA_CACHE_INDEX_KEY) ?? []
 }
 
 function saveIndex (index: Array<string>) {

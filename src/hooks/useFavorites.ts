@@ -9,10 +9,5 @@ export const useFavorite = () => {
         getSnapshot
     )
 
-    const favorites = getFavorites()  
-
-    return {
-        references,
-        favorites
-    }
+    return getFavorites()  
 }
