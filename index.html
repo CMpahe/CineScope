@@ -17,7 +17,17 @@
         document.body.innerHTML = `
             <div style="padding: 20px; font-family: monospace;">
                 <h1>JavaScript Error</h1>
-                <pre style="white-space: pre-wrap;">${event.error?.stack || event.message}</pre>
+                <pre style="white-space: pre-wrap;">
+                  Name: ${event.error?.name}
+
+                  Message: ${event.error?.message}
+
+                  Stack:
+                  ${event.error?.stack}
+
+                  Event:
+                  ${event.message}
+                </pre>
             </div>
         `;
     });
@@ -26,7 +36,17 @@
         document.body.innerHTML = `
             <div style="padding: 20px; font-family: monospace;">
                 <h1>Unhandled Promise Error</h1>
-                <pre style="white-space: pre-wrap;">${event.reason?.stack || event.reason}</pre>
+                <pre style="white-space: pre-wrap;">
+                  Name: ${event.reason?.name}
+
+                  Message: ${event.reason?.message}
+
+                  Stack:
+                  ${event.reason?.stack}
+
+                  Reason:
+                  ${String(event.reason)}
+                </pre>
             </div>
         `;
     });
