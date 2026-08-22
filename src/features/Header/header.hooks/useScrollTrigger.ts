@@ -1,20 +1,29 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-export const useScrollTrigger = ({ showHeader }: {showHeader: any}) => {
-  let scrollY = 0
+export const useScrollTrigger = ({ headerDisplay }: {headerDisplay: any}) => {
+  let scrollY = useRef(0)
 
   const handleScroll = () => {
+
     const currentScrollY = window.scrollY
     const width = window.innerWidth
 
-    if (Math.floor(width) > 650 && showHeader.state === false) showHeader.setState(true) // To make it visible when mounting the component
-    if (currentScrollY > scrollY && showHeader.state === true) {
-      showHeader.setState(false)
-    } else {
-      showHeader.setState(true)
+
+    if (width > 650) {
+      headerDisplay.open()
+      scrollY.current = currentScrollY
+      return
     }
 
-    scrollY = currentScrollY
+    if (currentScrollY === 0) {
+      headerDisplay.open()
+    } else if (currentScrollY > scrollY.current) {
+      headerDisplay.close()
+    } else if (currentScrollY < scrollY.current){
+      headerDisplay.open()
+    }
+
+    scrollY.current = currentScrollY
   }
 
   return useEffect(() => {

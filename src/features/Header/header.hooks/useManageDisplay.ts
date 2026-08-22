@@ -5,7 +5,8 @@ export const useManageDisplay = (start: boolean) => {
 
   return {
     state,
-    toggleState: () => setState(prev => !prev),
-    setState: (newState: boolean) => setState(newState)
+    toggle: () => setState(prev => !prev),
+    open: () => setState(true),
+    close: () => setState(false)
   }
 }

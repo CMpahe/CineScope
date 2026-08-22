@@ -4,7 +4,7 @@ import { getFavorites } from "@/services/favorite.service"
 
 export const useFavorite = () => {
         
-    const references = useSyncExternalStore(
+   useSyncExternalStore(
         subscribe,
         getSnapshot
     )

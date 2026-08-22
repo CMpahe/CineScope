@@ -9,12 +9,12 @@ import { HeaderProvider } from './context/HeaderProvider'
 
 export const Header = () => {
 
-  const showHeader = useManageDisplay(true)
+  const headerDisplay = useManageDisplay(true)
 
-  useScrollTrigger({ showHeader })
+  useScrollTrigger({ headerDisplay })
 
   return (
-    <header className={`${styles.header} bg-glass border-b-glass ${showHeader.state ? '' : styles.hidden}`}>
+    <header className={`${styles.header} bg-glass border-b-glass ${headerDisplay.state ? '' : styles.hidden}`}>
 
       <HeaderProvider>
 
