@@ -15,9 +15,13 @@ export const useScrollTrigger = ({ headerDisplay }: {headerDisplay: any}) => {
       return
     }
 
-    if (currentScrollY === 0) {
+    if (currentScrollY <= 0) {
       headerDisplay.open()
-    } else if (currentScrollY > scrollY.current) {
+      scrollY.current = currentScrollY
+      return
+    }
+    
+    if (currentScrollY > scrollY.current) {
       headerDisplay.close()
     } else if (currentScrollY < scrollY.current){
       headerDisplay.open()
