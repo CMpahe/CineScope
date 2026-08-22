@@ -19,7 +19,7 @@ export const MediaCarouselPage = ({ mediaSections, type }: MediaCarouselPageProp
 
     return (
 
-        <SectionWrapper variant='coreSection' margin='m-bottom-10rem'>
+        <SectionWrapper variant='coreSection' margin='m-bottom-10rem' padding='b-padding--10rem'>
             {billboard && <Billboard data={billboard.data} />}
             {
                 mediaSections.map(

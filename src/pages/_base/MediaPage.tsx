@@ -11,7 +11,7 @@ export const MediaPage = ({data}: MediaPageProp) => {
 
 
   return (
-    <SectionWrapper variant='coreSection'>
+    <SectionWrapper variant='coreSection' padding='b-padding--15rem'>
       <div className={`${styles.mediaGrid} ${styles.marginTop}`}>
         {data?.map((media: Media) => (
           <MediaCard key={media.id} media={media} />
