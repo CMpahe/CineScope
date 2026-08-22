@@ -3,11 +3,12 @@ import { RegularBtn } from '@/features/RegularBtn/RegularBtn'
 import { addIcon, playIcon } from '../../assets/icons/icons'
 import { useState, useRef, useMemo } from 'react'
 import { Media } from '@/domain/media/media.types'
-import 'swiper/css'
-import 'swiper/css/effect-fade'
+// import 'swiper/css'
+// import 'swiper/css/effect-fade'
 import { useMemoShuffle } from './billboard.hooks/useMemoShuffle'
 import { useStartLayers } from './billboard.hooks/useStartLayers'
 import { usePlayLayers } from './billboard.hooks/usePlayLayers'
+import { update } from '@/domain/favorite/favorite.store'
 
 type billboardConfig = {
   delay: number
@@ -78,7 +79,7 @@ export const Billboard = ({ data, config }: BillboardProps) => {
 
         <div className={`${styles.btn_container}`}>
           <RegularBtn variant='red' icon={playIcon}> Whatch </RegularBtn>
-          <RegularBtn icon={addIcon} opaque> Add list </RegularBtn>
+          <RegularBtn onClick={() => update(movie)} icon={addIcon} opaque> Add list </RegularBtn>
         </div>
 
       </div>
