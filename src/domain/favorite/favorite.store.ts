@@ -32,7 +32,7 @@ function isSameReference(
     );
 }
 
-function isMediaInReferences (media: Media, references: FavoriteReferences): number {
+export function isMediaInReferences (media: Media, references: FavoriteReferences): number {
     for (let i = 0; i < references.length; i++){
             if (isSameReference(media, references[i])) {
                 return i

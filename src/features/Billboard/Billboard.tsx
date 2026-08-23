@@ -1,6 +1,6 @@
 import styles from './Billboard.module.scss'
 import { RegularBtn } from '@/features/RegularBtn/RegularBtn'
-import { addIcon, playIcon } from '../../assets/icons/icons'
+import { plusIcon, playIcon } from '../../assets/icons/icons'
 import { useState, useRef, useMemo } from 'react'
 import { Media } from '@/domain/media/media.types'
 // import 'swiper/css'
@@ -9,6 +9,9 @@ import { useMemoShuffle } from './billboard.hooks/useMemoShuffle'
 import { useStartLayers } from './billboard.hooks/useStartLayers'
 import { usePlayLayers } from './billboard.hooks/usePlayLayers'
 import { update } from '@/domain/favorite/favorite.store'
+
+import { FavoriteButton } from '@/features/FavoriteButton/FavoriteButton'
+import { useFavorite } from '@/hooks/useFavorites'
 
 type billboardConfig = {
   delay: number
@@ -25,6 +28,8 @@ const DEFAULT_BILLBOARD_CONFIG = {
 }
 
 export const Billboard = ({ data, config }: BillboardProps) => {
+
+  useFavorite()
 
   const finalConfig = useMemo(() => ({
      ...DEFAULT_BILLBOARD_CONFIG, ...config 
@@ -79,7 +84,7 @@ export const Billboard = ({ data, config }: BillboardProps) => {
 
         <div className={`${styles.btn_container}`}>
           <RegularBtn variant='red' icon={playIcon}> Whatch </RegularBtn>
-          <RegularBtn onClick={() => update(movie)} icon={addIcon} opaque> Add list </RegularBtn>
+          <FavoriteButton media={movie} text={true}></FavoriteButton>
         </div>
 
       </div>

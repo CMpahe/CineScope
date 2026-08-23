@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom'
 import { RegularBtn } from '@/features/RegularBtn/RegularBtn'
-import { addIcon, playIcon } from '@/assets/icons/icons'
+import { playIcon} from '@/assets/icons/icons'
 import styles from './HoverCardPortal.module.scss'
 import { CSSProperties, forwardRef } from 'react'
 import { Media } from '@/domain/media/media.types'
-import { update } from '@/domain/favorite/favorite.store'
+import { useFavorite } from '@/hooks/useFavorites'
+import { FavoriteButton } from '@/features/FavoriteButton/FavoriteButton'
 
 type HoverCardPortalProp = {
   media: Media
@@ -12,6 +13,9 @@ type HoverCardPortalProp = {
 } & React.ComponentPropsWithoutRef<"div">;
 
 export const HoverCardPortal = forwardRef<HTMLDivElement, HoverCardPortalProp>(({ media, style, ...props }, ref) => {
+
+  useFavorite()
+
   return ReactDOM.createPortal(
     <div
       {...props}
@@ -24,11 +28,11 @@ export const HoverCardPortal = forwardRef<HTMLDivElement, HoverCardPortalProp>((
         alt={media.title}
       />
 
-      <div className={styles.buttons}> {/* Buttons section */}
+      <div className={styles.buttons}>
 
         <RegularBtn icon={playIcon} variant='red' width='w--40' />
 
-        <RegularBtn onClick={() => update(media)} variant={null} icon={addIcon} width='w--30' padding='padding--px1' />
+        <FavoriteButton media={media}></FavoriteButton>
 
       </div>
 
