@@ -6,19 +6,20 @@ import styles from './FavoriteButton.module.scss'
 
 type FavoriteButtonProps = {
     text?: boolean
+    inBillboard?: boolean
     media: Media   
 }
 
-export const FavoriteButton = ({ media, text= false }: FavoriteButtonProps) => {
+export const FavoriteButton = ({ media, text= false, inBillboard = false }: FavoriteButtonProps) => {
 
     const favorite = isFavorite(media)
 
     return (
         <button 
         onClick={() => update(media)}
-        className={styles.favoriteButton + (favorite ? ` ${styles.isFavorite}` : '')}>
+        className={styles.favoriteButton + (favorite ? ` ${styles.isFavorite}` : '') + (inBillboard ? ` ${styles.inBillboard}` : '')}>
             {favorite ? checkIcon : plusIcon}
-            {text && <p>{favorite ? 'Added' : 'Add to List'}</p>}
+            {text && <p>{favorite ? 'Added' : 'Add list'}</p>}
         </button>
     )
 }

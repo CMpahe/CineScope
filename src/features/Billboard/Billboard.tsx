@@ -84,7 +84,7 @@ export const Billboard = ({ data, config }: BillboardProps) => {
 
         <div className={`${styles.btn_container}`}>
           <RegularBtn variant='red' icon={playIcon}> Whatch </RegularBtn>
-          <FavoriteButton media={movie} text={true}></FavoriteButton>
+          <FavoriteButton media={movie} text={true} inBillboard={true}></FavoriteButton>
         </div>
 
       </div>
