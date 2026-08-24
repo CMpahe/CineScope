@@ -27,7 +27,7 @@ export const MediaCarouselPage = ({ mediaSections, type }: MediaCarouselPageProp
                         <Carousel 
                             key={section.id}
                             section={section}
-                            type={section.type}
+                            // type={section.type}
                             windowInfo={windowInfo} 
                         />
                     )

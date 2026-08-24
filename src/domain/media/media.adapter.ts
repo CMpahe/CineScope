@@ -11,15 +11,25 @@ function mapGenres(genreIds: number[], genres: GenreMap): string[] {
 }
 
 // Adapter principal
-export function adaptDtoToMedia(movie: MediaDTO, genres: GenresData): Media {
+export function adaptDtoToMedia(movie: MediaDTO, genres: GenresData, type: 'movie' | 'tv'): Media {
+
+const title = type === 'movie'
+    ? movie.title
+    : movie.name
+
+  if (!title) {
+    throw new Error(`Media ${movie.id} has no title for type ${type}`)
+  }
+
+
   return {
     id: movie.id,
-    title: movie.title ?? movie.name ?? '',
+    title,
     year: movie.release_date?.slice(0, 4) ?? movie.first_air_date?.slice(0, 4) ?? '',
-    genres: movie.title ? mapGenres(movie.genre_ids, genres.movie) : mapGenres(movie.genre_ids, genres.tv),
+    genres: type === 'movie' ? mapGenres(movie.genre_ids, genres.movie) : mapGenres(movie.genre_ids, genres.tv),
     description: movie.overview,
     poster: movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : null,
-    type: movie.media_type,
+    type,
     backdrop: movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : null
   }
 }

@@ -5,6 +5,7 @@ import { Media, MediaDTO, MediaResponseDTO} from "@/domain/media/media.types";
 import { request } from "./api.service";
 import { adaptDtoToMedia } from "@/domain/media/media.adapter";
 import { resolveGenres } from "./genres.service";
+import { getMediaType } from "@/domain/media/media.utils";
 
 
 export async function resolveMedia (
@@ -24,9 +25,11 @@ export async function resolveMedia (
     const response = await request<MediaResponseDTO>(endpoint)
     const genres = await resolveGenres()
 
+    const type = getMediaType(endpoint)
+
     const data: Media[] = response.results
         .filter(item => item.media_type !== "person")
-        .map((media: MediaDTO) => adaptDtoToMedia(media, genres))
+        .map((media: MediaDTO) => adaptDtoToMedia(media, genres, type))
  
     if (cacheSetting.enable && cacheSetting.key) {
         cache(data, cacheSetting.key)

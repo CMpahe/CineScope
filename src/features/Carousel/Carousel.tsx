@@ -11,7 +11,7 @@ import { Loader } from '../common/Loader/Loader'
 
 type CarouselProp = {
   section: MediaSection
-  type: 'movie' | 'tv'
+  // type: 'movie' | 'tv'
   windowInfo: any
 }
 

@@ -1,6 +1,6 @@
 import styles from './Billboard.module.scss'
 import { RegularBtn } from '@/features/RegularBtn/RegularBtn'
-import { plusIcon, playIcon } from '../../assets/icons/icons'
+import { playIcon } from '../../assets/icons/icons'
 import { useState, useRef, useMemo } from 'react'
 import { Media } from '@/domain/media/media.types'
 // import 'swiper/css'
