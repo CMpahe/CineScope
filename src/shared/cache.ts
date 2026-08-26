@@ -1,21 +1,45 @@
 import { hash } from "@/utils/hash"
-import { load } from "./local-storage"
+import { load, remove, save } from "./local-storage"
 
-export function cache (data: any, cacheKey: string) {
+export function cache (data: any, version: number, cacheKey: string) {
 
-    localStorage.setItem(
+    save(
         cacheKey,
         JSON.stringify({ 
+            version: version,
             data, 
             saveAt: Date.now(), 
             hash: hash(data) })
     )
 }
 
-export function isExpired (cacheKey: string, ttl: number): boolean {
-    const data = load(cacheKey)
+function loadCache (cacheKey: string) {
+    const result = load(cacheKey)
+    return result ? JSON.parse(result) : null
+}
 
-    const now = Date.now()
+export function cacheExists (cacheKey: string): boolean {
+    return load(cacheKey) ? true : false
+}
 
-    return now - data.saveAt > ttl
+export function getCacheData (cacheKey: string, version: number, ttl: number | null) {
+
+    const result = loadCache(cacheKey)
+
+    if (!result) return null
+
+    if (result.version !== version) {
+        remove(cacheKey)
+        return null
+    }
+
+    if (ttl !== null) {
+        const now = Date.now()
+        if (now - result.saveAt > ttl) {
+            remove(cacheKey)
+            return null
+        }
+    }
+    
+    return result.data
 }

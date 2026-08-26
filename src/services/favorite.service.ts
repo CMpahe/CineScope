@@ -5,7 +5,7 @@ import { Media } from "@/domain/media/media.types";
 
 export const getFavorites = () => {
     const references = getFavoriteReferences()
-
+    if (references.length === 0) return []
     return findMediaList(references)
 }
 

@@ -7,5 +7,9 @@ export const getMediaType = (endpoint: string) => {
         return 'tv'
     }
 
+    if (endpoint.includes('/multi')) {
+        return 'multi'
+    }
+
     throw new Error(`Unknown media type for endpoint: ${endpoint}`)
 }

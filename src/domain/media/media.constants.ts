@@ -16,3 +16,15 @@ export const SEARCH_ENDPOINT = `${BASE_URL}/search/multi`
 
 export const POSTER_SIZE = '/w500'
 export const BACKDROP_SIZE = '/w1280'
+
+export const MEDIA_CACHE_INDEX_KEY = "media-cache-index"
+
+export const MEDIA_CACHE_VERSION = 1
+
+export const GENRES_CACHE_VERSION = 1
+
+export const INDEX_CACHE_VERSION = 1
+
+export const MEDIA_CACHE_TTL = 40 * 60 * 1000
+
+export const GENRES_CACHE_TTL = 40 * 60 * 1000

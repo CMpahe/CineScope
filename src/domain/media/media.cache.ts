@@ -1,40 +1,38 @@
-import { cache } from "@/shared/cache";
+import { cache, getCacheData } from "@/shared/cache";
 import { Media } from "./media.types";
-import { load } from "@/shared/local-storage";
 import { FavoriteReference, FavoriteReferences } from "../favorite/favorite.types";
+import { MEDIA_CACHE_INDEX_KEY, INDEX_CACHE_VERSION } from "./media.constants";
 
-const MEDIA_CACHE_INDEX_KEY = "media-cache-index"
 
-function getIndex () {
-    return load(MEDIA_CACHE_INDEX_KEY) ?? []
+function getIndexes () {
+    return getCacheData(MEDIA_CACHE_INDEX_KEY, INDEX_CACHE_VERSION, null) ?? []
 }
 
-function saveIndex (index: Array<string>) {
-    cache(index, MEDIA_CACHE_INDEX_KEY)
+function saveIndexes (index: Array<string>) {
+    cache(index, INDEX_CACHE_VERSION, MEDIA_CACHE_INDEX_KEY)
 }
 
-export function save (key: string) {
-    const index = getIndex()
+export function saveIndex (key: string) {
+    const indexes: string[] = getIndexes()
 
-    if (index) {
+    if (indexes) {
 
-        const keys: string[] = load(MEDIA_CACHE_INDEX_KEY)
-        const newIndex = new Set(keys)
-        newIndex.add(key)
+        const newIndexes = new Set(indexes)
+        newIndexes.add(key)
 
-        const array: string[] = [...newIndex]
+        const array: string[] = [...newIndexes]
 
-        saveIndex(array)
+        saveIndexes(array)
     } else {
-        saveIndex([key])
+        saveIndexes([key])
     }
 }
 
 function findMedia (reference: FavoriteReference): Media | undefined {
-    const index = getIndex()
+    const indexes = getIndexes()
 
-    for (const i of index) {
-        const mediaList: Media[] = load(i)
+    for (const i of indexes) {
+        const mediaList: Media[] = getCacheData(i, INDEX_CACHE_VERSION, null) ?? []
         for (const media of mediaList) {
                 if ( media.id === reference.id && media.type === reference.type) return media
             }

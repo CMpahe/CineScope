@@ -1,7 +1,7 @@
 import { genresEndpoints } from "@/constants/endpoints"
 import { request } from "./api.service"
-import { cacheExists, load } from "@/shared/local-storage"
-import { cache, isExpired } from "@/shared/cache"
+import { cache, getCacheData} from "@/shared/cache"
+import { GENRES_CACHE_TTL, GENRES_CACHE_VERSION } from "@/domain/media/media.constants"
 
 export type GenreMap = Record<number, string>
 
@@ -16,7 +16,11 @@ interface GenresResponseDTO {
 
 export async function resolveGenres(): Promise<GenresData> {
   
-  if (cacheExists('genres') && !isExpired('genres', 30 * 60 * 1000)) return load('genres')  
+  const cacheData = getCacheData('genres', GENRES_CACHE_VERSION, GENRES_CACHE_TTL)
+  
+  if (cacheData) {
+    return cacheData
+  }
 
   const moviesResponse = await request<GenresResponseDTO>(genresEndpoints.movie)
 
@@ -31,7 +35,7 @@ export async function resolveGenres(): Promise<GenresData> {
     )
   } 
 
-  cache(data, 'genres')
+  cache(data, GENRES_CACHE_VERSION, 'genres')
   
   return data
 

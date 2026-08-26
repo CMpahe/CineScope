@@ -1,8 +1,11 @@
 import { useFavorite } from "@/hooks/useFavorites"
 import { MediaPage } from "../_base/MediaPage"
+import { getFavorites } from "@/services/favorite.service"
 
 export const FavoritePage = () => {
-    const data = useFavorite()
+
+    useFavorite()
+    const data = getFavorites()
 
     return (MediaPage({data}))
 }

@@ -8,6 +8,7 @@ import { useSectionController } from './carousel.hooks/useSectionController'
 import { MediaSection } from '@/domain/media/media.sections'
 import { useMedia } from '@/hooks/useMedia'
 import { Loader } from '../common/Loader/Loader'
+import { MEDIA_CACHE_TTL } from '@/domain/media/media.constants'
 
 type CarouselProp = {
   section: MediaSection
@@ -27,7 +28,7 @@ export function Carousel ({
   const cacheConfig = {
     key: cacheKey,
     enable: true,
-    ttl: 5 * 60 * 1000
+    ttl: MEDIA_CACHE_TTL
   }
 
   const { data, loading, error } = useMedia({ endpoint: section.endpoint, cacheSetting: cacheConfig })

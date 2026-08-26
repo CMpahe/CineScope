@@ -3,7 +3,7 @@ import { getCacheReferences } from "./favorite.cache";
 import { Media } from "../media/media.types";
 import { FavoriteReference, FavoriteReferences } from "./favorite.types";
 import { cache } from "@/shared/cache";
-import { MEDIA_CACHE_REFERENCES } from "./favorite.constants";
+import { FAVORITE_CACHE_VERSION, FAVORITE_CACHE_REFERENCES_KEY } from "./favorite.constants";
 
 let favoriteReferences = getCacheReferences()
 
@@ -53,7 +53,7 @@ export function update(media: Media) {
             favoriteReferences.filter(
                 ref => !isSameReference(media, ref)
             )
-        cache(favoriteReferences, MEDIA_CACHE_REFERENCES)
+        cache(favoriteReferences, FAVORITE_CACHE_VERSION, FAVORITE_CACHE_REFERENCES_KEY)
         notifyFavoritesChanged()
         return
 
@@ -66,7 +66,7 @@ export function update(media: Media) {
                 type: media.type
             }
         ]
-        cache(favoriteReferences, MEDIA_CACHE_REFERENCES)
+        cache(favoriteReferences, FAVORITE_CACHE_VERSION, FAVORITE_CACHE_REFERENCES_KEY)
         notifyFavoritesChanged()
         return
 

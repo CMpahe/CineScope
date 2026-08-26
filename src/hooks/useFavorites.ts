@@ -8,6 +8,4 @@ export const useFavorite = () => {
         subscribe,
         getSnapshot
     )
-
-    return getFavorites()  
 }

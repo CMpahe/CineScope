@@ -1,12 +1,13 @@
 export function load(cacheKey: string) {
-    const cacheData = window.localStorage.getItem(cacheKey)
-
-    return cacheData ? JSON.parse(cacheData).data : null
+    return window.localStorage.getItem(cacheKey)
 }
 
-export function invalidate (cacheKey: string) { localStorage.removeItem(cacheKey) }  
-
-
-export function cacheExists (cacheKey: string): boolean {
-    return window.localStorage.getItem(cacheKey) ? true : false
+export function save(key: string, value: string) {
+  window.localStorage.setItem(key, value)
 }
+
+export function remove(key: string) {
+  window.localStorage.removeItem(key)
+}  
+
+

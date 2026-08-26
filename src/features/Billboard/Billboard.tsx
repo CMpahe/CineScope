@@ -8,8 +8,6 @@ import { Media } from '@/domain/media/media.types'
 import { useMemoShuffle } from './billboard.hooks/useMemoShuffle'
 import { useStartLayers } from './billboard.hooks/useStartLayers'
 import { usePlayLayers } from './billboard.hooks/usePlayLayers'
-import { update } from '@/domain/favorite/favorite.store'
-
 import { FavoriteButton } from '@/features/FavoriteButton/FavoriteButton'
 import { useFavorite } from '@/hooks/useFavorites'
 
